@@ -1,5 +1,38 @@
 # Created by https://www.gitignore.io
 
+### Eclipse ###
+*.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# TeXlipse plugin
+.texlipse
+
+
 ### NetBeans ###
 nbproject/private/
 build/
@@ -55,6 +88,13 @@ Temporary Items
 .apdisk
 
 
+### Linux ###
+*~
+
+# KDE directory preferences
+.directory
+
+
 ### Java ###
 *.class
 
@@ -68,3 +108,4 @@ Temporary Items
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
