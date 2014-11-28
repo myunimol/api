@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * @author Ivan Di Rienzo
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/testCredentials"})
 public class LoginServlet extends HttpServlet {
 
     /**
@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     /**
