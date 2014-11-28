@@ -11,7 +11,7 @@ public interface LoginParser {
     
     /**
      * Effettua il parser della pagina di login recuperando le informazioni dell'utente,
-     * restituisce NULL in caso di errato login (evitato l'uso di eccezioni per ottimizare prestazioni)
+     * restituisce NULL in caso di errato login (evitato l'uso di eccezioni per ottimizzare prestazioni)
      * 
      * @param urlLogin url per il login da cui fare il parsing
      * @param username nome utente per accedere ad esse3

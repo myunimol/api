@@ -6,45 +6,77 @@ package it.unimol.my.login;
  * @author Ivan Di Rienzo
  */
 public class UserInformation {
-    
-    private String nome;
-    private String cognome;
-    private String studentID;
-    private String studentClass;
-    //TODO aggiungere gli altri campi utili: appelli disponibili,tasse etc....
-    
 
-    public String getNome() {
-        return nome;
-    }
+	/**
+	 * Aggiungere informazioni relative alla variabile
+	 */
+	private String nome;
+	/**
+     * 
+     */
+	private String cognome;
+	private String studentID;
+	private String studentClass;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	// TODO aggiungere gli altri campi utili: appelli disponibili,tasse etc....
 
-    public String getCognome() {
-        return cognome;
-    }
+	/**
+	 * inserire commento!!!
+	 * 
+	 * @param nome
+	 *            dettagliare parametro!!!
+	 * @param cognome
+	 * @param studentID
+	 * @param studentClass
+	 */
+	public UserInformation(String nome, String cognome, String studentID,
+			String studentClass) {
+		super();
+		this.nome = nome;
+		this.cognome = cognome;
+		this.studentID = studentID;
+		this.studentClass = studentClass;
+	}
 
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
+	/**
+	 * dettagliare il metodo
+	 * 
+	 * @return dettagliare la variabile di ritorno
+	 */
+	public String getNome() {
+		return nome;
+	}
 
-    public String getStudentID() {
-        return studentID;
-    }
+	/**
+	 * 
+	 * @param nome
+	 */
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
-    }
+	public String getCognome() {
+		return cognome;
+	}
 
-    public String getStudentClass() {
-        return studentClass;
-    }
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
 
-    public void setStudentClass(String studentClass) {
-        this.studentClass = studentClass;
-    }
-    
-    
+	public String getStudentID() {
+		return studentID;
+	}
+
+	public void setStudentID(String studentID) {
+		this.studentID = studentID;
+	}
+
+	public String getStudentClass() {
+		return studentClass;
+	}
+
+	public void setStudentClass(String studentClass) {
+		this.studentClass = studentClass;
+	}
+
 }

@@ -1,22 +1,24 @@
-package it.unimol.my.login;
+package it.unimol.my.elencoappelli;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URL;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 /**
- * La servlet che gestisce le richieste di login restituisce le informazioni di
- * base dell'utente sottoforma di JSON
+ * Descrizione accurata della classe!!!
  * 
- * @author Ivan Di Rienzo
+ * @author Giuseppe Bianco
  */
-@WebServlet(name = "LoginServlet", urlPatterns = { "/test-credentials" })
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "ExamSessionsServlet", urlPatterns = { "/exam-sessions" })
+public class ExamSessionsServlet extends HttpServlet {
 
 	/**
 	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,35 +38,29 @@ public class LoginServlet extends HttpServlet {
 
 		String token = request.getParameter("token");
 
-		// TODO integrare (quando sara' pronta) la componente di validazione del
-		// token
+		// TODO integrare componente di validazione del token (quando pronta)
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		/**
-		 * Questo potrebbe essere l'URL adatto all'estrazione delle informazioni
-		 * base dell'utente
-		 */
-		URL targetURL = new URL("https://unimol.esse3.cineca.it/Home.do");
-
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 
-		PrintWriter out = response.getWriter();
-		LoginParser loginParser = LoginParserManager.getLoginParser();
-		UserInformation userInformation = loginParser.getLoginInformation(
-				targetURL, username, password);
+		PrintWriter printWriter = response.getWriter();
 
-		if (userInformation == null /* OR token non valido */) {
-			// TODO restituire JSON login fallito
-			// esempio
-			out.println("{'login':'failure'}");
-		} else {
-			// TODO restituire JSON con info utente
-		}
+		String targetURL = "http://localhost:8080/MyUnimol/target.html";
 
-		out.close();
+		// recupero del parser dal parser manager
+		ExamSessionsExtractorInterface extractor = ExamSessionsExtractorManager
+				.getExtractor();
+		// chiamata al metodo per ottenere la lista degli appelli
+		List<ExamSession> examSessions = extractor.getExamSessions(targetURL,
+				username, password);
+
+		// conversione in json e stampa
+		Gson gson = new Gson();
+		String json = gson.toJson(examSessions);
+		printWriter.println(json);
 	}
 
 	// <editor-fold defaultstate="collapsed"
@@ -84,7 +80,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		// le richieste in GET non vengono accettate
 	}
 
 	/**
