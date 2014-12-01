@@ -3,6 +3,8 @@ package it.unimol.my.requesterhtml;
 import java.net.URL;
 import java.util.Map;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
+
 public interface HTMLRequesterInterface {
 
 	/**
@@ -19,13 +21,15 @@ public interface HTMLRequesterInterface {
 	 *            La password dell'utente da autenticare.
 	 * @return Il codice di markup HTML sottoforma di String.
 	 */
-	public String get(URL targetPage, String username, String password);
+	public String get(URL targetPage, String username, String password)
+			throws UnirestException;
 
-	public String get(URL targetPage);
+	public String get(URL targetPage) throws UnirestException;
 
 	public String post(URL targetPage, Map<String, String> parameters,
-			String username, String password);
+			String username, String password) throws UnirestException;
 
-	public String post(URL targetPage, Map<String, String> parameters);
+	public String post(URL targetPage, Map<String, String> parameters)
+			throws UnirestException;
 
 }
