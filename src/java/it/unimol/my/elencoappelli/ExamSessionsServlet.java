@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.mashape.unirest.http.exceptions.UnirestException;
 
 /**
- * Descrizione accurata della classe!!!
+ * Questa servlet da il via al parsing ella lista degli appelli d'esame. Dopo
+ * l'elaborazione dei dati da parte delle classi addette al parsing, mostra a
+ * video la lista degli appelli disponibili in formato json
  * 
  * @author Giuseppe Bianco
  */
@@ -48,19 +51,31 @@ public class ExamSessionsServlet extends HttpServlet {
 
 		PrintWriter printWriter = response.getWriter();
 
-		String targetURL = "http://localhost:8080/MyUnimol/target.html";
+		// Questo sarà l'url relativo alla pagina della lista degli appelli
+		// d'esame disponibili
+//		String targetURL = "https://unimol.esse3.cineca.it/auth/studente/Appelli/Appelli.do";
+		String targetURL = "http://localhost:8080/myunimol-webservices/pagine-target/elencoappelliUNIMOL.html";
 
-		// recupero del parser dal parser manager
+		// recupero l'estrattore
 		ExamSessionsExtractorInterface extractor = ExamSessionsExtractorManager
 				.getExtractor();
-		// chiamata al metodo per ottenere la lista degli appelli
-		List<ExamSession> examSessions = extractor.getExamSessions(targetURL,
-				username, password);
+		// Richiamo l'estrattore del manager e la funzione che effettua il
+		// parsing della pagina/file
+		// Il risultato è la lista di tutti gli appelli disponibili
+		List<ExamSession> examSessions;
+		try {
+			examSessions = extractor.getExamSessions(targetURL, username,
+					password);
+			// conversione della "List" di ExamSession in json e stampa a video
+			Gson gson = new Gson();
+			String json = gson.toJson(examSessions);
+			printWriter.println(json);
+		} catch (UnirestException e) {
+			e.printStackTrace();
+			printWriter
+					.println("{\"result\":\"failure\", \"msg\":\"unirest exception\"}");
+		}
 
-		// conversione in json e stampa
-		Gson gson = new Gson();
-		String json = gson.toJson(examSessions);
-		printWriter.println(json);
 	}
 
 	// <editor-fold defaultstate="collapsed"
