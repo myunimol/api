@@ -1,82 +1,102 @@
 package it.unimol.my.login;
 
 /**
- * Classe che rappresenta le informazioni dell'utente recuperate dopo il login
+ * Classe bean che rappresenta le informazioni dell'utente recuperate dopo il login
  * 
  * @author Ivan Di Rienzo
  */
 public class UserInformation {
-
-	/**
-	 * Aggiungere informazioni relative alla variabile
-	 */
-	private String nome;
-	/**
-     * 
+    
+    /* result sarà sempre success dato che se l'oggetto viene creato vuol dire che il login ha avuto successo! 
+     * serve a facilitare la generazione del JSON tramite Gson (pigrizia XD)
      */
-	private String cognome;
-	private String studentID;
-	private String studentClass;
+    private String result = "success"; 
+    
+    private String name; //nome
+    private String surname; //cognome
+    private String studentID; //matricola
+    private String studentClass; //es: INFORMATICA 3°Anno
+    private String taxes; //situazione delle tasse
+    private String careerPlan; //se il piano carriera è modificabile
+    private String availableExams; // # appelli disponibili
+    private String enrolledExams; // # esami prenotati
 
-	// TODO aggiungere gli altri campi utili: appelli disponibili,tasse etc....
+    
+    /**
+     * Bean class, costruttore vuoto
+     */
+    public UserInformation() {
+    }
 
-	/**
-	 * inserire commento!!!
-	 * 
-	 * @param nome
-	 *            dettagliare parametro!!!
-	 * @param cognome
-	 * @param studentID
-	 * @param studentClass
-	 */
-	public UserInformation(String nome, String cognome, String studentID,
-			String studentClass) {
-		super();
-		this.nome = nome;
-		this.cognome = cognome;
-		this.studentID = studentID;
-		this.studentClass = studentClass;
-	}
+    
+    //SOLO GETTER E SETTER
 
-	/**
-	 * dettagliare il metodo
-	 * 
-	 * @return dettagliare la variabile di ritorno
-	 */
-	public String getNome() {
-		return nome;
-	}
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * 
-	 * @param nome
-	 */
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getCognome() {
-		return cognome;
-	}
+    public String getSurname() {
+        return surname;
+    }
 
-	public void setCognome(String cognome) {
-		this.cognome = cognome;
-	}
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+    
 
-	public String getStudentID() {
-		return studentID;
-	}
+    public String getStudentID() {
+        return studentID;
+    }
 
-	public void setStudentID(String studentID) {
-		this.studentID = studentID;
-	}
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
+    }
 
-	public String getStudentClass() {
-		return studentClass;
-	}
+    public String getStudentClass() {
+        return studentClass;
+    }
 
-	public void setStudentClass(String studentClass) {
-		this.studentClass = studentClass;
-	}
+    public void setStudentClass(String studentClass) {
+        this.studentClass = studentClass;
+    }
 
+    public String getTaxes() {
+        return taxes;
+    }
+
+    public void setTaxes(String taxes) {
+        this.taxes = taxes;
+    }
+
+    public String getCareerPlan() {
+        return careerPlan;
+    }
+
+    public void setCareerPlan(String careerPlan) {
+        this.careerPlan = careerPlan;
+    }
+
+    public String getAvailableExams() {
+        return availableExams;
+    }
+
+    public void setAvailableExams(String availableExams) {
+        this.availableExams = availableExams;
+    }
+
+    public String getEnrolledExams() {
+        return enrolledExams;
+    }
+
+    public void setEnrolledExams(String enrolledExams) {
+        this.enrolledExams = enrolledExams;
+    }
+    
+    
+    
+    
 }

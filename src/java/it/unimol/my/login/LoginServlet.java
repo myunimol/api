@@ -1,8 +1,11 @@
 package it.unimol.my.login;
 
+import com.google.gson.Gson;
+import com.mashape.unirest.http.exceptions.UnirestException;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URL;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * La servlet che gestisce le richieste di login restituisce le informazioni di
  * base dell'utente sottoforma di JSON
- * 
+ *
  * @author Ivan Di Rienzo
  */
 @WebServlet(name = "LoginServlet", urlPatterns = { "/test-credentials" })
@@ -35,36 +38,37 @@ public class LoginServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		String token = request.getParameter("token");
-
-		// TODO integrare (quando sara' pronta) la componente di validazione del
-		// token
-
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-
-		/**
-		 * Questo potrebbe essere l'URL adatto all'estrazione delle informazioni
-		 * base dell'utente
-		 */
-		URL targetURL = new URL("https://unimol.esse3.cineca.it/Home.do");
 
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 
 		PrintWriter out = response.getWriter();
-		LoginParser loginParser = LoginParserManager.getLoginParser();
-		UserInformation userInformation = loginParser.getLoginInformation(
-				targetURL, username, password);
+		try {
 
-		if (userInformation == null /* OR token non valido */) {
-			// TODO restituire JSON login fallito
-			// esempio
-			out.println("{'login':'failure'}");
-		} else {
-			// TODO restituire JSON con info utente
+			if (token == null || username == null || password == null) {
+				// aggiungere controllo token non valido
+				out.print("{\"result\":\"failure\", \"msg\":\"dati non validi\"}");
+			} else {
+				LoginParser parser = LoginParserManager.getLoginParser();
+				UserInformation logInfo = parser.getLoginInformation(username,
+						password);
+				if (logInfo == null) {
+					// login non riuscito
+					out.print("{\"result\":\"failure\", \"msg\":\"login non riuscito\"}");
+				} else {
+					Gson gson = new Gson();
+					// generazione JSON
+					out.print(gson.toJson(logInfo));
+				}
+			}
+
+		} catch (UnirestException e) {
+			out.print("{\"result\":\"failure\", \"msg\":\"errore unirest\"}");
+		} finally {
+			out.close();
 		}
-
-		out.close();
 	}
 
 	// <editor-fold defaultstate="collapsed"
