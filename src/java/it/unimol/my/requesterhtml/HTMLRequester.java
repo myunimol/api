@@ -1,5 +1,6 @@
 package it.unimol.my.requesterhtml;
 
+import it.unimol.my.config.ConfigurationManager;
 import it.unimol.my.utils.Utils;
 
 import java.net.URL;
@@ -15,15 +16,13 @@ import com.mashape.unirest.request.HttpRequestWithBody;
 
 public class HTMLRequester implements HTMLRequesterInterface {
 
+	private ConfigurationManager config = ConfigurationManager.getInstance();
+	
 	private String refreshJsessionId(String username, String password) {
 		try {
 			HttpResponse<String> response = Unirest.get(
-					Utils.AUTH_URL_STRING + "?cod_lingua=ita").asString();
+					config.getLogonUrl() + "?cod_lingua=ita").asString();
 			Headers headers = response.getHeaders();
-
-			System.out.println(response.getHeaders());
-			System.out.println(response.getBody());
-
 			List<String> cookies = headers.get("set-cookie");
 			if (cookies == null)
 				return "";
@@ -39,7 +38,7 @@ public class HTMLRequester implements HTMLRequesterInterface {
 	private int logout(String username, String password, String jsessionId) {
 		try {
 			HttpResponse<String> logout = Unirest.get(
-					Utils.LOGOUT_URL_STRING + ";" + jsessionId).asString();
+					config.getLogoutUrl() + ";" + jsessionId).asString();
 			return logout.getCode();
 		} catch (UnirestException e) {
 			e.printStackTrace();
