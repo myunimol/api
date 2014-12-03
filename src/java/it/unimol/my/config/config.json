@@ -19,6 +19,10 @@
     }
   },
   "messages": {
-    "noGetRequest": "Sorry, our system do not accept GET requests"
+    "noGetRequest": "Sorry, our system do not accept GET requests",
+    "invalidToken":"Sorry, mummy said I do not have to talk with strangers...",
+    "noCredentials":"I'm not a magician: you have got to tell me your credentials in order to get the right information.",
+    "badLogin":"You probably mistyped something into your username or password: check them twice next time.",
+    "unirestException":"Something went wrong while contacting esse3. Probably it depends on cineca."
   }
 }
