@@ -1,4 +1,4 @@
-package it.unimol.my.elencoappelli;
+package it.unimol.my.appelliprenotati;
 
 import it.unimol.my.config.ConfigurationManager;
 
@@ -13,17 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 /**
- * Questa servlet da il via al parsing ella lista degli appelli d'esame. Dopo
- * l'elaborazione dei dati da parte delle classi addette al parsing, mostra a
- * video la lista degli appelli disponibili in formato json
  * 
- * @author Giuseppe Bianco
  */
-@WebServlet(name = "ExamSessionsServlet", urlPatterns = { "/exam-sessions" })
-public class ExamSessionsServlet extends HttpServlet {
+@WebServlet(name = "EnrolledExamsServlet", urlPatterns = { "/getEnrolledExams" })
+public class EnrolledExamsServlet extends HttpServlet {
 
 	/**
 	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -54,25 +51,25 @@ public class ExamSessionsServlet extends HttpServlet {
 		PrintWriter printWriter = response.getWriter();
 
 		String targetURL = ConfigurationManager.getInstance()
-				.getExamSessionsUrl();
+				.getEnrolledExamSessionsUrl();
 
 		// commentare per testare online
 		// decommentare per testare in locale
-		// targetURL =
-		// "http://localhost:8080/myunimol-webservices/pagine-target/elencoappelliUNIMOL.html";
+		targetURL = "http://localhost:8080/myunimol-webservices/pagine-target/appelliprenotati.html";
 
 		// recupero l'estrattore
-		ExamSessionsExtractorInterface extractor = ExamSessionsExtractorManager
+		EnrolledExamsExtractorInterface extractor = EnrolledExamsExtractorManager
 				.getExtractor();
 		// Richiamo l'estrattore del manager e la funzione che effettua il
 		// parsing della pagina/file
 		// Il risultato è la lista di tutti gli appelli disponibili
-		List<DetailedExamSession> examSessions;
+		List<EnrolledExamSession> examSessions;
 		try {
-			examSessions = extractor.getExamSessions(targetURL, username,
-					password);
+			examSessions = extractor.getEnrolledExamSessions(targetURL,
+					username, password);
 			// conversione della "List" di ExamSession in json e stampa a video
-			Gson gson = new Gson();
+			Gson gson = new GsonBuilder()
+			   .setDateFormat("dd/MM/yyyy HH:mm").create();
 			String json = gson.toJson(examSessions);
 			printWriter.println(json);
 		} catch (UnirestException e) {

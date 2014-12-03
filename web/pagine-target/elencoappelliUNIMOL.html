@@ -1,5 +1,6 @@
 
-<!DOCTYPE html><html lang="it">
+<!DOCTYPE html>
+<html lang="it">
 <head>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -16,290 +17,495 @@
 <title>Elenco Appelli</title>
 <link href="css/basic.css" media="all" type="text/css" rel="stylesheet">
 <link href="css/custom.css" media="all" type="text/css" rel="stylesheet">
-<link href="css/template.css" media="all" type="text/css" rel="stylesheet">
+<link href="css/template.css" media="all" type="text/css"
+	rel="stylesheet">
 <link href="css/unimol.css" media="all" type="text/css" rel="stylesheet">
-<script src="JavaScript/common.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/jquery-1.11.0.min.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/jquery-ui.min.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/jqgrid/js/jquery.jqGrid.min.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/jqgrid/src/grid.tbltogrid.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/jqgrid/js/i18n/grid.locale-it.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/footable/js/footable.js?v=2-0-1" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/footable/js/footable.paginate.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/footable/js/footable.sort.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/footable/js/footable.filter.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/scw.js" charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/common.js" charset="iso-8859-1"
+	type="text/javascript"></script>
+<script src="JavaScript/jquery/jquery-1.11.0.min.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/jquery-ui.min.js" charset="iso-8859-1"
+	type="text/javascript"></script>
+<script src="JavaScript/jquery/jqgrid/js/jquery.jqGrid.min.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/jqgrid/src/grid.tbltogrid.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/jqgrid/js/i18n/grid.locale-it.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/footable/js/footable.js?v=2-0-1"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/footable/js/footable.paginate.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/footable/js/footable.sort.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/footable/js/footable.filter.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/scw.js" charset="iso-8859-1"
+	type="text/javascript"></script>
 </head>
-<body onload="javascript:randomBackgroundImageOnScritta('4')" data-xsl="/xsl/ListaAppelliLibretto.xsl" class="bootstrap-off">
-<!--INIZIO TEMPLATE CONTAINER MAIN-->
-<div class="portlet-section-body" id="main">
-<!--INIZIO TEMPLATE CONTAINER TESTATA-->
-<div class="portlet-section-body" id="testata">
-<!--INIZIO TEMPLATE CONTAINER SCRITTA-->
-<div class="portlet-section-body" id="scritta">
-<!--INIZIO TEMPLATE HEADER ATENEO-->
-<div class="portlet-section-header  header-hx header-h1" id="ateneo">
-<h1>UNIMOL</h1>
-</div>
-<!--FINE TEMPLATE HEADER ATENEO-->
-</div>
-<!--FINE TEMPLATE CONTAINER SCRITTA-->
-</div>
-<!--FINE TEMPLATE CONTAINER TESTATA-->
-<!--INIZIO TEMPLATE CONTAINER BARRA-GENERALE-->
-<div class="portlet-section-body" id="barra-generale">
-<div class="container-split2-left-noborder">
-<!--INIZIO TEMPLATE LIST MENU-GENERALE-->
-<div id="menu-generale">
-<ul class="">
-<li id="menu-generale-li-1">
-<a id="menu-generale-listitem-1" title="Home" href="Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09">Home</a>
-</li>
-</ul>
-</div>
-<!--FINE TEMPLATE LIST MENU-GENERALE-->
-</div>
-<div class="container-split2-right">
-<div class="lingue">&nbsp;</div>
-</div>
-<br style="clear:both">
-</div>
-<!--FINE TEMPLATE CONTAINER BARRA-GENERALE-->
-<!--INIZIO TEMPLATE CONTAINER CORPO-->
-<div class="portlet-section-body" id="corpo">
-<!--INIZIO TEMPLATE CONTAINER NAVBOX-->
-<div class="portlet-section-body" id="menu-principale">
-<!--INIZIO TEMPLATE CONTAINER MENU-PRINCIPALE-UP-->
-<div class="portlet-section-body" id="menu-principale-up">
-<!--INIZIO TEMPLATE CONTAINER MENU-IDENTIF-AREA-->
-<div class="portlet-section-body" id="menu-identif-area">
-<!--INIZIO TEMPLATE HEADER TITOLO-MENU-PRINCIPALE-->
-<div class="portlet-section-header header-hx header-h1" id="titolo-menu-principale">
-<h1>Studente</h1>
-</div>
-<!--FINE TEMPLATE HEADER TITOLO-MENU-PRINCIPALE-->
-<!--INIZIO TEMPLATE HEADER SOTTOTITOLO-MENU-PRINCIPALE-->
-<div id="sottotitolo-menu-principale" class="record">
-<dl class="record-riga">
-<dt>NOME COGNOME</dt>
-<dd>
-<img title="Foto Studente" src="img/personalizzazione/ico-studente.gif"><br>
-</dd>
-</dl>
-<br>
-</div>
-<br class="pulisci">
-<!--INIZIO LISTA FITTIZIA LISTA-MENU-PRINCIPALE-->
-<ul id="identif-area">
-<li id="menu-open">
-<a href="Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?menu_opened_cod=navbox_account_Area_Riservata">Area Riservata</a>
-<ul>
-<li>
-<a href="Anagrafica/ApplicationFormFromMenu.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita">Application Form for Incoming students</a>
-</li>
-<li>
-<a href="Logout.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita">Logout</a>
-</li>
-</ul>
-</li>
-</ul>
-<!--FINE LISTA FITTIZIA LISTA-MENU-PRINCIPALE-->
-</div>
-<!--FINE TEMPLATE CONTAINER MENU-IDENTIF-AREA-->
-<!--INIZIO TEMPLATE CONTAINER MENU-COMMUNITY-->
-<div class="portlet-section-body" id="menu-community">
-<!--INIZIO LISTA FITTIZIA LISTA-MENU-COMMUNITY-->
-<ul id="community">
-<li id="menu-open-community">
-<a href="ewc/RedirectListaCommunity.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=navbox_community_Didattica_OnLine">Aula Virtuale</a>
-</li>
-</ul>
-<!--FINE LISTA FITTIZIA LISTA-MENU-COMMUNITY-->
-</div>
-<!--FINE TEMPLATE CONTAINER MENU-COMMUNITY-->
-<!--INIZIO TEMPLATE LIST MENU-TUTTI-->
-<div class="portlet-section-body" id="menu-tutti">
-<!--INIZIO TEMPLATE LIST MENU-TUTTI SUB-->
-<br>
-<ul>
-<li>
-<a href="auth/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=navbox_studenti_Home">Home</a>
-</li>
-<li>
-<a href="auth/studente/ListaIscrizioni.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=navbox_studenti_Segreteria">Segreteria</a>
-</li>
-<li>
-<a href="auth/studente/Piani/PianiHome.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=navbox_studenti_Piano_di_Studio">Piano di Studio</a>
-</li>
-<li>
-<a href="auth/studente/Libretto/LibrettoHome.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=navbox_studenti_Carriera">Carriera</a>
-</li>
-<li>
-<a href="auth/studente/Appelli/AppelliF.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=navbox_studenti_Esami">Esami</a>
-</li>
-<li id="menu-open">
-<a href="Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?menu_opened_cod=navbox_mobilita_Mobilit%C3%A0_internazionale">Mobilit&agrave; internazionale</a>
-<ul>
-<li>
-<a href="auth/studente/dirittoAlloStudio/MobilitaFromMenu.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita">Bandi di Mobilit&agrave;</a>
-</li>
-</ul>
-</li>
-<li class="label-ap labeltop-ap">
-<a href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=Ateneo">L'Ateneo</a>
-</li>
-<li class="label-ap">
-<a href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=OffertaFormativa">Offerta formativa</a>
-</li>
-<li class="label-ap">
-<a href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=LezioniEsami">Didattica</a>
-</li>
-<li class="label-ap">
-<a href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=OrientamentoAmmissione">Orientamento e ammissione</a>
-</li>
-<li class="label-ap">
-<a href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=Segreteria">Segreteria Studenti
-</a>
-</li>
-<li class="label-ap">
-<a href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=DirittoAlloStudio">Diritto allo studio</a>
-</li>
-<li class="label-ap">
-<a href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=AreaTasse">Tasse</a>
-</li>
-<li class="label-ap">
-<a href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=MobilInt">Mobilit&agrave; internazionale</a>
-</li>
-<li class="label-ap">
-<a href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=Laurea">Laurea</a>
-</li>
-<li class="label-ap">
-<a href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=Lavoro">Tirocinio e lavoro</a>
-</li>
-<li class="label-ap">
-<a href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=Servizi">Servizi</a>
-</li>
-<li class="label-ap">
-<a href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=AttExtracurrRicreative">Attivit&agrave; extracurriculari e ricreative</a>
-</li>
-</ul>
-<!--FINE TEMPLATE LIST MENU-TUTTI SUB-->
-</div>
-<!--FINE TEMPLATE LIST MENU-TUTTI-->
-<!--INIZIO TEMPLATE CONTAINER MENU-PRINCIPALE-DOWN-->
-<div class="portlet-section-body" id="menu-principale-down">&nbsp;</div>
-<!--FINE TEMPLATE CONTAINER MENU-PRINCIPALE-DOWN-->
-</div>
-<!--FINE TEMPLATE CONTAINER MENU-PRINCIPALE-UP-->
-</div>
-<!--FINE TEMPLATE CONTAINER NAVBOX-->
-<!--INIZIO TEMPLATE CONTAINER ESSE3-->
-<div class="portlet-section-body" id="esse3old">
-<table width="100%" cellspacing="0" cellpadding="0" border="0">
-<tr>
-<td style="width: auto; padding: 0 10px 0 0" class="breadcrumb" align="left"><a title="HomePage" href="Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09">HOME</a>&nbsp;&raquo;&nbsp;<a title="HomePage Appelli" href="auth/studente/Appelli/ListaAppelliLibretto.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?&tipo_app=">Appelli</a>&nbsp;&raquo;&nbsp;<b>Elenco Appelli</b></td>
-</tr>
-</table>
-<table width="100%">
-<tbody>
-<tr>
-<td>
-<div class="titolopagina">Prenotazione&nbsp;Appelli</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table width="100%" cellspacing="10" cellpadding="0" border="0">
-<tr>
-<td class="tplHeader">
-	          La pagina mostra gli appelli prenotabili alla data odierna, per le sole attivit&agrave; didattiche gi&agrave;&nbsp;presenti nel proprio
-	        <a xmlns:java="http://xml.apache.org/xslt/java" href="auth/studente/Libretto/LibrettoHome.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09">libretto</a>.
-	      </td>
-</tr>
-<tr>
-<td>
-<table cellspacing="0" cellpadding="0" border="0">
-<tr>
-<td class="tplTitolo"><b>Appelli disponibili per insegnamenti del proprio libretto</b></td>
-</tr>
-</table>
-</td>
-</tr>
-<tr>
-<td>
-<table cellspacing="0" cellpadding="0" border="0" width="100%" class="detail_table">
-<tr>
-<th valign="top" class="detail_table" colspan="2" id="" rowspan="" style="" width=""></th><th valign="top" class="detail_table" colspan="" id="" rowspan="" style="" width="">Attivit&agrave; didattica</th><th valign="top" class="detail_table" colspan="" id="" rowspan="" style="" width="">Appello</th><th valign="top" class="detail_table" colspan="" id="" rowspan="" style="" width="">Iscrizione</th><th valign="top" class="detail_table" colspan="" id="" rowspan="" style="" width="">Descrizione</th><th valign="top" class="detail_table" colspan="" id="" rowspan="" style="" width="">Sessioni</th>
-</tr>
-<tr>
-<td id="" width="" valign="" colspan="2" style="text-align:center; " rowspan="" class="detail_table">
-<form action="auth/studente/Appelli/DatiPrenotazioneAppello.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09" method="post">
-<input alt="informazioni sull'appello" src="images/prove_finali.gif" type="image" name="imageField"><input value="29" name="APP_ID" type="hidden"><input value="10033" name="CDS_ESA_ID" type="hidden"><input value="31306463" name="ATT_DID_ESA_ID" type="hidden"><input value="1471666" name="ADSCE_ID" type="hidden"><input value="2011" name="AA_OFF_ID" type="hidden"><input value="10033" name="CDS_ID" type="hidden"><input value="9999" name="PDS_ID" type="hidden"><input value="2009" name="AA_ORD_ID" type="hidden"><input value="1" name="ISCR_APERTA" type="hidden"><input value="1" name="TIPO_ATTIVITA" type="hidden"><input value="" name="TIPO_APP_COD" type="hidden">
-</form>
-</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">ALIMENTAZIONE E NUTRIZIONE UMANA</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">11/12/2014<br>
-</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">26/11/2014<br>06/12/2014</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">ALIMENTAZIONE E NUTRIZIONE UMANA</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">2013/2014<br>
-</td>
-</tr>
-<tr>
-<td id="" width="" valign="" colspan="2" style="text-align:center; " rowspan="" class="detail_table">
-<form action="auth/studente/Appelli/DatiPrenotazioneAppello.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09" method="post">
-<input alt="informazioni sull'appello" src="images/prove_finali.gif" type="image" name="imageField"><input value="28" name="APP_ID" type="hidden"><input value="10033" name="CDS_ESA_ID" type="hidden"><input value="31306465" name="ATT_DID_ESA_ID" type="hidden"><input value="1471677" name="ADSCE_ID" type="hidden"><input value="2011" name="AA_OFF_ID" type="hidden"><input value="10033" name="CDS_ID" type="hidden"><input value="9999" name="PDS_ID" type="hidden"><input value="2009" name="AA_ORD_ID" type="hidden"><input value="1" name="ISCR_APERTA" type="hidden"><input value="1" name="TIPO_ATTIVITA" type="hidden"><input value="" name="TIPO_APP_COD" type="hidden">
-</form>
-</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">ANATOMIA PATOLOGICA</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">10/12/2014<br>
-</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">25/11/2014<br>05/12/2014</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">ANATOMIA PATOLOGICA</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">2013/2014<br>
-</td>
-</tr>
-<tr>
-<td id="" width="" valign="" colspan="2" style="text-align:center; " rowspan="" class="detail_table">
-<form action="auth/studente/Appelli/DatiPrenotazioneAppello.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09" method="post">
-<input alt="informazioni sull'appello" src="images/prove_finali.gif" type="image" name="imageField"><input value="5" name="APP_ID" type="hidden"><input value="10033" name="CDS_ESA_ID" type="hidden"><input value="31306892" name="ATT_DID_ESA_ID" type="hidden"><input value="1471672" name="ADSCE_ID" type="hidden"><input value="2011" name="AA_OFF_ID" type="hidden"><input value="10033" name="CDS_ID" type="hidden"><input value="9999" name="PDS_ID" type="hidden"><input value="2009" name="AA_ORD_ID" type="hidden"><input value="1" name="ISCR_APERTA" type="hidden"><input value="1" name="TIPO_ATTIVITA" type="hidden"><input value="" name="TIPO_APP_COD" type="hidden">
-</form>
-</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">FARMACOLOGIA E TOSSICOLOGIA MEDICA</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">11/12/2014<br>
-</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">26/11/2014<br>06/12/2014</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">FARMACOLOGIA E TOSSICOLOGIA MEDICA</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">2013/2014<br>
-</td>
-</tr>
-<tr>
-<td id="" width="" valign="" colspan="2" style="text-align:center; " rowspan="" class="detail_table">
-<form action="auth/studente/Appelli/DatiPrenotazioneAppello.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09" method="post">
-<input alt="informazioni sull'appello" src="images/prove_finali.gif" type="image" name="imageField"><input value="13" name="APP_ID" type="hidden"><input value="10033" name="CDS_ESA_ID" type="hidden"><input value="31306476" name="ATT_DID_ESA_ID" type="hidden"><input value="1471682" name="ADSCE_ID" type="hidden"><input value="2011" name="AA_OFF_ID" type="hidden"><input value="10033" name="CDS_ID" type="hidden"><input value="9999" name="PDS_ID" type="hidden"><input value="2009" name="AA_ORD_ID" type="hidden"><input value="1" name="ISCR_APERTA" type="hidden"><input value="1" name="TIPO_ATTIVITA" type="hidden"><input value="" name="TIPO_APP_COD" type="hidden">
-</form>
-</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">MALATTIE DELL'APPARATO LOCOMOTORE</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">10/12/2014<br>
-</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">25/11/2014<br>05/12/2014</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">MALATTIE DELL'APPARATO LOCOMOTORE</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">2013/2014<br>
-</td>
-</tr>
-<tr>
-<td id="" width="" valign="" colspan="2" style="text-align:center; " rowspan="" class="detail_table">
-<form action="auth/studente/Appelli/DatiPrenotazioneAppello.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09" method="post">
-<input alt="informazioni sull'appello" src="images/prove_finali.gif" type="image" name="imageField"><input value="15" name="APP_ID" type="hidden"><input value="10033" name="CDS_ESA_ID" type="hidden"><input value="31306478" name="ATT_DID_ESA_ID" type="hidden"><input value="1471683" name="ADSCE_ID" type="hidden"><input value="2011" name="AA_OFF_ID" type="hidden"><input value="10033" name="CDS_ID" type="hidden"><input value="9999" name="PDS_ID" type="hidden"><input value="2009" name="AA_ORD_ID" type="hidden"><input value="1" name="ISCR_APERTA" type="hidden"><input value="1" name="TIPO_ATTIVITA" type="hidden"><input value="" name="TIPO_APP_COD" type="hidden">
-</form>
-</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">PSICHIATRIA</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">11/12/2014<br>
-</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">19/11/2014<br>07/12/2014</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">PSICHIATRIA</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">2013/2014<br>
-</td>
-</tr>
-<tr>
-<td id="" width="" valign="" colspan="2" style="text-align:center; " rowspan="" class="detail_table">
-<form action="auth/studente/Appelli/DatiPrenotazioneAppello.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09" method="post">
-<input alt="informazioni sull'appello" src="images/prove_finali.gif" type="image" name="imageField"><input value="18" name="APP_ID" type="hidden"><input value="10033" name="CDS_ESA_ID" type="hidden"><input value="31306480" name="ATT_DID_ESA_ID" type="hidden"><input value="1471685" name="ADSCE_ID" type="hidden"><input value="2011" name="AA_OFF_ID" type="hidden"><input value="10033" name="CDS_ID" type="hidden"><input value="9999" name="PDS_ID" type="hidden"><input value="2009" name="AA_ORD_ID" type="hidden"><input value="1" name="ISCR_APERTA" type="hidden"><input value="1" name="TIPO_ATTIVITA" type="hidden"><input value="" name="TIPO_APP_COD" type="hidden">
-</form>
-</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">SANITA' PUBBLICA E MALATTIE INFETTIVE</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">09/12/2014<br>
-</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">24/11/2014<br>04/12/2014</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">SANITA' PUBBLICA E MALATTIE INFETTIVE</td><td id="" width="" valign="" colspan="" style="" rowspan="" class="detail_table">2013/2014<br>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-<tr>
-<td>
-<table cellspacing="0" cellpadding="0" border="0" width="598">
-<tr>
-<td colspan="8"><img border="0" alt="" height="10" width="1" src="assets/images/clearpixel.gif"></td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-</div>
-<!--FINE TEMPLATE CONTAINER ESSE3-->
-</div>
-<!--FINE TEMPLATE CONTAINER CORPO-->
-<!--INIZIO TEMPLATE CONTAINER FOOTER-->
-<div class="portlet-section-body" id="footer">
-<!--INIZIO TEMPLATE TEXT FOOTER-TEXT-->
-<p id="footer-text" class="portlet-font text-align-left">2012 &copy; by KION a CINECA Company</p>
-<!--FINE TEMPLATE TEXT FOOTER-TEXT-->
-</div>
-<!--FINE TEMPLATE CONTAINER FOOTER-->
-</div>
-<!--FINE TEMPLATE CONTAINER MAIN-->
+<body onload="javascript:randomBackgroundImageOnScritta('4')"
+	data-xsl="/xsl/ListaAppelliLibretto.xsl" class="bootstrap-off">
+	<!--INIZIO TEMPLATE CONTAINER MAIN-->
+	<div class="portlet-section-body" id="main">
+		<!--INIZIO TEMPLATE CONTAINER TESTATA-->
+		<div class="portlet-section-body" id="testata">
+			<!--INIZIO TEMPLATE CONTAINER SCRITTA-->
+			<div class="portlet-section-body" id="scritta">
+				<!--INIZIO TEMPLATE HEADER ATENEO-->
+				<div class="portlet-section-header  header-hx header-h1" id="ateneo">
+					<h1>UNIMOL</h1>
+				</div>
+				<!--FINE TEMPLATE HEADER ATENEO-->
+			</div>
+			<!--FINE TEMPLATE CONTAINER SCRITTA-->
+		</div>
+		<!--FINE TEMPLATE CONTAINER TESTATA-->
+		<!--INIZIO TEMPLATE CONTAINER BARRA-GENERALE-->
+		<div class="portlet-section-body" id="barra-generale">
+			<div class="container-split2-left-noborder">
+				<!--INIZIO TEMPLATE LIST MENU-GENERALE-->
+				<div id="menu-generale">
+					<ul class="">
+						<li id="menu-generale-li-1"><a id="menu-generale-listitem-1"
+							title="Home"
+							href="Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09">Home</a>
+						</li>
+					</ul>
+				</div>
+				<!--FINE TEMPLATE LIST MENU-GENERALE-->
+			</div>
+			<div class="container-split2-right">
+				<div class="lingue">&nbsp;</div>
+			</div>
+			<br style="clear: both">
+		</div>
+		<!--FINE TEMPLATE CONTAINER BARRA-GENERALE-->
+		<!--INIZIO TEMPLATE CONTAINER CORPO-->
+		<div class="portlet-section-body" id="corpo">
+			<!--INIZIO TEMPLATE CONTAINER NAVBOX-->
+			<div class="portlet-section-body" id="menu-principale">
+				<!--INIZIO TEMPLATE CONTAINER MENU-PRINCIPALE-UP-->
+				<div class="portlet-section-body" id="menu-principale-up">
+					<!--INIZIO TEMPLATE CONTAINER MENU-IDENTIF-AREA-->
+					<div class="portlet-section-body" id="menu-identif-area">
+						<!--INIZIO TEMPLATE HEADER TITOLO-MENU-PRINCIPALE-->
+						<div class="portlet-section-header header-hx header-h1"
+							id="titolo-menu-principale">
+							<h1>Studente</h1>
+						</div>
+						<!--FINE TEMPLATE HEADER TITOLO-MENU-PRINCIPALE-->
+						<!--INIZIO TEMPLATE HEADER SOTTOTITOLO-MENU-PRINCIPALE-->
+						<div id="sottotitolo-menu-principale" class="record">
+							<dl class="record-riga">
+								<dt>NOME COGNOME</dt>
+								<dd>
+									<img title="Foto Studente"
+										src="img/personalizzazione/ico-studente.gif"><br>
+								</dd>
+							</dl>
+							<br>
+						</div>
+						<br class="pulisci">
+						<!--INIZIO LISTA FITTIZIA LISTA-MENU-PRINCIPALE-->
+						<ul id="identif-area">
+							<li id="menu-open"><a
+								href="Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?menu_opened_cod=navbox_account_Area_Riservata">Area
+									Riservata</a>
+								<ul>
+									<li><a
+										href="Anagrafica/ApplicationFormFromMenu.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita">Application
+											Form for Incoming students</a></li>
+									<li><a
+										href="Logout.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita">Logout</a>
+									</li>
+								</ul></li>
+						</ul>
+						<!--FINE LISTA FITTIZIA LISTA-MENU-PRINCIPALE-->
+					</div>
+					<!--FINE TEMPLATE CONTAINER MENU-IDENTIF-AREA-->
+					<!--INIZIO TEMPLATE CONTAINER MENU-COMMUNITY-->
+					<div class="portlet-section-body" id="menu-community">
+						<!--INIZIO LISTA FITTIZIA LISTA-MENU-COMMUNITY-->
+						<ul id="community">
+							<li id="menu-open-community"><a
+								href="ewc/RedirectListaCommunity.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=navbox_community_Didattica_OnLine">Aula
+									Virtuale</a></li>
+						</ul>
+						<!--FINE LISTA FITTIZIA LISTA-MENU-COMMUNITY-->
+					</div>
+					<!--FINE TEMPLATE CONTAINER MENU-COMMUNITY-->
+					<!--INIZIO TEMPLATE LIST MENU-TUTTI-->
+					<div class="portlet-section-body" id="menu-tutti">
+						<!--INIZIO TEMPLATE LIST MENU-TUTTI SUB-->
+						<br>
+						<ul>
+							<li><a
+								href="auth/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=navbox_studenti_Home">Home</a>
+							</li>
+							<li><a
+								href="auth/studente/ListaIscrizioni.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=navbox_studenti_Segreteria">Segreteria</a>
+							</li>
+							<li><a
+								href="auth/studente/Piani/PianiHome.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=navbox_studenti_Piano_di_Studio">Piano
+									di Studio</a></li>
+							<li><a
+								href="auth/studente/Libretto/LibrettoHome.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=navbox_studenti_Carriera">Carriera</a>
+							</li>
+							<li><a
+								href="auth/studente/Appelli/AppelliF.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=navbox_studenti_Esami">Esami</a>
+							</li>
+							<li id="menu-open"><a
+								href="Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?menu_opened_cod=navbox_mobilita_Mobilit%C3%A0_internazionale">Mobilit&agrave;
+									internazionale</a>
+								<ul>
+									<li><a
+										href="auth/studente/dirittoAlloStudio/MobilitaFromMenu.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita">Bandi
+											di Mobilit&agrave;</a></li>
+								</ul></li>
+							<li class="label-ap labeltop-ap"><a
+								href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=Ateneo">L'Ateneo</a>
+							</li>
+							<li class="label-ap"><a
+								href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=OffertaFormativa">Offerta
+									formativa</a></li>
+							<li class="label-ap"><a
+								href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=LezioniEsami">Didattica</a>
+							</li>
+							<li class="label-ap"><a
+								href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=OrientamentoAmmissione">Orientamento
+									e ammissione</a></li>
+							<li class="label-ap"><a
+								href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=Segreteria">Segreteria
+									Studenti </a></li>
+							<li class="label-ap"><a
+								href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=DirittoAlloStudio">Diritto
+									allo studio</a></li>
+							<li class="label-ap"><a
+								href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=AreaTasse">Tasse</a>
+							</li>
+							<li class="label-ap"><a
+								href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=MobilInt">Mobilit&agrave;
+									internazionale</a></li>
+							<li class="label-ap"><a
+								href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=Laurea">Laurea</a>
+							</li>
+							<li class="label-ap"><a
+								href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=Lavoro">Tirocinio
+									e lavoro</a></li>
+							<li class="label-ap"><a
+								href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=Servizi">Servizi</a>
+							</li>
+							<li class="label-ap"><a
+								href="Guide/Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?cod_lingua=ita&menu_opened_cod=AttExtracurrRicreative">Attivit&agrave;
+									extracurriculari e ricreative</a></li>
+						</ul>
+						<!--FINE TEMPLATE LIST MENU-TUTTI SUB-->
+					</div>
+					<!--FINE TEMPLATE LIST MENU-TUTTI-->
+					<!--INIZIO TEMPLATE CONTAINER MENU-PRINCIPALE-DOWN-->
+					<div class="portlet-section-body" id="menu-principale-down">&nbsp;</div>
+					<!--FINE TEMPLATE CONTAINER MENU-PRINCIPALE-DOWN-->
+				</div>
+				<!--FINE TEMPLATE CONTAINER MENU-PRINCIPALE-UP-->
+			</div>
+			<!--FINE TEMPLATE CONTAINER NAVBOX-->
+			<!--INIZIO TEMPLATE CONTAINER ESSE3-->
+			<div class="portlet-section-body" id="esse3old">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td style="width: auto; padding: 0 10px 0 0" class="breadcrumb"
+							align="left"><a title="HomePage"
+							href="Home.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09">HOME</a>&nbsp;&raquo;&nbsp;<a
+							title="HomePage Appelli"
+							href="auth/studente/Appelli/ListaAppelliLibretto.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09?&tipo_app=">Appelli</a>&nbsp;&raquo;&nbsp;<b>Elenco
+								Appelli</b></td>
+					</tr>
+				</table>
+				<table width="100%">
+					<tbody>
+						<tr>
+							<td>
+								<div class="titolopagina">Prenotazione&nbsp;Appelli</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table width="100%" cellspacing="10" cellpadding="0" border="0">
+					<tr>
+						<td class="tplHeader">La pagina mostra gli appelli
+							prenotabili alla data odierna, per le sole attivit&agrave;
+							didattiche gi&agrave;&nbsp;presenti nel proprio <a
+							xmlns:java="http://xml.apache.org/xslt/java"
+							href="auth/studente/Libretto/LibrettoHome.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09">libretto</a>.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<table cellspacing="0" cellpadding="0" border="0">
+								<tr>
+									<td class="tplTitolo"><b>Appelli disponibili per
+											insegnamenti del proprio libretto</b></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<table cellspacing="0" cellpadding="0" border="0" width="100%"
+								class="detail_table">
+								<tr>
+									<th valign="top" class="detail_table" colspan="2" id=""
+										rowspan="" style="" width=""></th>
+									<th valign="top" class="detail_table" colspan="" id=""
+										rowspan="" style="" width="">Attivit&agrave; didattica</th>
+									<th valign="top" class="detail_table" colspan="" id=""
+										rowspan="" style="" width="">Appello</th>
+									<th valign="top" class="detail_table" colspan="" id=""
+										rowspan="" style="" width="">Iscrizione</th>
+									<th valign="top" class="detail_table" colspan="" id=""
+										rowspan="" style="" width="">Descrizione</th>
+									<th valign="top" class="detail_table" colspan="" id=""
+										rowspan="" style="" width="">Sessioni</th>
+								</tr>
+								<tr>
+									<td id="" width="" valign="" colspan="2"
+										style="text-align: center;" rowspan="" class="detail_table">
+										<form
+											action="auth/studente/Appelli/DatiPrenotazioneAppello.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09"
+											method="post">
+											<input alt="informazioni sull'appello"
+												src="images/prove_finali.gif" type="image" name="imageField"><input
+												value="29" name="APP_ID" type="hidden"><input
+												value="10033" name="CDS_ESA_ID" type="hidden"><input
+												value="31306463" name="ATT_DID_ESA_ID" type="hidden"><input
+												value="1471666" name="ADSCE_ID" type="hidden"><input
+												value="2011" name="AA_OFF_ID" type="hidden"><input
+												value="10033" name="CDS_ID" type="hidden"><input
+												value="9999" name="PDS_ID" type="hidden"><input
+												value="2009" name="AA_ORD_ID" type="hidden"><input
+												value="1" name="ISCR_APERTA" type="hidden"><input
+												value="1" name="TIPO_ATTIVITA" type="hidden"><input
+												value="" name="TIPO_APP_COD" type="hidden">
+										</form>
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">ALIMENTAZIONE E NUTRIZIONE UMANA</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">11/12/2014<br>
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">26/11/2014<br>06/12/2014
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">ALIMENTAZIONE E NUTRIZIONE UMANA</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">2013/2014<br>
+									</td>
+								</tr>
+								<tr>
+									<td id="" width="" valign="" colspan="2"
+										style="text-align: center;" rowspan="" class="detail_table">
+										<form
+											action="auth/studente/Appelli/DatiPrenotazioneAppello.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09"
+											method="post">
+											<input alt="informazioni sull'appello"
+												src="images/prove_finali.gif" type="image" name="imageField"><input
+												value="28" name="APP_ID" type="hidden"><input
+												value="10033" name="CDS_ESA_ID" type="hidden"><input
+												value="31306465" name="ATT_DID_ESA_ID" type="hidden"><input
+												value="1471677" name="ADSCE_ID" type="hidden"><input
+												value="2011" name="AA_OFF_ID" type="hidden"><input
+												value="10033" name="CDS_ID" type="hidden"><input
+												value="9999" name="PDS_ID" type="hidden"><input
+												value="2009" name="AA_ORD_ID" type="hidden"><input
+												value="1" name="ISCR_APERTA" type="hidden"><input
+												value="1" name="TIPO_ATTIVITA" type="hidden"><input
+												value="" name="TIPO_APP_COD" type="hidden">
+										</form>
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">ANATOMIA PATOLOGICA</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">10/12/2014<br>
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">25/11/2014<br>05/12/2014
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">ANATOMIA PATOLOGICA</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">2013/2014<br>
+									</td>
+								</tr>
+								<tr>
+									<td id="" width="" valign="" colspan="2"
+										style="text-align: center;" rowspan="" class="detail_table">
+										<form
+											action="auth/studente/Appelli/DatiPrenotazioneAppello.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09"
+											method="post">
+											<input alt="informazioni sull'appello"
+												src="images/prove_finali.gif" type="image" name="imageField"><input
+												value="5" name="APP_ID" type="hidden"><input
+												value="10033" name="CDS_ESA_ID" type="hidden"><input
+												value="31306892" name="ATT_DID_ESA_ID" type="hidden"><input
+												value="1471672" name="ADSCE_ID" type="hidden"><input
+												value="2011" name="AA_OFF_ID" type="hidden"><input
+												value="10033" name="CDS_ID" type="hidden"><input
+												value="9999" name="PDS_ID" type="hidden"><input
+												value="2009" name="AA_ORD_ID" type="hidden"><input
+												value="1" name="ISCR_APERTA" type="hidden"><input
+												value="1" name="TIPO_ATTIVITA" type="hidden"><input
+												value="" name="TIPO_APP_COD" type="hidden">
+										</form>
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">FARMACOLOGIA E TOSSICOLOGIA MEDICA</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">11/12/2014<br>
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">26/11/2014<br>06/12/2014
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">FARMACOLOGIA E TOSSICOLOGIA MEDICA</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">2013/2014<br>
+									</td>
+								</tr>
+								<tr>
+									<td id="" width="" valign="" colspan="2"
+										style="text-align: center;" rowspan="" class="detail_table">
+										<form
+											action="auth/studente/Appelli/DatiPrenotazioneAppello.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09"
+											method="post">
+											<input alt="informazioni sull'appello"
+												src="images/prove_finali.gif" type="image" name="imageField"><input
+												value="13" name="APP_ID" type="hidden"><input
+												value="10033" name="CDS_ESA_ID" type="hidden"><input
+												value="31306476" name="ATT_DID_ESA_ID" type="hidden"><input
+												value="1471682" name="ADSCE_ID" type="hidden"><input
+												value="2011" name="AA_OFF_ID" type="hidden"><input
+												value="10033" name="CDS_ID" type="hidden"><input
+												value="9999" name="PDS_ID" type="hidden"><input
+												value="2009" name="AA_ORD_ID" type="hidden"><input
+												value="1" name="ISCR_APERTA" type="hidden"><input
+												value="1" name="TIPO_ATTIVITA" type="hidden"><input
+												value="" name="TIPO_APP_COD" type="hidden">
+										</form>
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">MALATTIE DELL'APPARATO LOCOMOTORE</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">10/12/2014<br>
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">25/11/2014<br>05/12/2014
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">MALATTIE DELL'APPARATO LOCOMOTORE</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">2013/2014<br>
+									</td>
+								</tr>
+								<tr>
+									<td id="" width="" valign="" colspan="2"
+										style="text-align: center;" rowspan="" class="detail_table">
+										<form
+											action="auth/studente/Appelli/DatiPrenotazioneAppello.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09"
+											method="post">
+											<input alt="informazioni sull'appello"
+												src="images/prove_finali.gif" type="image" name="imageField"><input
+												value="15" name="APP_ID" type="hidden"><input
+												value="10033" name="CDS_ESA_ID" type="hidden"><input
+												value="31306478" name="ATT_DID_ESA_ID" type="hidden"><input
+												value="1471683" name="ADSCE_ID" type="hidden"><input
+												value="2011" name="AA_OFF_ID" type="hidden"><input
+												value="10033" name="CDS_ID" type="hidden"><input
+												value="9999" name="PDS_ID" type="hidden"><input
+												value="2009" name="AA_ORD_ID" type="hidden"><input
+												value="1" name="ISCR_APERTA" type="hidden"><input
+												value="1" name="TIPO_ATTIVITA" type="hidden"><input
+												value="" name="TIPO_APP_COD" type="hidden">
+										</form>
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">PSICHIATRIA</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">11/12/2014<br>
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">19/11/2014<br>07/12/2014
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">PSICHIATRIA</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">2013/2014<br>
+									</td>
+								</tr>
+								<tr>
+									<td id="" width="" valign="" colspan="2"
+										style="text-align: center;" rowspan="" class="detail_table">
+										<form
+											action="auth/studente/Appelli/DatiPrenotazioneAppello.do;jsessionid=367BE3A9ED91A7CD7607B3B9F78C2BE4.jvm_unimol_esse3web09"
+											method="post">
+											<input alt="informazioni sull'appello"
+												src="images/prove_finali.gif" type="image" name="imageField"><input
+												value="18" name="APP_ID" type="hidden"><input
+												value="10033" name="CDS_ESA_ID" type="hidden"><input
+												value="31306480" name="ATT_DID_ESA_ID" type="hidden"><input
+												value="1471685" name="ADSCE_ID" type="hidden"><input
+												value="2011" name="AA_OFF_ID" type="hidden"><input
+												value="10033" name="CDS_ID" type="hidden"><input
+												value="9999" name="PDS_ID" type="hidden"><input
+												value="2009" name="AA_ORD_ID" type="hidden"><input
+												value="1" name="ISCR_APERTA" type="hidden"><input
+												value="1" name="TIPO_ATTIVITA" type="hidden"><input
+												value="" name="TIPO_APP_COD" type="hidden">
+										</form>
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">SANITA' PUBBLICA E MALATTIE
+										INFETTIVE</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">09/12/2014<br>
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">24/11/2014<br>04/12/2014
+									</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">SANITA' PUBBLICA E MALATTIE
+										INFETTIVE</td>
+									<td id="" width="" valign="" colspan="" style="" rowspan=""
+										class="detail_table">2013/2014<br>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<table cellspacing="0" cellpadding="0" border="0" width="598">
+								<tr>
+									<td colspan="8"><img border="0" alt="" height="10"
+										width="1" src="assets/images/clearpixel.gif"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!--FINE TEMPLATE CONTAINER ESSE3-->
+		</div>
+		<!--FINE TEMPLATE CONTAINER CORPO-->
+		<!--INIZIO TEMPLATE CONTAINER FOOTER-->
+		<div class="portlet-section-body" id="footer">
+			<!--INIZIO TEMPLATE TEXT FOOTER-TEXT-->
+			<p id="footer-text" class="portlet-font text-align-left">2012
+				&copy; by KION a CINECA Company</p>
+			<!--FINE TEMPLATE TEXT FOOTER-TEXT-->
+		</div>
+		<!--FINE TEMPLATE CONTAINER FOOTER-->
+	</div>
+	<!--FINE TEMPLATE CONTAINER MAIN-->
 </body>
 </html>

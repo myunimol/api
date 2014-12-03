@@ -1,5 +1,7 @@
 package it.unimol.my.dettaglioesame;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
+
 /**
  * Inserire descrizione classe
  *
@@ -13,7 +15,7 @@ public interface ExtractorInterface {
      * @param urlTarget URL della pagina su cui eseguire il parser
      * @return DetailedExam Dettaglio esame
      */
-    public DetailedExam getDetails(String urlTarget);
+    public DetailedExam getDetails(String urlTarget, String examId);
 
     /**
      * Metodo che permette di fare l'estrazione del dettaglio di un esame
@@ -24,6 +26,6 @@ public interface ExtractorInterface {
      * @param password
      * @return DetailedExam Dettaglio esame
      */
-    public DetailedExam getDetails(String urlServlet, String username, String password);
+    public DetailedExam getDetails(String urlServlet, String username, String password, String examId) throws UnirestException;
 
 }

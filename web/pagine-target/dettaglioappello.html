@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="it"><head>
+<html lang="it">
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="IE=edge" http-equiv="X-UA-Compatible">
 <base href="https://esse3web.unisa.it/unisa/">
@@ -15,404 +16,731 @@
 <title>Prenotazione Appello d'Esame</title>
 <link href="css/basic.css" media="all" type="text/css" rel="stylesheet">
 <link href="css/custom.css" media="all" type="text/css" rel="stylesheet">
-<link href="css/template.css" media="all" type="text/css" rel="stylesheet">
+<link href="css/template.css" media="all" type="text/css"
+	rel="stylesheet">
 <link href="css/unisa.css" media="all" type="text/css" rel="stylesheet">
-<script src="JavaScript/common.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/jquery-1.11.0.min.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/jquery-ui.min.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/jqgrid/js/jquery.jqGrid.min.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/jqgrid/src/grid.tbltogrid.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/jqgrid/js/i18n/grid.locale-it.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/footable/js/footable.js?v=2-0-1" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/footable/js/footable.paginate.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/footable/js/footable.sort.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/jquery/footable/js/footable.filter.js" charset="iso-8859-1" type="text/javascript"></script><script src="JavaScript/scw.js" charset="iso-8859-1" type="text/javascript"></script><style type="text/css">.scw           {padding:1px;vertical-align:middle;}iframe.scw     {position:absolute;z-index:1010;top:0px;left:0px;visibility:hidden;width:1px;height:1px;}table.scw      {padding:0px;visibility:hidden;position:absolute;cursor:default;width:100px;top:0px;left:0px;z-index:1011;text-align:center;}</style>
+<script src="JavaScript/common.js" charset="iso-8859-1"
+	type="text/javascript"></script>
+<script src="JavaScript/jquery/jquery-1.11.0.min.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/jquery-ui.min.js" charset="iso-8859-1"
+	type="text/javascript"></script>
+<script src="JavaScript/jquery/jqgrid/js/jquery.jqGrid.min.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/jqgrid/src/grid.tbltogrid.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/jqgrid/js/i18n/grid.locale-it.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/footable/js/footable.js?v=2-0-1"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/footable/js/footable.paginate.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/footable/js/footable.sort.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/jquery/footable/js/footable.filter.js"
+	charset="iso-8859-1" type="text/javascript"></script>
+<script src="JavaScript/scw.js" charset="iso-8859-1"
+	type="text/javascript"></script>
+<style type="text/css">
+.scw {
+	padding: 1px;
+	vertical-align: middle;
+}
+
+iframe.scw {
+	position: absolute;
+	z-index: 1010;
+	top: 0px;
+	left: 0px;
+	visibility: hidden;
+	width: 1px;
+	height: 1px;
+}
+
+table.scw {
+	padding: 0px;
+	visibility: hidden;
+	position: absolute;
+	cursor: default;
+	width: 100px;
+	top: 0px;
+	left: 0px;
+	z-index: 1011;
+	text-align: center;
+}
+</style>
 <!--[if IE]><div id='scwIE'></div><![endif]-->
 <!--[if lt IE 7]><div id='scwIElt7'></div><![endif]-->
-</head><body onload="javascript:randomBackgroundImageOnScritta('E')" data-xsl="/xsl/DatiPrenotazioneAppello.xsl" class="bootstrap-off"><iframe class="scw" id="scwIframe" name="scwIframe" frameborder="0"></iframe><table id="scw" class="scw"><tbody><tr class="scw"><td class="scw"><table class="scwHead" id="scwHead" width="100%" cellspacing="0" cellpadding="0"><tbody><tr id="scwDrag" style="display:none;"><td colspan="4" class="scwDrag" onmousedown="scwBeginDrag(event);"><span id="scwDragText"></span></td></tr><tr class="scwHead"><td class="scwHead"><input class="scwHead" id="scwHeadLeft" type="button" value="&lt;" onclick="scwShowMonth(-1);"></td><td class="scwHead"><select id="scwMonths" class="scwHead" onchange="scwShowMonth(0);"></select></td><td class="scwHead"><select id="scwYears" class="scwHead" onchange="scwShowMonth(0);"></select></td><td class="scwHead"><input class="scwHead" id="scwHeadRight" type="button" value="&gt;" onclick="scwShowMonth(1);"></td></tr></tbody></table></td></tr><tr class="scw"><td class="scw"><table class="scwCells" align="center"><thead><tr><td class="scwWeekNumberHead" id="scwWeek_"></td><td class="scwWeek" id="scwWeekInit0"></td><td class="scwWeek" id="scwWeekInit1"></td><td class="scwWeek" id="scwWeekInit2"></td><td class="scwWeek" id="scwWeekInit3"></td><td class="scwWeek" id="scwWeekInit4"></td><td class="scwWeek" id="scwWeekInit5"></td><td class="scwWeek" id="scwWeekInit6"></td></tr></thead><tbody id="scwCells" onclick="scwStopPropagation(event);"><tr><td class="scwWeekNo" id="scwWeek_0"></td><td class="scwCells" id="scwCell_0"></td><td class="scwCells" id="scwCell_1"></td><td class="scwCells" id="scwCell_2"></td><td class="scwCells" id="scwCell_3"></td><td class="scwCells" id="scwCell_4"></td><td class="scwCells" id="scwCell_5"></td><td class="scwCells" id="scwCell_6"></td></tr><tr><td class="scwWeekNo" id="scwWeek_1"></td><td class="scwCells" id="scwCell_7"></td><td class="scwCells" id="scwCell_8"></td><td class="scwCells" id="scwCell_9"></td><td class="scwCells" id="scwCell_10"></td><td class="scwCells" id="scwCell_11"></td><td class="scwCells" id="scwCell_12"></td><td class="scwCells" id="scwCell_13"></td></tr><tr><td class="scwWeekNo" id="scwWeek_2"></td><td class="scwCells" id="scwCell_14"></td><td class="scwCells" id="scwCell_15"></td><td class="scwCells" id="scwCell_16"></td><td class="scwCells" id="scwCell_17"></td><td class="scwCells" id="scwCell_18"></td><td class="scwCells" id="scwCell_19"></td><td class="scwCells" id="scwCell_20"></td></tr><tr><td class="scwWeekNo" id="scwWeek_3"></td><td class="scwCells" id="scwCell_21"></td><td class="scwCells" id="scwCell_22"></td><td class="scwCells" id="scwCell_23"></td><td class="scwCells" id="scwCell_24"></td><td class="scwCells" id="scwCell_25"></td><td class="scwCells" id="scwCell_26"></td><td class="scwCells" id="scwCell_27"></td></tr><tr><td class="scwWeekNo" id="scwWeek_4"></td><td class="scwCells" id="scwCell_28"></td><td class="scwCells" id="scwCell_29"></td><td class="scwCells" id="scwCell_30"></td><td class="scwCells" id="scwCell_31"></td><td class="scwCells" id="scwCell_32"></td><td class="scwCells" id="scwCell_33"></td><td class="scwCells" id="scwCell_34"></td></tr><tr><td class="scwWeekNo" id="scwWeek_5"></td><td class="scwCells" id="scwCell_35"></td><td class="scwCells" id="scwCell_36"></td><td class="scwCells" id="scwCell_37"></td><td class="scwCells" id="scwCell_38"></td><td class="scwCells" id="scwCell_39"></td><td class="scwCells" id="scwCell_40"></td><td class="scwCells" id="scwCell_41"></td></tr></tbody><tfoot><tr id="scwFoot"><td colspan="8" style="padding:0px;"><table width="100%"><tbody><tr><td id="scwClear" class="scwClear"><input type="button" id="scwClearButton" class="scwClear" onclick="scwTargetEle.value = &quot;&quot;;scwHide();"></td><td class="scwNow" id="scwNow"></td></tr></tbody></table></td></tr></tfoot></table></td></tr></tbody></table><style type="text/css">.scw           {padding:1px;vertical-align:middle;}iframe.scw     {position:absolute;z-index:1010;top:0px;left:0px;visibility:hidden;width:1px;height:1px;}table.scw      {padding:0px;visibility:hidden;position:absolute;cursor:default;width:100px;top:0px;left:0px;z-index:1011;text-align:center;}</style>
-<!--[if IE]><div id='scwIE'></div><![endif]-->
-<!--[if lt IE 7]><div id='scwIElt7'></div><![endif]-->
-<iframe class="scw" id="scwIframe" name="scwIframe" frameborder="0"></iframe><table id="scw" class="scw"><tbody><tr class="scw"><td class="scw"><table class="scwHead" id="scwHead" width="100%" cellspacing="0" cellpadding="0"><tbody><tr id="scwDrag" style="display:none;"><td colspan="4" class="scwDrag" onmousedown="scwBeginDrag(event);"><span id="scwDragText"></span></td></tr><tr class="scwHead"><td class="scwHead"><input class="scwHead" id="scwHeadLeft" type="button" value="&lt;" onclick="scwShowMonth(-1);"></td><td class="scwHead"><select id="scwMonths" class="scwHead" onchange="scwShowMonth(0);"></select></td><td class="scwHead"><select id="scwYears" class="scwHead" onchange="scwShowMonth(0);"></select></td><td class="scwHead"><input class="scwHead" id="scwHeadRight" type="button" value="&gt;" onclick="scwShowMonth(1);"></td></tr></tbody></table></td></tr><tr class="scw"><td class="scw"><table class="scwCells" align="center"><thead><tr><td class="scwWeekNumberHead" id="scwWeek_"></td><td class="scwWeek" id="scwWeekInit0"></td><td class="scwWeek" id="scwWeekInit1"></td><td class="scwWeek" id="scwWeekInit2"></td><td class="scwWeek" id="scwWeekInit3"></td><td class="scwWeek" id="scwWeekInit4"></td><td class="scwWeek" id="scwWeekInit5"></td><td class="scwWeek" id="scwWeekInit6"></td></tr></thead><tbody id="scwCells" onclick="scwStopPropagation(event);"><tr><td class="scwWeekNo" id="scwWeek_0"></td><td class="scwCells" id="scwCell_0"></td><td class="scwCells" id="scwCell_1"></td><td class="scwCells" id="scwCell_2"></td><td class="scwCells" id="scwCell_3"></td><td class="scwCells" id="scwCell_4"></td><td class="scwCells" id="scwCell_5"></td><td class="scwCells" id="scwCell_6"></td></tr><tr><td class="scwWeekNo" id="scwWeek_1"></td><td class="scwCells" id="scwCell_7"></td><td class="scwCells" id="scwCell_8"></td><td class="scwCells" id="scwCell_9"></td><td class="scwCells" id="scwCell_10"></td><td class="scwCells" id="scwCell_11"></td><td class="scwCells" id="scwCell_12"></td><td class="scwCells" id="scwCell_13"></td></tr><tr><td class="scwWeekNo" id="scwWeek_2"></td><td class="scwCells" id="scwCell_14"></td><td class="scwCells" id="scwCell_15"></td><td class="scwCells" id="scwCell_16"></td><td class="scwCells" id="scwCell_17"></td><td class="scwCells" id="scwCell_18"></td><td class="scwCells" id="scwCell_19"></td><td class="scwCells" id="scwCell_20"></td></tr><tr><td class="scwWeekNo" id="scwWeek_3"></td><td class="scwCells" id="scwCell_21"></td><td class="scwCells" id="scwCell_22"></td><td class="scwCells" id="scwCell_23"></td><td class="scwCells" id="scwCell_24"></td><td class="scwCells" id="scwCell_25"></td><td class="scwCells" id="scwCell_26"></td><td class="scwCells" id="scwCell_27"></td></tr><tr><td class="scwWeekNo" id="scwWeek_4"></td><td class="scwCells" id="scwCell_28"></td><td class="scwCells" id="scwCell_29"></td><td class="scwCells" id="scwCell_30"></td><td class="scwCells" id="scwCell_31"></td><td class="scwCells" id="scwCell_32"></td><td class="scwCells" id="scwCell_33"></td><td class="scwCells" id="scwCell_34"></td></tr><tr><td class="scwWeekNo" id="scwWeek_5"></td><td class="scwCells" id="scwCell_35"></td><td class="scwCells" id="scwCell_36"></td><td class="scwCells" id="scwCell_37"></td><td class="scwCells" id="scwCell_38"></td><td class="scwCells" id="scwCell_39"></td><td class="scwCells" id="scwCell_40"></td><td class="scwCells" id="scwCell_41"></td></tr></tbody><tfoot><tr id="scwFoot"><td colspan="8" style="padding:0px;"><table width="100%"><tbody><tr><td id="scwClear" class="scwClear"><input type="button" id="scwClearButton" class="scwClear" onclick="scwTargetEle.value = &quot;&quot;;scwHide();"></td><td class="scwNow" id="scwNow"></td></tr></tbody></table></td></tr></tfoot></table></td></tr></tbody></table>
+</head>
+<body onload="javascript:randomBackgroundImageOnScritta('E')"
+	data-xsl="/xsl/DatiPrenotazioneAppello.xsl" class="bootstrap-off">
+	<iframe class="scw" id="scwIframe" name="scwIframe" frameborder="0"></iframe>
+	<table id="scw" class="scw">
+		<tbody>
+			<tr class="scw">
+				<td class="scw"><table class="scwHead" id="scwHead"
+						width="100%" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr id="scwDrag" style="display: none;">
+								<td colspan="4" class="scwDrag"
+									onmousedown="scwBeginDrag(event);"><span id="scwDragText"></span></td>
+							</tr>
+							<tr class="scwHead">
+								<td class="scwHead"><input class="scwHead" id="scwHeadLeft"
+									type="button" value="&lt;" onclick="scwShowMonth(-1);"></td>
+								<td class="scwHead"><select id="scwMonths" class="scwHead"
+									onchange="scwShowMonth(0);"></select></td>
+								<td class="scwHead"><select id="scwYears" class="scwHead"
+									onchange="scwShowMonth(0);"></select></td>
+								<td class="scwHead"><input class="scwHead"
+									id="scwHeadRight" type="button" value="&gt;"
+									onclick="scwShowMonth(1);"></td>
+							</tr>
+						</tbody>
+					</table></td>
+			</tr>
+			<tr class="scw">
+				<td class="scw"><table class="scwCells" align="center">
+						<thead>
+							<tr>
+								<td class="scwWeekNumberHead" id="scwWeek_"></td>
+								<td class="scwWeek" id="scwWeekInit0"></td>
+								<td class="scwWeek" id="scwWeekInit1"></td>
+								<td class="scwWeek" id="scwWeekInit2"></td>
+								<td class="scwWeek" id="scwWeekInit3"></td>
+								<td class="scwWeek" id="scwWeekInit4"></td>
+								<td class="scwWeek" id="scwWeekInit5"></td>
+								<td class="scwWeek" id="scwWeekInit6"></td>
+							</tr>
+						</thead>
+						<tbody id="scwCells" onclick="scwStopPropagation(event);">
+							<tr>
+								<td class="scwWeekNo" id="scwWeek_0"></td>
+								<td class="scwCells" id="scwCell_0"></td>
+								<td class="scwCells" id="scwCell_1"></td>
+								<td class="scwCells" id="scwCell_2"></td>
+								<td class="scwCells" id="scwCell_3"></td>
+								<td class="scwCells" id="scwCell_4"></td>
+								<td class="scwCells" id="scwCell_5"></td>
+								<td class="scwCells" id="scwCell_6"></td>
+							</tr>
+							<tr>
+								<td class="scwWeekNo" id="scwWeek_1"></td>
+								<td class="scwCells" id="scwCell_7"></td>
+								<td class="scwCells" id="scwCell_8"></td>
+								<td class="scwCells" id="scwCell_9"></td>
+								<td class="scwCells" id="scwCell_10"></td>
+								<td class="scwCells" id="scwCell_11"></td>
+								<td class="scwCells" id="scwCell_12"></td>
+								<td class="scwCells" id="scwCell_13"></td>
+							</tr>
+							<tr>
+								<td class="scwWeekNo" id="scwWeek_2"></td>
+								<td class="scwCells" id="scwCell_14"></td>
+								<td class="scwCells" id="scwCell_15"></td>
+								<td class="scwCells" id="scwCell_16"></td>
+								<td class="scwCells" id="scwCell_17"></td>
+								<td class="scwCells" id="scwCell_18"></td>
+								<td class="scwCells" id="scwCell_19"></td>
+								<td class="scwCells" id="scwCell_20"></td>
+							</tr>
+							<tr>
+								<td class="scwWeekNo" id="scwWeek_3"></td>
+								<td class="scwCells" id="scwCell_21"></td>
+								<td class="scwCells" id="scwCell_22"></td>
+								<td class="scwCells" id="scwCell_23"></td>
+								<td class="scwCells" id="scwCell_24"></td>
+								<td class="scwCells" id="scwCell_25"></td>
+								<td class="scwCells" id="scwCell_26"></td>
+								<td class="scwCells" id="scwCell_27"></td>
+							</tr>
+							<tr>
+								<td class="scwWeekNo" id="scwWeek_4"></td>
+								<td class="scwCells" id="scwCell_28"></td>
+								<td class="scwCells" id="scwCell_29"></td>
+								<td class="scwCells" id="scwCell_30"></td>
+								<td class="scwCells" id="scwCell_31"></td>
+								<td class="scwCells" id="scwCell_32"></td>
+								<td class="scwCells" id="scwCell_33"></td>
+								<td class="scwCells" id="scwCell_34"></td>
+							</tr>
+							<tr>
+								<td class="scwWeekNo" id="scwWeek_5"></td>
+								<td class="scwCells" id="scwCell_35"></td>
+								<td class="scwCells" id="scwCell_36"></td>
+								<td class="scwCells" id="scwCell_37"></td>
+								<td class="scwCells" id="scwCell_38"></td>
+								<td class="scwCells" id="scwCell_39"></td>
+								<td class="scwCells" id="scwCell_40"></td>
+								<td class="scwCells" id="scwCell_41"></td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr id="scwFoot">
+								<td colspan="8" style="padding: 0px;"><table width="100%">
+										<tbody>
+											<tr>
+												<td id="scwClear" class="scwClear"><input type="button"
+													id="scwClearButton" class="scwClear"
+													onclick="scwTargetEle.value = &quot;&quot;;scwHide();"></td>
+												<td class="scwNow" id="scwNow"></td>
+											</tr>
+										</tbody>
+									</table></td>
+							</tr>
+						</tfoot>
+					</table></td>
+			</tr>
+		</tbody>
+	</table>
+	<style type="text/css">
+.scw {
+	padding: 1px;
+	vertical-align: middle;
+}
+
+iframe.scw {
+	position: absolute;
+	z-index: 1010;
+	top: 0px;
+	left: 0px;
+	visibility: hidden;
+	width: 1px;
+	height: 1px;
+}
+
+table.scw {
+	padding: 0px;
+	visibility: hidden;
+	position: absolute;
+	cursor: default;
+	width: 100px;
+	top: 0px;
+	left: 0px;
+	z-index: 1011;
+	text-align: center;
+}
+</style>
+	<!--[if IE]><div id='scwIE'></div><![endif]-->
+	<!--[if lt IE 7]><div id='scwIElt7'></div><![endif]-->
+	<iframe class="scw" id="scwIframe" name="scwIframe" frameborder="0"></iframe>
+	<table id="scw" class="scw">
+		<tbody>
+			<tr class="scw">
+				<td class="scw"><table class="scwHead" id="scwHead"
+						width="100%" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr id="scwDrag" style="display: none;">
+								<td colspan="4" class="scwDrag"
+									onmousedown="scwBeginDrag(event);"><span id="scwDragText"></span></td>
+							</tr>
+							<tr class="scwHead">
+								<td class="scwHead"><input class="scwHead" id="scwHeadLeft"
+									type="button" value="&lt;" onclick="scwShowMonth(-1);"></td>
+								<td class="scwHead"><select id="scwMonths" class="scwHead"
+									onchange="scwShowMonth(0);"></select></td>
+								<td class="scwHead"><select id="scwYears" class="scwHead"
+									onchange="scwShowMonth(0);"></select></td>
+								<td class="scwHead"><input class="scwHead"
+									id="scwHeadRight" type="button" value="&gt;"
+									onclick="scwShowMonth(1);"></td>
+							</tr>
+						</tbody>
+					</table></td>
+			</tr>
+			<tr class="scw">
+				<td class="scw"><table class="scwCells" align="center">
+						<thead>
+							<tr>
+								<td class="scwWeekNumberHead" id="scwWeek_"></td>
+								<td class="scwWeek" id="scwWeekInit0"></td>
+								<td class="scwWeek" id="scwWeekInit1"></td>
+								<td class="scwWeek" id="scwWeekInit2"></td>
+								<td class="scwWeek" id="scwWeekInit3"></td>
+								<td class="scwWeek" id="scwWeekInit4"></td>
+								<td class="scwWeek" id="scwWeekInit5"></td>
+								<td class="scwWeek" id="scwWeekInit6"></td>
+							</tr>
+						</thead>
+						<tbody id="scwCells" onclick="scwStopPropagation(event);">
+							<tr>
+								<td class="scwWeekNo" id="scwWeek_0"></td>
+								<td class="scwCells" id="scwCell_0"></td>
+								<td class="scwCells" id="scwCell_1"></td>
+								<td class="scwCells" id="scwCell_2"></td>
+								<td class="scwCells" id="scwCell_3"></td>
+								<td class="scwCells" id="scwCell_4"></td>
+								<td class="scwCells" id="scwCell_5"></td>
+								<td class="scwCells" id="scwCell_6"></td>
+							</tr>
+							<tr>
+								<td class="scwWeekNo" id="scwWeek_1"></td>
+								<td class="scwCells" id="scwCell_7"></td>
+								<td class="scwCells" id="scwCell_8"></td>
+								<td class="scwCells" id="scwCell_9"></td>
+								<td class="scwCells" id="scwCell_10"></td>
+								<td class="scwCells" id="scwCell_11"></td>
+								<td class="scwCells" id="scwCell_12"></td>
+								<td class="scwCells" id="scwCell_13"></td>
+							</tr>
+							<tr>
+								<td class="scwWeekNo" id="scwWeek_2"></td>
+								<td class="scwCells" id="scwCell_14"></td>
+								<td class="scwCells" id="scwCell_15"></td>
+								<td class="scwCells" id="scwCell_16"></td>
+								<td class="scwCells" id="scwCell_17"></td>
+								<td class="scwCells" id="scwCell_18"></td>
+								<td class="scwCells" id="scwCell_19"></td>
+								<td class="scwCells" id="scwCell_20"></td>
+							</tr>
+							<tr>
+								<td class="scwWeekNo" id="scwWeek_3"></td>
+								<td class="scwCells" id="scwCell_21"></td>
+								<td class="scwCells" id="scwCell_22"></td>
+								<td class="scwCells" id="scwCell_23"></td>
+								<td class="scwCells" id="scwCell_24"></td>
+								<td class="scwCells" id="scwCell_25"></td>
+								<td class="scwCells" id="scwCell_26"></td>
+								<td class="scwCells" id="scwCell_27"></td>
+							</tr>
+							<tr>
+								<td class="scwWeekNo" id="scwWeek_4"></td>
+								<td class="scwCells" id="scwCell_28"></td>
+								<td class="scwCells" id="scwCell_29"></td>
+								<td class="scwCells" id="scwCell_30"></td>
+								<td class="scwCells" id="scwCell_31"></td>
+								<td class="scwCells" id="scwCell_32"></td>
+								<td class="scwCells" id="scwCell_33"></td>
+								<td class="scwCells" id="scwCell_34"></td>
+							</tr>
+							<tr>
+								<td class="scwWeekNo" id="scwWeek_5"></td>
+								<td class="scwCells" id="scwCell_35"></td>
+								<td class="scwCells" id="scwCell_36"></td>
+								<td class="scwCells" id="scwCell_37"></td>
+								<td class="scwCells" id="scwCell_38"></td>
+								<td class="scwCells" id="scwCell_39"></td>
+								<td class="scwCells" id="scwCell_40"></td>
+								<td class="scwCells" id="scwCell_41"></td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr id="scwFoot">
+								<td colspan="8" style="padding: 0px;"><table width="100%">
+										<tbody>
+											<tr>
+												<td id="scwClear" class="scwClear"><input type="button"
+													id="scwClearButton" class="scwClear"
+													onclick="scwTargetEle.value = &quot;&quot;;scwHide();"></td>
+												<td class="scwNow" id="scwNow"></td>
+											</tr>
+										</tbody>
+									</table></td>
+							</tr>
+						</tfoot>
+					</table></td>
+			</tr>
+		</tbody>
+	</table>
 
 
-<!--INIZIO TEMPLATE CONTAINER MAIN-->
-<div class="portlet-section-body" id="main">
-<!--INIZIO TEMPLATE CONTAINER TESTATA-->
-<div class="portlet-section-body" id="testata">
-<!--INIZIO TEMPLATE CONTAINER SCRITTA-->
-<div class="portlet-section-body" id="scritta">
-<!--INIZIO TEMPLATE HEADER ATENEO-->
-<div class="portlet-section-header  header-hx header-h1" id="ateneo">
-<h1>
-<a id="logo-ancor" title="Universita' degli Studi di Salerno" href="Redirect.do?parconfurl=LAYOUT_HEADER_URL_0">Universita' degli Studi di Salerno</a>
-</h1>
-</div>
-<!--FINE TEMPLATE HEADER ATENEO-->
-</div>
-<!--FINE TEMPLATE CONTAINER SCRITTA-->
-</div>
-<!--FINE TEMPLATE CONTAINER TESTATA-->
-<!--INIZIO TEMPLATE CONTAINER BARRA-GENERALE-->
-<div class="portlet-section-body" id="barra-generale">
-<div class="container-split2-left-noborder">
-<!--INIZIO TEMPLATE LIST MENU-GENERALE-->
-<div id="menu-generale">
-<ul class="">
-<li id="menu-generale-li-1">
-<a id="menu-generale-listitem-1" title="Home" href="Home.do">Home</a>
-</li>
-</ul>
-</div>
-<!--FINE TEMPLATE LIST MENU-GENERALE-->
-</div>
-<div class="container-split2-right">
-<div class="lingue">&nbsp;</div>
-</div>
-<br style="clear:both">
-</div>
-<!--FINE TEMPLATE CONTAINER BARRA-GENERALE-->
-<!--INIZIO TEMPLATE CONTAINER CORPO-->
-<div class="portlet-section-body" id="corpo">
-<!--INIZIO TEMPLATE CONTAINER NAVBOX-->
-<div class="portlet-section-body" id="menu-principale">
-<!--INIZIO TEMPLATE CONTAINER MENU-PRINCIPALE-UP-->
-<div class="portlet-section-body" id="menu-principale-up">
-<!--INIZIO TEMPLATE CONTAINER MENU-IDENTIF-AREA-->
-<div class="portlet-section-body" id="menu-identif-area">
-<!--INIZIO TEMPLATE HEADER TITOLO-MENU-PRINCIPALE-->
-<div class="portlet-section-header header-hx header-h1" id="titolo-menu-principale">
-<h1>Studente</h1>
-</div>
-<!--FINE TEMPLATE HEADER TITOLO-MENU-PRINCIPALE-->
-<!--INIZIO TEMPLATE HEADER SOTTOTITOLO-MENU-PRINCIPALE-->
-<div id="sottotitolo-menu-principale" class="record">
-<dl class="record-riga">
-<dt>NOME COGNOME</dt>
-<dd>
-<img title="Foto Studente" src="img/personalizzazione/ico-studente.gif"><br>
-</dd>
-</dl>
-<br>
-</div>
-<br class="pulisci">
-<!--INIZIO LISTA FITTIZIA LISTA-MENU-PRINCIPALE-->
-<ul id="identif-area">
-<li id="menu-open">
-<a href="Home.do?menu_opened_cod=navbox_account_'Area_Riservata'">'Area Riservata'</a>
-<ul>
-<li>
-<a href="Logout.do">Logout</a>
-</li>
-<li>
-<a href="auth/CambioPasswordForm.do">Cambia Password</a>
-</li>
-</ul>
-</li>
-</ul>
-<!--FINE LISTA FITTIZIA LISTA-MENU-PRINCIPALE-->
-</div>
-<!--FINE TEMPLATE CONTAINER MENU-IDENTIF-AREA-->
-<!--INIZIO TEMPLATE CONTAINER MENU-COMMUNITY-->
-<div class="portlet-section-body" id="menu-community">
-<!--INIZIO LISTA FITTIZIA LISTA-MENU-COMMUNITY-->
-<ul id="community">
-<li id="menu-open-community">
-<a href="ewc/RedirectListaCommunity.do?menu_opened_cod=navbox_community_Didattica_OnLine">Comunità</a>
-</li>
-</ul>
-<!--FINE LISTA FITTIZIA LISTA-MENU-COMMUNITY-->
-</div>
-<!--FINE TEMPLATE CONTAINER MENU-COMMUNITY-->
-<!--INIZIO TEMPLATE LIST MENU-TUTTI-->
-<div class="portlet-section-body" id="menu-tutti">
-<!--INIZIO TEMPLATE LIST MENU-TUTTI SUB-->
-<br>
-<ul>
-<li id="menu-open">
-<a href="Home.do?menu_opened_cod=navbox_studenti_'Area_Studente'">'Area Studente'</a>
-<ul>
-<li>
-<a href="auth/Messaggi.do">Messaggi</a>
-</li>
-<li>
-<a href="auth/studente/Anagrafica/Anagrafica.do">Anagrafica</a>
-</li>
-<li>
-<a href="auth/studente/ListaIscrizioni.do">Iscrizioni</a>
-</li>
-<li>
-<a href="auth/studente/Appelli/AppelliF.do">Appelli</a>
-</li>
-<li>
-<a href="auth/studente/Appelli/AppelliP.do">Prove parziali</a>
-</li>
-<li>
-<a href="auth/studente/Appelli/BachecaPrenotazioni.do">Bacheca prenotazioni</a>
-</li>
-<li>
-<a href="auth/studente/Appelli/BachecaEsiti.do">Bacheca esiti</a>
-</li>
-<li>
-<a href="auth/studente/Libretto/LibrettoHome.do">Libretto</a>
-</li>
-<li>
-<a href="auth/studente/Carriera/AttiCarriera.do">Atti Carriera</a>
-</li>
-<li>
-<a href="auth/studente/Libretto/LibrettoAnalisiCarriera.do">Analisi Carriera</a>
-</li>
-<li>
-<a href="auth/studente/ConseguimentoTitolo/ConseguimentoTitolo.do">Conseguimento Titolo</a>
-</li>
-<li>
-<a href="auth/studente/Piani/PianiHome.do">Piano Carriera</a>
-</li>
-<li>
-<a href="auth/studente/Esoneri/SceltaEsoneri.do">Esoneri</a>
-</li>
-<li>
-<a href="auth/studente/Tasse/SituazionePagamenti.do">Pagamenti</a>
-</li>
-<li>
-<a href="auth/Autocertificazioni/Autocertificazione.do">ISEE</a>
-</li>
-<li>
-<a href="auth/studente/Certificati/ListaCertificati.do">Autocertificazioni e Diploma Supplement</a>
-</li>
-<li>
-<a href="auth/studente/Carriera/SceltaOrientamentoForm.do">Scelta orientamento</a>
-</li>
-<li>
-<a href="auth/studente/Concorsi/Ammissione.do">Test per corsi ad accesso programmato</a>
-</li>
-<li>
-<a href="auth/Enrollment/EUploadAllegatiStartFakeProcesso.do">Allegati carriera</a>
-</li>
-<li>
-<a href="auth/studente/Concorsi/AmmissioneFromMenuValutazione.do">Test di Valutazione</a>
-</li>
-<li>
-<a href="auth/studente/Concorsi/AmmissioneEsamiStato.do">Esami di Stato</a>
-</li>
-<li>
-<a href="auth/Enrollment/EDomValPrevElencoAction.do">Domanda di Valutazione Preventiva</a>
-</li>
-<li>
-<a href="auth/Autocertificazioni/RecuperaAutocertificazione.do">Immatricolazione</a>
-</li>
-<li>
-<a href="auth/Enrollment/ESceLinStartFakeProcess.do">Scelta Lingue</a>
-</li>
-<li>
-<a href="auth/studente/dirittoAlloStudio/CollaborazioneStudenti.do">Diritto allo studio</a>
-</li>
-<li>
-<a href="auth/AddressBook/ABDocIdentitaStartProcesso.do">Documenti di identità</a>
-</li>
-<li>
-<a href="auth/Degrees/DGAnagaficaTitoliStartProcesso.do">Titoli di studio</a>
-</li>
-</ul>
-</li>
-<li id="menu-open">
-<a href="Home.do?menu_opened_cod=navbox_studenti_Tirocini_e_stage">Tirocini e stage</a>
-<ul>
-<li>
-<a href="auth/tirocini/ElencoOfferteTirocinio.do">Domande</a>
-</li>
-<li>
-<a href="auth/tirocini/GestioneTirocini.do">Gestione tirocini</a>
-</li>
-</ul>
-</li>
-<li id="menu-open">
-<a href="Home.do?menu_opened_cod=navbox_studenti_Mobilit%C3%A0_internazionale">Mobilità internazionale</a>
-<ul>
-<li>
-<a href="auth/Enrollment/ERiepApplicationFormConfermaForm.do">Application Form for Incoming students</a>
-</li>
-<li>
-<a href="auth/studente/dirittoAlloStudio/MobilitaFromMenu.do">Bandi di Mobilità</a>
-</li>
-</ul>
-</li>
-<li id="menu-open">
-<a href="Home.do?menu_opened_cod=navbox_menu_iniziative_Iniziative">Iniziative</a>
-<ul>
-<li>
-<a href="auth/studente/dirittoAlloStudio/ListaBandiGenerici.do">Iniziative</a>
-</li>
-</ul>
-</li>
-</ul>
-<!--FINE TEMPLATE LIST MENU-TUTTI SUB-->
-</div>
-<!--FINE TEMPLATE LIST MENU-TUTTI-->
-<!--INIZIO TEMPLATE CONTAINER MENU-PRINCIPALE-DOWN-->
-<div class="portlet-section-body" id="menu-principale-down">&nbsp;</div>
-<!--FINE TEMPLATE CONTAINER MENU-PRINCIPALE-DOWN-->
-</div>
-<!--FINE TEMPLATE CONTAINER MENU-PRINCIPALE-UP-->
-</div>
-<!--FINE TEMPLATE CONTAINER NAVBOX-->
-<!--INIZIO TEMPLATE CONTAINER ESSE3-->
-<div class="portlet-section-body" id="esse3old">
-<table width="100%" cellspacing="0" cellpadding="0" border="0">
-<tbody><tr>
-<td style="width: auto; padding: 0 10px 0 0" class="breadcrumb" align="left"><a title="HomePage" href="Home.do">HOME</a>&nbsp;»&nbsp;<a title="HomePage Appelli" href="auth/studente/Appelli/AppelliF.do">Appelli</a>&nbsp;»&nbsp;<b>Prenotazione appello</b></td>
-</tr>
-</tbody></table>
-<table width="100%">
-<tbody>
-<tr>
-<td>
-<div class="titolopagina">Prenotazione appelli - Dettaglio appello selezionato</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table width="100%" cellspacing="10" cellpadding="0" border="0">
-<tbody><tr>
-<td class="tplHeader"></td>
-</tr>
-<form name="" target="_self" method="post" action="auth/studente/Appelli/EffettuaPrenotazioneAppello.do?TIPO_ATTIVITA=1"></form>
-<input value="500260" name="CDS_ESA_ID" id="" type="hidden"><input value="507513" name="ATT_DID_ESA_ID" id="" type="hidden"><input value="31" name="APP_ID" id="" type="hidden"><input value="" name="TIPO_ESA" id="" type="hidden"><input value="0" name="TIPO_APP_COD" id="" type="hidden"><input value="8296864" name="ADSCE_ID" id="" type="hidden"><input value="13" name="ATT_DID_ID" id="" type="hidden"><input value="SO" name="TIPO_ISCR" id="" type="hidden"><input value="2013" name="AA_FREQ_ID" id="" type="hidden">
-<tr>
-<td>
-<table width="" cellspacing="0" cellpadding="1" border="0">
-<tbody>
-<tr>
-<th class="tplForm" valign="top" align="left" width="150">Attività Didattica:
+	<!--INIZIO TEMPLATE CONTAINER MAIN-->
+	<div class="portlet-section-body" id="main">
+		<!--INIZIO TEMPLATE CONTAINER TESTATA-->
+		<div class="portlet-section-body" id="testata">
+			<!--INIZIO TEMPLATE CONTAINER SCRITTA-->
+			<div class="portlet-section-body" id="scritta">
+				<!--INIZIO TEMPLATE HEADER ATENEO-->
+				<div class="portlet-section-header  header-hx header-h1" id="ateneo">
+					<h1>
+						<a id="logo-ancor" title="Universita' degli Studi di Salerno"
+							href="Redirect.do?parconfurl=LAYOUT_HEADER_URL_0">Universita'
+							degli Studi di Salerno</a>
+					</h1>
+				</div>
+				<!--FINE TEMPLATE HEADER ATENEO-->
+			</div>
+			<!--FINE TEMPLATE CONTAINER SCRITTA-->
+		</div>
+		<!--FINE TEMPLATE CONTAINER TESTATA-->
+		<!--INIZIO TEMPLATE CONTAINER BARRA-GENERALE-->
+		<div class="portlet-section-body" id="barra-generale">
+			<div class="container-split2-left-noborder">
+				<!--INIZIO TEMPLATE LIST MENU-GENERALE-->
+				<div id="menu-generale">
+					<ul class="">
+						<li id="menu-generale-li-1"><a id="menu-generale-listitem-1"
+							title="Home" href="Home.do">Home</a></li>
+					</ul>
+				</div>
+				<!--FINE TEMPLATE LIST MENU-GENERALE-->
+			</div>
+			<div class="container-split2-right">
+				<div class="lingue">&nbsp;</div>
+			</div>
+			<br style="clear: both">
+		</div>
+		<!--FINE TEMPLATE CONTAINER BARRA-GENERALE-->
+		<!--INIZIO TEMPLATE CONTAINER CORPO-->
+		<div class="portlet-section-body" id="corpo">
+			<!--INIZIO TEMPLATE CONTAINER NAVBOX-->
+			<div class="portlet-section-body" id="menu-principale">
+				<!--INIZIO TEMPLATE CONTAINER MENU-PRINCIPALE-UP-->
+				<div class="portlet-section-body" id="menu-principale-up">
+					<!--INIZIO TEMPLATE CONTAINER MENU-IDENTIF-AREA-->
+					<div class="portlet-section-body" id="menu-identif-area">
+						<!--INIZIO TEMPLATE HEADER TITOLO-MENU-PRINCIPALE-->
+						<div class="portlet-section-header header-hx header-h1"
+							id="titolo-menu-principale">
+							<h1>Studente</h1>
+						</div>
+						<!--FINE TEMPLATE HEADER TITOLO-MENU-PRINCIPALE-->
+						<!--INIZIO TEMPLATE HEADER SOTTOTITOLO-MENU-PRINCIPALE-->
+						<div id="sottotitolo-menu-principale" class="record">
+							<dl class="record-riga">
+								<dt>NOME COGNOME</dt>
+								<dd>
+									<img title="Foto Studente"
+										src="img/personalizzazione/ico-studente.gif"><br>
+								</dd>
+							</dl>
+							<br>
+						</div>
+						<br class="pulisci">
+						<!--INIZIO LISTA FITTIZIA LISTA-MENU-PRINCIPALE-->
+						<ul id="identif-area">
+							<li id="menu-open"><a
+								href="Home.do?menu_opened_cod=navbox_account_'Area_Riservata'">'Area
+									Riservata'</a>
+								<ul>
+									<li><a href="Logout.do">Logout</a></li>
+									<li><a href="auth/CambioPasswordForm.do">Cambia
+											Password</a></li>
+								</ul></li>
+						</ul>
+						<!--FINE LISTA FITTIZIA LISTA-MENU-PRINCIPALE-->
+					</div>
+					<!--FINE TEMPLATE CONTAINER MENU-IDENTIF-AREA-->
+					<!--INIZIO TEMPLATE CONTAINER MENU-COMMUNITY-->
+					<div class="portlet-section-body" id="menu-community">
+						<!--INIZIO LISTA FITTIZIA LISTA-MENU-COMMUNITY-->
+						<ul id="community">
+							<li id="menu-open-community"><a
+								href="ewc/RedirectListaCommunity.do?menu_opened_cod=navbox_community_Didattica_OnLine">Comunità</a>
+							</li>
+						</ul>
+						<!--FINE LISTA FITTIZIA LISTA-MENU-COMMUNITY-->
+					</div>
+					<!--FINE TEMPLATE CONTAINER MENU-COMMUNITY-->
+					<!--INIZIO TEMPLATE LIST MENU-TUTTI-->
+					<div class="portlet-section-body" id="menu-tutti">
+						<!--INIZIO TEMPLATE LIST MENU-TUTTI SUB-->
+						<br>
+						<ul>
+							<li id="menu-open"><a
+								href="Home.do?menu_opened_cod=navbox_studenti_'Area_Studente'">'Area
+									Studente'</a>
+								<ul>
+									<li><a href="auth/Messaggi.do">Messaggi</a></li>
+									<li><a href="auth/studente/Anagrafica/Anagrafica.do">Anagrafica</a>
+									</li>
+									<li><a href="auth/studente/ListaIscrizioni.do">Iscrizioni</a>
+									</li>
+									<li><a href="auth/studente/Appelli/AppelliF.do">Appelli</a>
+									</li>
+									<li><a href="auth/studente/Appelli/AppelliP.do">Prove
+											parziali</a></li>
+									<li><a href="auth/studente/Appelli/BachecaPrenotazioni.do">Bacheca
+											prenotazioni</a></li>
+									<li><a href="auth/studente/Appelli/BachecaEsiti.do">Bacheca
+											esiti</a></li>
+									<li><a href="auth/studente/Libretto/LibrettoHome.do">Libretto</a>
+									</li>
+									<li><a href="auth/studente/Carriera/AttiCarriera.do">Atti
+											Carriera</a></li>
+									<li><a
+										href="auth/studente/Libretto/LibrettoAnalisiCarriera.do">Analisi
+											Carriera</a></li>
+									<li><a
+										href="auth/studente/ConseguimentoTitolo/ConseguimentoTitolo.do">Conseguimento
+											Titolo</a></li>
+									<li><a href="auth/studente/Piani/PianiHome.do">Piano
+											Carriera</a></li>
+									<li><a href="auth/studente/Esoneri/SceltaEsoneri.do">Esoneri</a>
+									</li>
+									<li><a href="auth/studente/Tasse/SituazionePagamenti.do">Pagamenti</a>
+									</li>
+									<li><a
+										href="auth/Autocertificazioni/Autocertificazione.do">ISEE</a>
+									</li>
+									<li><a
+										href="auth/studente/Certificati/ListaCertificati.do">Autocertificazioni
+											e Diploma Supplement</a></li>
+									<li><a
+										href="auth/studente/Carriera/SceltaOrientamentoForm.do">Scelta
+											orientamento</a></li>
+									<li><a href="auth/studente/Concorsi/Ammissione.do">Test
+											per corsi ad accesso programmato</a></li>
+									<li><a
+										href="auth/Enrollment/EUploadAllegatiStartFakeProcesso.do">Allegati
+											carriera</a></li>
+									<li><a
+										href="auth/studente/Concorsi/AmmissioneFromMenuValutazione.do">Test
+											di Valutazione</a></li>
+									<li><a
+										href="auth/studente/Concorsi/AmmissioneEsamiStato.do">Esami
+											di Stato</a></li>
+									<li><a href="auth/Enrollment/EDomValPrevElencoAction.do">Domanda
+											di Valutazione Preventiva</a></li>
+									<li><a
+										href="auth/Autocertificazioni/RecuperaAutocertificazione.do">Immatricolazione</a>
+									</li>
+									<li><a href="auth/Enrollment/ESceLinStartFakeProcess.do">Scelta
+											Lingue</a></li>
+									<li><a
+										href="auth/studente/dirittoAlloStudio/CollaborazioneStudenti.do">Diritto
+											allo studio</a></li>
+									<li><a
+										href="auth/AddressBook/ABDocIdentitaStartProcesso.do">Documenti
+											di identità</a></li>
+									<li><a
+										href="auth/Degrees/DGAnagaficaTitoliStartProcesso.do">Titoli
+											di studio</a></li>
+								</ul></li>
+							<li id="menu-open"><a
+								href="Home.do?menu_opened_cod=navbox_studenti_Tirocini_e_stage">Tirocini
+									e stage</a>
+								<ul>
+									<li><a href="auth/tirocini/ElencoOfferteTirocinio.do">Domande</a>
+									</li>
+									<li><a href="auth/tirocini/GestioneTirocini.do">Gestione
+											tirocini</a></li>
+								</ul></li>
+							<li id="menu-open"><a
+								href="Home.do?menu_opened_cod=navbox_studenti_Mobilit%C3%A0_internazionale">Mobilità
+									internazionale</a>
+								<ul>
+									<li><a
+										href="auth/Enrollment/ERiepApplicationFormConfermaForm.do">Application
+											Form for Incoming students</a></li>
+									<li><a
+										href="auth/studente/dirittoAlloStudio/MobilitaFromMenu.do">Bandi
+											di Mobilità</a></li>
+								</ul></li>
+							<li id="menu-open"><a
+								href="Home.do?menu_opened_cod=navbox_menu_iniziative_Iniziative">Iniziative</a>
+								<ul>
+									<li><a
+										href="auth/studente/dirittoAlloStudio/ListaBandiGenerici.do">Iniziative</a>
+									</li>
+								</ul></li>
+						</ul>
+						<!--FINE TEMPLATE LIST MENU-TUTTI SUB-->
+					</div>
+					<!--FINE TEMPLATE LIST MENU-TUTTI-->
+					<!--INIZIO TEMPLATE CONTAINER MENU-PRINCIPALE-DOWN-->
+					<div class="portlet-section-body" id="menu-principale-down">&nbsp;</div>
+					<!--FINE TEMPLATE CONTAINER MENU-PRINCIPALE-DOWN-->
+				</div>
+				<!--FINE TEMPLATE CONTAINER MENU-PRINCIPALE-UP-->
+			</div>
+			<!--FINE TEMPLATE CONTAINER NAVBOX-->
+			<!--INIZIO TEMPLATE CONTAINER ESSE3-->
+			<div class="portlet-section-body" id="esse3old">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0">
+					<tbody>
+						<tr>
+							<td style="width: auto; padding: 0 10px 0 0" class="breadcrumb"
+								align="left"><a title="HomePage" href="Home.do">HOME</a>&nbsp;»&nbsp;<a
+								title="HomePage Appelli"
+								href="auth/studente/Appelli/AppelliF.do">Appelli</a>&nbsp;»&nbsp;<b>Prenotazione
+									appello</b></td>
+						</tr>
+					</tbody>
+				</table>
+				<table width="100%">
+					<tbody>
+						<tr>
+							<td>
+								<div class="titolopagina">Prenotazione appelli - Dettaglio
+									appello selezionato</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table width="100%" cellspacing="10" cellpadding="0" border="0">
+					<tbody>
+						<tr>
+							<td class="tplHeader"></td>
+						</tr>
+						<form name="" target="_self" method="post"
+							action="auth/studente/Appelli/EffettuaPrenotazioneAppello.do?TIPO_ATTIVITA=1"></form>
+						<input value="500260" name="CDS_ESA_ID" id="" type="hidden">
+						<input value="507513" name="ATT_DID_ESA_ID" id="" type="hidden">
+						<input value="31" name="APP_ID" id="" type="hidden">
+						<input value="" name="TIPO_ESA" id="" type="hidden">
+						<input value="0" name="TIPO_APP_COD" id="" type="hidden">
+						<input value="8296864" name="ADSCE_ID" id="" type="hidden">
+						<input value="13" name="ATT_DID_ID" id="" type="hidden">
+						<input value="SO" name="TIPO_ISCR" id="" type="hidden">
+						<input value="2013" name="AA_FREQ_ID" id="" type="hidden">
+						<tr>
+							<td>
+								<table width="" cellspacing="0" cellpadding="1" border="0">
+									<tbody>
+										<tr>
+											<th class="tplForm" valign="top" align="left" width="150">Attività
+												Didattica: <br> <span class="tplFormNote"></span>
+											</th>
+											<td class="tplForm" align="left">0522500002 - ALGORITMI
+												IIX<br xmlns:java="http://xml.apache.org/xslt/java"> (
+												offerta nel corso &nbsp; INFOMMATICA[05225] )
+											</td>
+										</tr>
+										<tr>
+											<th class="tplForm" valign="top" align="left">Appello: <br>
+												<span class="tplFormNote"></span></th>
+											<td class="tplForm" align="left">APPELLO PROFF.
+												PERSIANO-AULETTA del 22/01/2015</td>
+										</tr>
+										<tr>
+											<th class="tplForm" valign="top" align="left">Sessioni:
 
-															<br>
-<span class="tplFormNote"></span></th><td class="tplForm" align="left">0522500002 - ALGORITMI IIX<br xmlns:java="http://xml.apache.org/xslt/java">
-											(
-											offerta nel corso
-											&nbsp;
-											INFOMMATICA[05225]
-											)
-										</td>
-</tr>
-<tr>
-<th class="tplForm" valign="top" align="left">Appello:
+												<br> <span class="tplFormNote"></span>
+											</th>
+											<td class="tplForm" align="left">III SESSIONE</td>
+										</tr>
+										<tr>
+											<th class="tplForm" valign="top" align="left" width="110">Tipo
+												esame: <br> <span class="tplFormNote"></span>
+											</th>
+											<td class="tplForm" align="left">Scritto e Orale
+												(Congiunti)</td>
+										</tr>
+										<tr>
+											<th class="tplForm" valign="top" align="left">Docenti: <br>
+												<span class="tplFormNote"></span></th>
+											<td class="tplForm" align="left">GIUSEPPE don PERSIANO (
+												PRESIDENTE ) <br>VINCENZO er AULETTA ( MEMBRO EFFETTIVO
+												) <br>
+											</td>
+										</tr>
+										<tr>
+											<th class="tplForm" align="left">Note per il docente: <br>
+												<span class="tplFormNote"></span></th>
+											<td class="tplForm" align="left"><textarea
+													class="tplForm" name="NOTE_STU" cols="80" rows="3"></textarea></td>
+										</tr>
+									</tbody>
+								</table> <br>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table width="" cellspacing="0" cellpadding="1" border="0">
+									<tbody></tbody>
+								</table> <br>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table cellspacing="0" cellpadding="0" border="0">
+									<tbody>
+										<tr>
+											<td class="tplTitolo"><b>Calendario delle prove</b></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table cellspacing="0" cellpadding="0" border="0">
+									<tbody>
+										<tr>
+											<td width="598" align="left" class="tplMessage"><subtitle></subtitle>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table class="detail_table" border="0" cellpadding="0"
+									cellspacing="0">
+									<tbody>
+										<tr>
+											<th width="30%" class="detail_table">Data - Ora&nbsp;</th>
+											<th width="40%" class="detail_table">Edificio e
+												Aula&nbsp;</th>
+											<th width="10%" class="detail_table"># Iscr &nbsp;</th>
+											<th width="26%" class="detail_table">Docenti&nbsp;</th>
+										</tr>
+										<tr>
+											<td class="detail_table" rowspan="" colspan="" align="" id="">
+												<cell type="html">22/01/2015&nbsp; 10:00</cell>
+											</td>
+											<td class="detail_table" rowspan="" colspan="" align="" id="">FACOLTA'
+												DI SCIENZE MM.FF.NN. - AULA F4</td>
+											<td class="detail_table" rowspan="" colspan="" align="center"
+												id="">1</td>
+											<td class="detail_table" rowspan="" colspan="" align="" id="">
+												<cell type="html">PERSIANO don GIUSEPPE<br>
+												AULETTA er VINCENZO<br>
+												</cell>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table cellspacing="0" cellpadding="1" border="0" align="center">
+									<tbody>
+										<tr>
+											<td id="" width="" valign="" colspan="" style="" rowspan=""
+												class="tplFormSubmit"><a class="tplFormSubmit" title=""
+												href="auth/studente/Appelli/AppelliF.do">Annulla</a></td>
+											<td id="" width="" valign="" colspan="" style="" rowspan=""
+												class="tplFormSubmit"><input class="tplFormSubmit"
+												name="" type="submit" value="Prenotati all'appello &gt;&gt;"
+												onclick="return checkClick(this);"></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
 
-															<br>
-<span class="tplFormNote"></span></th><td class="tplForm" align="left"> APPELLO PROFF. PERSIANO-AULETTA del 22/01/2015</td>
-</tr>
-<tr>
-<th class="tplForm" valign="top" align="left">Sessioni:
-
-															<br>
-<span class="tplFormNote"></span></th><td class="tplForm" align="left">III SESSIONE</td>
-</tr>
-<tr>
-<th class="tplForm" valign="top" align="left" width="110">Tipo esame:
-
-															<br>
-<span class="tplFormNote"></span></th><td class="tplForm" align="left">Scritto e Orale (Congiunti)</td>
-</tr>
-<tr>
-<th class="tplForm" valign="top" align="left">Docenti:
-
-															<br>
-<span class="tplFormNote"></span></th><td class="tplForm" align="left">GIUSEPPE don PERSIANO
-												(
-												PRESIDENTE
-												)
-												<br>VINCENZO er AULETTA
-												(
-												MEMBRO EFFETTIVO
-												)
-												<br>
-</td>
-</tr>
-<tr>
-<th class="tplForm" align="left">Note per il docente:
-
-															<br>
-<span class="tplFormNote"></span></th><td class="tplForm" align="left"><textarea class="tplForm" name="NOTE_STU" cols="80" rows="3"></textarea></td>
-</tr>
-</tbody>
-</table>
-<br>
-</td>
-</tr>
-<tr>
-<td>
-<table width="" cellspacing="0" cellpadding="1" border="0">
-<tbody></tbody>
-</table>
-<br>
-</td>
-</tr>
-<tr>
-<td>
-<table cellspacing="0" cellpadding="0" border="0">
-<tbody><tr>
-<td class="tplTitolo"><b>Calendario delle prove</b></td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-<tr>
-<td>
-<table cellspacing="0" cellpadding="0" border="0">
-<tbody><tr>
-<td width="598" align="left" class="tplMessage">
-<subtitle></subtitle>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-<tr>
-<td>
-<table class="detail_table" border="0" cellpadding="0" cellspacing="0">
-<tbody>
-<tr>
-<th width="30%" class="detail_table">Data - Ora&nbsp;
-                  </th><th width="40%" class="detail_table">Edificio e Aula&nbsp;
-                  </th><th width="10%" class="detail_table"># Iscr &nbsp;
-                  </th><th width="26%" class="detail_table">Docenti&nbsp;
-                  </th>
-</tr>
-<tr>
-<td class="detail_table" rowspan="" colspan="" align="" id="">
-<cell type="html">22/01/2015&nbsp;
-											10:00</cell>
-</td><td class="detail_table" rowspan="" colspan="" align="" id="">FACOLTA' DI SCIENZE MM.FF.NN. - AULA F4</td><td class="detail_table" rowspan="" colspan="" align="center" id="">1</td><td class="detail_table" rowspan="" colspan="" align="" id="">
-<cell type="html">PERSIANO don GIUSEPPE<br>AULETTA er VINCENZO<br>
-</cell>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td>
-<table cellspacing="0" cellpadding="1" border="0" align="center">
-<tbody><tr>
-<td id="" width="" valign="" colspan="" style="" rowspan="" class="tplFormSubmit"><a class="tplFormSubmit" title="" href="auth/studente/Appelli/AppelliF.do">Annulla</a></td><td id="" width="" valign="" colspan="" style="" rowspan="" class="tplFormSubmit"><input class="tplFormSubmit" name="" type="submit" value="Prenotati all'appello &gt;&gt;" onclick="return checkClick(this);"></td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-
-<tr>
-<td>
-<table cellspacing="0" cellpadding="0" border="0">
-<tbody><tr>
-<td width="598" align="left" class="tplMessage"></td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</div>
-<!--FINE TEMPLATE CONTAINER ESSE3-->
-</div>
-<!--FINE TEMPLATE CONTAINER CORPO-->
-<!--INIZIO TEMPLATE CONTAINER FOOTER-->
-<div class="portlet-section-body" id="footer">
-<!--INIZIO TEMPLATE TEXT FOOTER-TEXT-->
-<p id="footer-text" class="portlet-font text-align-left">2012 © by KION a SHITTY Company</p>
-<!--FINE TEMPLATE TEXT FOOTER-TEXT-->
-</div>
-<!--FINE TEMPLATE CONTAINER FOOTER-->
-</div>
-<!--FINE TEMPLATE CONTAINER MAIN-->
+						<tr>
+							<td>
+								<table cellspacing="0" cellpadding="0" border="0">
+									<tbody>
+										<tr>
+											<td width="598" align="left" class="tplMessage"></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--FINE TEMPLATE CONTAINER ESSE3-->
+		</div>
+		<!--FINE TEMPLATE CONTAINER CORPO-->
+		<!--INIZIO TEMPLATE CONTAINER FOOTER-->
+		<div class="portlet-section-body" id="footer">
+			<!--INIZIO TEMPLATE TEXT FOOTER-TEXT-->
+			<p id="footer-text" class="portlet-font text-align-left">2012 ©
+				by KION a SHITTY Company</p>
+			<!--FINE TEMPLATE TEXT FOOTER-TEXT-->
+		</div>
+		<!--FINE TEMPLATE CONTAINER FOOTER-->
+	</div>
+	<!--FINE TEMPLATE CONTAINER MAIN-->
 
 
-</body></html>
+</body>
+</html>

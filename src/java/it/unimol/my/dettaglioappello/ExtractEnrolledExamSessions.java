@@ -17,7 +17,7 @@ import com.google.gson.Gson;
  * 
  * @author Pasquale Fornaro
  */
-@WebServlet(name = "ExtractEnrolledExamSessions", urlPatterns = { "/getEnrolledExams" })
+@WebServlet(name = "ExtractEnrolledExamSessions", urlPatterns = { "/getEnrolledExamsOld" })
 public class ExtractEnrolledExamSessions extends HttpServlet {
 
 	/**

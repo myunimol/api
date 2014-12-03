@@ -31,7 +31,7 @@ public class DetailedExam extends Exam {
      * Descrizione costruttore
      */
     public DetailedExam() {
-
+    	super();
     }
 
     /**

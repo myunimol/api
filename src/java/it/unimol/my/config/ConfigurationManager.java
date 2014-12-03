@@ -95,6 +95,10 @@ public class ConfigurationManager {
 	public String getEnrolledExamSessionsUrl() {
 		return this.getEsse3Links().get("enrolledExamSessions").getAsString();
 	}
+	
+	public String getExamSessionDetailUrl() {
+		return this.getEsse3Links().get("examSessionDetail").getAsString();
+	}
 
 	public String getUniversityName() {
 		return this.getUniversity().get("name").getAsString();

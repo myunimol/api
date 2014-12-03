@@ -1,4 +1,4 @@
-package it.unimol.my.elencoappelli;
+package it.unimol.my.appelliprenotati;
 
 import java.util.List;
 
@@ -6,12 +6,10 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 
 /**
  * Questa classe implementa l'interfaccia per tutte le classi addette al parsing
- * della lista degli appelli. Dispone di due metodi per poter fare parsing di
- * pagine protette o non protette da login.
+ * della lista degli appelli prenotati.
  * 
- * @author Giuseppe
  */
-public interface ExamSessionsExtractorInterface {
+public interface EnrolledExamsExtractorInterface {
 
 	/**
 	 * Metodo che permette di fare parsing di una pagina protetta da login
@@ -25,17 +23,6 @@ public interface ExamSessionsExtractorInterface {
 	 * @return Una lista di oggetti "ExamSession" che rappresentano tutti gli
 	 *         appelli disponibili al momento della richiesta
 	 */
-	public List<DetailedExamSession> getExamSessions(String targetURL, String username,
+	public List<EnrolledExamSession> getEnrolledExamSessions(String targetURL, String username,
 			String password) throws UnirestException;
-
-	/**
-	 * Metodo che permette di fare parsing di una pagina non protetta
-	 * 
-	 * @param targetURL
-	 *            URL della pagina su cui eseguire l'estrazione
-	 * @return Una lista di oggetti "ExamSession" che rappresentano tutti gli
-	 *         appelli disponibili al momento della richiesta
-	 */
-	public List<DetailedExamSession> getExamSessions(String targetURL) throws UnirestException;
-
 }
