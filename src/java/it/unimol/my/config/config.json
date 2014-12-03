@@ -1,23 +1,23 @@
 {
-  'university': {
-  	'name':'Università degli Studi del Molise',
-  	'shortName':'unimol',
-    'links': {
-      'esse3': {
-        'logon': 'https://unimol.esse3.cineca.it/auth/Logon.do',
-        'logout': 'https://unimol.esse3.cineca.it/Logout.do',
-        'recordBook': 'https://unimol.esse3.cineca.it/auth/studente/Libretto/LibrettoHome.do',
-        'examDetail': 'https://unimol.esse3.cineca.it/auth/studente/Libretto/LibrettoAdScelta.do',
-        'examSessions': 'https://unimol.esse3.cineca.it/auth/studente/Appelli/AppelliF.do',
-        'enrolledExamSessions': 'https://unimol.esse3.cineca.it/auth/studente/Appelli/BachecaPrenotazioni.do'
+  "university": {
+  	"name":"Università degli Studi del Molise",
+  	"shortName":"unimol",
+    "links": {
+      "esse3": {
+        "logon": "https://unimol.esse3.cineca.it/auth/Logon.do",
+        "logout": "https://unimol.esse3.cineca.it/Logout.do",
+        "recordBook": "https://unimol.esse3.cineca.it/auth/studente/Libretto/LibrettoHome.do",
+        "examDetail": "https://unimol.esse3.cineca.it/auth/studente/Libretto/LibrettoAdScelta.do",
+        "examSessions": "https://unimol.esse3.cineca.it/auth/studente/Appelli/AppelliF.do",
+        "enrolledExamSessions": "https://unimol.esse3.cineca.it/auth/studente/Appelli/BachecaPrenotazioni.do"
       },
-      'addressBook': {
-        'main': 'http://docenti.unimol.it',
-        'search': 'http://docenti.unimol.it/search.php'
+      "addressBook": {
+        "main": "http://docenti.unimol.it",
+        "search": "http://docenti.unimol.it/search.php"
       }
     }
   },
-  'messages': {
-    'noGetRequest': 'Sorry, our system do not accept GET requests'
+  "messages": {
+    "noGetRequest": "Sorry, our system do not accept GET requests"
   }
 }
