@@ -1,7 +1,6 @@
 package it.unimol.my.requesterhtml;
 
 import it.unimol.my.config.ConfigurationManager;
-import it.unimol.my.utils.Utils;
 
 import java.net.URL;
 import java.util.List;
