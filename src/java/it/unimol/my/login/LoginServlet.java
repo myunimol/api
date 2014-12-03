@@ -3,6 +3,9 @@ package it.unimol.my.login;
 import com.google.gson.Gson;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
+import it.unimol.my.config.ConfigurationManager;
+import it.unimol.my.token.TokenManager;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -43,20 +46,33 @@ public class LoginServlet extends HttpServlet {
 
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
-
 		PrintWriter out = response.getWriter();
+
+		ConfigurationManager config = ConfigurationManager.getInstance();
+		// controllo token
+		TokenManager tokenManager = TokenManager.getInstance();
+		if (token == null || token.length() < 16
+				|| !tokenManager.tokenExists(token)) {
+			String invalidTokenMsg = config.getMessage("invalidToken");
+			out.println("{\"result\":\"failure\",\"msg\":\"" + invalidTokenMsg
+					+ "\"}");
+			return;
+		}
 		try {
 
-			if (token == null || username == null || password == null) {
-				// aggiungere controllo token non valido
-				out.print("{\"result\":\"failure\", \"msg\":\"dati non validi\"}");
+			if (username == null || password == null) {
+				String noCredentialsMsg = config.getMessage("noCredentials");
+				out.print("{\"result\":\"failure\", \"msg\":\""
+						+ noCredentialsMsg + "\"}");
 			} else {
 				LoginParser parser = LoginParserManager.getLoginParser();
 				UserInformation logInfo = parser.getLoginInformation(username,
 						password);
 				if (logInfo == null) {
 					// login non riuscito
-					out.print("{\"result\":\"failure\", \"msg\":\"login non riuscito\"}");
+					String badLoginMsg = config.getMessage("badLogin");
+					out.print("{\"result\":\"failure\", \"msg\":\""
+							+ badLoginMsg + "\"}");
 				} else {
 					Gson gson = new Gson();
 					// generazione JSON
@@ -65,7 +81,9 @@ public class LoginServlet extends HttpServlet {
 			}
 
 		} catch (UnirestException e) {
-			out.print("{\"result\":\"failure\", \"msg\":\"errore unirest\"}");
+			String unirestExceptionMsg = config.getMessage("unirestException");
+			out.print("{\"result\":\"failure\", \"msg\":\""
+					+ unirestExceptionMsg + "\"}");
 		} finally {
 			out.close();
 		}
@@ -88,7 +106,11 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		ConfigurationManager config = ConfigurationManager.getInstance();
+		String noGetRequestMsg = config.getMessage("noGetRequest");
+		PrintWriter out = response.getWriter();
+		out.print("{\"result\":\"failure\", \"msg\":\"" + noGetRequestMsg
+				+ "\"}");
 	}
 
 	/**
