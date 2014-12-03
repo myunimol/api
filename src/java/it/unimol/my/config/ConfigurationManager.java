@@ -51,7 +51,7 @@ public class ConfigurationManager {
 
 	public String getMessage(String key) {
 		String msg = this.config.getAsJsonObject("messages")
-				.get("noGetRequest").getAsString();
+				.get(key).getAsString();
 		if (msg == null || msg.equals("")) {
 			msg = "No message found for key \"" + key + "\"";
 		}
