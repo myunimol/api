@@ -1,7 +1,4 @@
-package it.unimol.my.login;
-
-import com.google.gson.Gson;
-import com.mashape.unirest.http.exceptions.UnirestException;
+package it.unimol.my.exam;
 
 import it.unimol.my.config.ConfigurationManager;
 import it.unimol.my.tokenmanagement.TokenManager;
@@ -15,14 +12,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.mashape.unirest.http.exceptions.UnirestException;
+
 /**
- * La servlet che gestisce le richieste di login restituisce le informazioni di
- * base dell'utente sottoforma di JSON
- *
- * @author Ivan Di Rienzo
+ * Questa servlet da il via al parsing del libretto. Dopo l'elaborazione dei
+ * dati da parte delle classi addette al parsing, mostra a video la lista degli
+ * appelli disponibili in formato json
+ * 
+ * @author Christian De Rita
  */
-@WebServlet(name = "LoginServlet", urlPatterns = { "/test-credentials" })
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "ExamsListParser", urlPatterns = { "/getRecordBook" })
+public class RecordBookServlet extends HttpServlet {
+
+	/**
+	 * L'id seriale della versione.
+	 */
+	private static final long serialVersionUID = 6704202796026709792L;
 
 	/**
 	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,14 +46,11 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
 
 		String token = request.getParameter("token");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json");
-		PrintWriter out = response.getWriter();
 
 		ConfigurationManager config = ConfigurationManager.getInstance();
 		// controllo token
@@ -58,32 +62,36 @@ public class LoginServlet extends HttpServlet {
 					+ "\"}");
 			return;
 		}
+
+		String targetUrl = config.getRecordBookUrl();
+
+		// recupero l'estrattore
+		RecordBookExtractorInterface recordBookExtractor = RecordBookExtractorManager
+				.getRecordBookExtractor();
+
+		// estraggo il libretto degli esami
+
 		try {
-
-			if (username == null || password == null) {
-				String noCredentialsMsg = config.getMessage("noCredentials");
-				out.print("{\"result\":\"failure\", \"msg\":\""
-						+ noCredentialsMsg + "\"}");
-			} else {
-				LoginParser parser = LoginParserManager.getLoginParser();
-				UserInformation logInfo = parser.getLoginInformation(username,
-						password);
-				if (logInfo == null) {
-					// login non riuscito
-					String badLoginMsg = config.getMessage("badLogin");
-					out.print("{\"result\":\"failure\", \"msg\":\""
-							+ badLoginMsg + "\"}");
-				} else {
-					Gson gson = new Gson();
-					// generazione JSON
-					out.print(gson.toJson(logInfo));
-				}
+			RecordBook recordBook = recordBookExtractor.getExamsList(targetUrl,
+					username, password);
+			if (recordBook == null) {
+				String unknownErrorMsg = config.getMessage("unknownError");
+				out.println("{\"result\":\"failure\",\"msg\":\""
+						+ unknownErrorMsg + "\"}");
+				return;
 			}
+			// converto il libretto in json
+			Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
+			String json = gson.toJson(recordBook);
 
+			// stampo il json a video
+			out.println(json);
 		} catch (UnirestException e) {
+			e.printStackTrace();
 			String unirestExceptionMsg = config.getMessage("unirestException");
 			out.print("{\"result\":\"failure\", \"msg\":\""
 					+ unirestExceptionMsg + "\"}");
+			return;
 		} finally {
 			out.close();
 		}

@@ -23,6 +23,7 @@
     "invalidToken":"Sorry, mummy said I do not have to talk with strangers...",
     "noCredentials":"I'm not a magician: you have got to tell me your credentials in order to get the right information.",
     "badLogin":"You probably mistyped something into your username or password: check them twice next time.",
-    "unirestException":"Something went wrong while contacting esse3. Probably it depends on cineca."
+    "unirestException":"Something went wrong while contacting esse3. Probably it depends on cineca.",
+    "unknownError":"Ooops... Something went wrong while processing your request. Don't blame on us for that!"
   }
 }
