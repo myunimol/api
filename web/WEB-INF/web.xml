@@ -10,7 +10,7 @@
     
     <servlet>
         <servlet-name>APIVersion</servlet-name>
-        <servlet-class>it.unimol.my.version.APIVersion</servlet-class>
+        <servlet-class>it.unimol.my.config.APIVersion</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>APIVersion</servlet-name>
