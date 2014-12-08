@@ -1,6 +1,7 @@
 package it.unimol.my.requesterhtml;
 
 import it.unimol.my.config.ConfigurationManager;
+import it.unimol.my.utils.InsecureHttpClientFactory;
 
 import java.net.URL;
 import java.util.List;
@@ -8,7 +9,6 @@ import java.util.Map;
 
 import com.mashape.unirest.http.Headers;
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.HttpRequest;
@@ -46,6 +46,7 @@ public class HTMLRequester implements HTMLRequesterInterface {
 	 */
 	private String refreshJsessionId(String username, String password) {
 		try {
+			Unirest.setHttpClient(InsecureHttpClientFactory.getInsecureClient());
 			HttpResponse<String> response = Unirest.get(
 					config.getLogonUrl() + "?cod_lingua=ita").asString();
 			Headers headers = response.getHeaders();
@@ -75,9 +76,10 @@ public class HTMLRequester implements HTMLRequesterInterface {
 	 */
 	private int logout(String username, String password, String jsessionId) {
 		try {
+			Unirest.setHttpClient(InsecureHttpClientFactory.getInsecureClient());
 			HttpResponse<String> logout = Unirest.get(
 					config.getLogoutUrl() + ";" + jsessionId).asString();
-			return logout.getCode();
+			return logout.getStatus();
 		} catch (UnirestException e) {
 			e.printStackTrace();
 			return 500;
@@ -97,7 +99,7 @@ public class HTMLRequester implements HTMLRequesterInterface {
 		HttpResponse<String> response = request.asString();
 
 		// effettuiamo il logout dal sistema esse3
-		int logoutCode = this.logout(username, password, jsessionId);
+		this.logout(username, password, jsessionId);
 
 		// ritorniamo il codice di markup html in un oggetto String
 		return response.getBody();
@@ -120,7 +122,7 @@ public class HTMLRequester implements HTMLRequesterInterface {
 		this.fillRequestWithParams(request, parameters);
 		HttpResponse<String> response = request.asString();
 		// effettuiamo il logout dal sistema esse3
-		int logoutCode = this.logout(username, password, jsessionId);
+		this.logout(username, password, jsessionId);
 		return response.getBody();
 	}
 
