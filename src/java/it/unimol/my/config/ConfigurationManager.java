@@ -72,6 +72,15 @@ public class ConfigurationManager {
                 .getAsJsonObject("addressBook");
     }
 
+    public JsonObject getNewsLinks() {
+        return this.getUniversity().getAsJsonObject("links")
+                .getAsJsonObject("news");
+    }
+
+    public JsonObject getCourseLinks() {
+        return this.getNewsLinks().getAsJsonObject("course");
+    }
+
     public String getLogonUrl() {
         return this.getEsse3Links().get("logon").getAsString();
     }
@@ -115,5 +124,13 @@ public class ConfigurationManager {
 
     public String getAddressBookSearchUrl() {
         return this.getAddressBookLinks().get("search").getAsString();
+    }
+
+    public String getInformaticaNewsBoardUrl() {
+        return this.getCourseLinks().get("informatica").getAsString();
+    }
+
+    public String getScienzeBiologicheNewsBoardUrl() {
+        return this.getCourseLinks().get("scienzeBiologiche").getAsString();
     }
 }

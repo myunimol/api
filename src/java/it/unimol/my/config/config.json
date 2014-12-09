@@ -1,30 +1,45 @@
 {
-  "university": {
-  	"name":"Università degli Studi del Molise",
-  	"shortName":"unimol",
-    "links": {
-      "esse3": {
-        "logon": "https://unimol.esse3.cineca.it/auth/Logon.do",
-        "logout": "https://unimol.esse3.cineca.it/Logout.do",
-        "recordBook": "https://unimol.esse3.cineca.it/auth/studente/Libretto/LibrettoHome.do",
-        "examDetail": "https://unimol.esse3.cineca.it/auth/studente/Libretto/LibrettoAdScelta.do",
-        "examSessions": "https://unimol.esse3.cineca.it/auth/studente/Appelli/AppelliF.do",
-        "enrolledExamSessions": "https://unimol.esse3.cineca.it/auth/studente/Appelli/BachecaPrenotazioni.do",
-        "examSessionDetail": "https://unimol.esse3.cineca.it/auth/studente/Appelli/DatiPrenotazioneAppello.do"
-      },
-      "addressBook": {
-        "main": "http://rubrica.unimol.it",
-        "search": "http://rubrica.unimol.it/ricercaPersone.php"
-      }
+    "university": {
+        "name": "Università degli Studi del Molise",
+        "shortName": "unimol",
+        "links": {
+            "esse3": {
+                "logon": "https://unimol.esse3.cineca.it/auth/Logon.do",
+                "logout": "https://unimol.esse3.cineca.it/Logout.do",
+                "recordBook": "https://unimol.esse3.cineca.it/auth/studente/Libretto/LibrettoHome.do",
+                "examDetail": "https://unimol.esse3.cineca.it/auth/studente/Libretto/LibrettoAdScelta.do",
+                "examSessions": "https://unimol.esse3.cineca.it/auth/studente/Appelli/AppelliF.do",
+                "enrolledExamSessions": "https://unimol.esse3.cineca.it/auth/studente/Appelli/BachecaPrenotazioni.do",
+                "examSessionDetail": "https://unimol.esse3.cineca.it/auth/studente/Appelli/DatiPrenotazioneAppello.do"
+            },
+            "addressBook": {
+                "main": "http://rubrica.unimol.it",
+                "search": "http://rubrica.unimol.it/ricercaPersone.php"
+            },
+            "news": {
+                "main": "http://www.unimol.it/unimolise/00050001_UNIMOLISE.html",
+                "department": {
+                    "agricolturaAmbienteAlimenti": "http://www.unimol.it/unimolise/s2magazine/index1.jsp?idPagina=50723",
+                    "bioscienzeTerritorio": "http://www.unimol.it/unimolise/s2magazine/index1.jsp?idPagina=50764",
+                    "economiaGestioneSocietaIstituzioni": "http://www.unimol.it/unimolise/s2magazine/index1.jsp?idPagina=50716",
+                    "giuridico": "http://www.unimol.it/unimolise/s2magazine/index1.jsp?idPagina=50726",
+                    "medicinaScienzeSalute": "http://www.unimol.it/unimolise/s2magazine/index1.jsp?idPagina=50757",
+                    "scienzeUmanisticheSocialiFormazione": "http://www.unimol.it/unimolise/s2magazine/index1.jsp?idPagina=50741"
+                },
+                "course": {
+                    "informatica": "http://www.unimol.it/pls/unimolise/v3_s2ew_consultazione.mostra_pagina?id_pagina=51140",
+                    "scienzeBiologiche": "http://www.unimol.it/pls/unimolise/v3_s2ew_consultazione.mostra_pagina?id_pagina=51259"
+                }
+            }
+        }
+    },
+    "messages": {
+        "noGetRequest": "Sorry, our system do not accept GET requests",
+        "invalidToken": "Sorry, mummy said I do not have to talk with strangers...",
+        "noCredentials": "I'm not a magician: you have got to tell me your credentials in order to get the right information.",
+        "badLogin": "You probably mistyped something into your username or password: check them twice next time.",
+        "unirestException": "Something went wrong while contacting esse3. Probably it depends on cineca.",
+        "unknownError": "Ooops... Something went wrong while processing your request. Don't blame on us for that!",
+        "badParameters": "Sorry, the parameters you passed me are malformed."
     }
-  },
-  "messages": {
-    "noGetRequest": "Sorry, our system do not accept GET requests",
-    "invalidToken":"Sorry, mummy said I do not have to talk with strangers...",
-    "noCredentials":"I'm not a magician: you have got to tell me your credentials in order to get the right information.",
-    "badLogin":"You probably mistyped something into your username or password: check them twice next time.",
-    "unirestException":"Something went wrong while contacting esse3. Probably it depends on cineca.",
-    "unknownError":"Ooops... Something went wrong while processing your request. Don't blame on us for that!",
-    "badParameters":"Sorry, the parameters you passed me are malformed."
-  }
 }
