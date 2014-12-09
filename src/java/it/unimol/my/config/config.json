@@ -13,8 +13,8 @@
         "examSessionDetail": "https://unimol.esse3.cineca.it/auth/studente/Appelli/DatiPrenotazioneAppello.do"
       },
       "addressBook": {
-        "main": "http://docenti.unimol.it",
-        "search": "http://docenti.unimol.it/search.php"
+        "main": "http://rubrica.unimol.it",
+        "search": "http://rubrica.unimol.it/ricercaPersone.php"
       }
     }
   },
@@ -24,6 +24,7 @@
     "noCredentials":"I'm not a magician: you have got to tell me your credentials in order to get the right information.",
     "badLogin":"You probably mistyped something into your username or password: check them twice next time.",
     "unirestException":"Something went wrong while contacting esse3. Probably it depends on cineca.",
-    "unknownError":"Ooops... Something went wrong while processing your request. Don't blame on us for that!"
+    "unknownError":"Ooops... Something went wrong while processing your request. Don't blame on us for that!",
+    "badParameters":"Sorry, the parameters you passed me are malformed."
   }
 }
