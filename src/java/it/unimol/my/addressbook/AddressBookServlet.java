@@ -22,7 +22,7 @@ public class AddressBookServlet extends WebServiceServlet {
         // estraggo il libretto degli esami
         try {
             List<Contact> addressBook = addressBookExtractor.getAddressBook();
-            if (addressBook.isEmpty()) {
+            if (addressBook == null) {
                 String unknownErrorMsg = config.getMessage("unknownError");
                 writer.println("{\"result\":\"failure\",\"msg\":\""
                         + unknownErrorMsg + "\"}");
