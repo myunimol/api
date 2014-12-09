@@ -29,7 +29,7 @@ public class ContactServlet extends WebServiceServlet {
                 return;
             }
             List<Contact> contactList = contactExtractor.getContact(name, surname);
-            if (contactList.isEmpty()) {
+            if (contactList == null) {
                 String unknownErrorMsg = config.getMessage("unknownError");
                 writer.println("{\"result\":\"failure\",\"msg\":\""
                         + unknownErrorMsg + "\"}");
