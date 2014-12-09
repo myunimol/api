@@ -4,7 +4,6 @@ import it.unimol.my.utils.WebServiceServlet;
 
 import java.io.IOException;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,25 +19,15 @@ public class APIVersion extends WebServiceServlet {
 	 */
 	private static final long serialVersionUID = 4983785233318772251L;
 
-	/**
-	 * Handles the HTTP <code>POST</code> method.
-	 *
-	 * @param request
-	 *            servlet request
-	 * @param response
-	 *            servlet response
-	 * @throws ServletException
-	 *             if a servlet-specific error occurs
-	 * @throws IOException
-	 *             if an I/O error occurs
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.unimol.my.utils.WebServiceServlet#serve(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		super.doPost(request, response);
-		if (!tokenIsValid(request, response)) {
-			return;
-		}
+	protected void serve(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
 		try {
 			// recupera la versione dal web.xml (context-param)
 			String output = "{\"APIVersion\" : \""
@@ -49,4 +38,5 @@ public class APIVersion extends WebServiceServlet {
 			writer.close();
 		}
 	}
+
 }

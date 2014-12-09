@@ -42,6 +42,10 @@ public class WebServiceServlet extends HttpServlet {
 	 * Istanza del <code>PrintWriter</code>
 	 */
 	protected PrintWriter writer;
+	/**
+	 * Il token utilizzato per il dialogo coi client
+	 */
+	protected String token;
 
 	/*
 	 * (non-Javadoc)
@@ -51,7 +55,7 @@ public class WebServiceServlet extends HttpServlet {
 	 * , javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	protected final void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String noGetRequestMsg = config.getMessage("noGetRequest");
 		resp.setStatus(HttpStatus.SC_METHOD_NOT_ALLOWED);
@@ -71,12 +75,11 @@ public class WebServiceServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// imposto il character encoding
-		resp.setCharacterEncoding("UTF-8");
-		// setto il tipo del contenuto
-		resp.setContentType("application/json");
 		// ottengo un writer dalla response
 		writer = resp.getWriter();
+		if (tokenIsValid(req, resp)) {
+			this.serve(req, resp);
+		}
 	}
 
 	/**
@@ -96,7 +99,7 @@ public class WebServiceServlet extends HttpServlet {
 			HttpServletResponse resp) throws IOException {
 		boolean tokenIsValid = false;
 		// Ottengo il token
-		String token = req.getParameter("token");
+		token = req.getParameter("token");
 
 		// controllo token
 		if (token == null || token.length() < 16
@@ -110,6 +113,18 @@ public class WebServiceServlet extends HttpServlet {
 			tokenIsValid = true;
 		}
 		return tokenIsValid;
+	}
+	
+	protected void serve(HttpServletRequest req,
+			HttpServletResponse resp) throws IOException {
+		System.err.println("Called empty serve method in WebServiceServlet");
+	}
+
+	protected void setHeaders(HttpServletResponse response) {
+		// imposto il character encoding
+		response.setCharacterEncoding("UTF-8");
+		// setto il tipo del contenuto
+		response.setContentType("application/json");
 	}
 
 }

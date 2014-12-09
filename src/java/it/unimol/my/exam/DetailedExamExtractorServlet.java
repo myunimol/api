@@ -25,35 +25,16 @@ public class DetailedExamExtractorServlet extends Esse3AuthServlet {
 	 */
 	private static final long serialVersionUID = -1125713572833271587L;
 
-	/**
-	 * Processa rechieste per <code>POST</code> method.
-	 *
-	 * @param request
-	 *            servlet request
-	 * @param response
-	 *            servlet response
-	 * @throws ServletException
-	 *             if a servlet-specific error occurs
-	 * @throws IOException
-	 *             if an I/O error occurs
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.unimol.my.utils.WebServiceServlet#serve(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		super.doPost(request, response);
-		// controllo che il token sia valido...
-		if (!tokenIsValid(request, response)) {
-			// il token non è valido: esco.
-			return;
-		}
-		// controllo che le credenziali siano settate...
-		if (!credentialsAreOk(request, response)) {
-			// le credenziali non sono settate: esco.
-			return;
-		}
-		// recupero credenziali e examId
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+	protected void serve(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		// recupero examId dalla richiesta
 		String examId = request.getParameter("examId");
 		// chiedo l'url al gestore configurazioni
 		String targetUrl = ConfigurationManager.getInstance()

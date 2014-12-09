@@ -4,7 +4,6 @@ import it.unimol.my.utils.Esse3AuthServlet;
 
 import java.io.IOException;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,35 +26,15 @@ public class LoginServlet extends Esse3AuthServlet {
 	 */
 	private static final long serialVersionUID = 7946609122833328080L;
 
-	/**
-	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-	 * methods.
-	 *
-	 * @param request
-	 *            servlet request
-	 * @param response
-	 *            servlet response
-	 * @throws ServletException
-	 *             if a servlet-specific error occurs
-	 * @throws IOException
-	 *             if an I/O error occurs
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see it.unimol.my.utils.WebServiceServlet#serve(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		super.doPost(request, response);
-		// controllo che il token sia valido...
-		if (!tokenIsValid(request, response)) {
-			// il token non è valido: esco.
-			return;
-		}
-		// controllo che le credenziali siano settate...
-		if (!credentialsAreOk(request, response)) {
-			// le credenziali non sono settate: esco.
-			return;
-		}
-		// recupero credenziali e examId
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+	@Override
+	protected void serve(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		try {
 			LoginParser parser = LoginParserManager.getLoginParser();
 			UserInformation logInfo = parser.getLoginInformation(username,
@@ -78,4 +57,5 @@ public class LoginServlet extends Esse3AuthServlet {
 			writer.close();
 		}
 	}
+
 }
