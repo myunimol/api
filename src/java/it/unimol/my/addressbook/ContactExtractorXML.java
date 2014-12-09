@@ -17,39 +17,47 @@ import org.jsoup.select.Elements;
  */
 public class ContactExtractorXML {
 
-    /**
-     * Il metodo getContact estrae un contatto da xml
-     *
-     * @param nome Il nome desiderato
-     * @param cognome Il cognome desiderato
-     * @return Una lista di contatti che soddisfa i parametri di input
-     */
-    public List<Contact> getContact(String name, String surname) {
+	/**
+	 * Il metodo getContact estrae un contatto da xml
+	 *
+	 * @param nome
+	 *            Il nome desiderato
+	 * @param cognome
+	 *            Il cognome desiderato
+	 * @return Una lista di contatti che soddisfa i parametri di input
+	 */
+	public List<Contact> getContact(String name, String surname) {
 
-        List<Contact> contactList = new ArrayList<Contact>();
+		List<Contact> contactList = new ArrayList<Contact>();
 
-        try {
-            File file = new File(ContactExtractorXML.class.getResource("addressBook.xml").getPath());            
-            Document doc = Jsoup.parse(file, "UTF-8");
-            Elements contatti = doc.select("contact");
+		try {
+			File file = new File(ContactExtractorXML.class.getResource(
+					"addressBook.xml").getPath());
+			Document doc = Jsoup.parse(file, "UTF-8");
+			Elements contatti = doc.select("contact");
 
-            for (Element voce : contatti) {
-                if (voce.select("fullname").text().contains(name)
-                        && voce.select("fullname").text().contains(surname)) {
-                    Contact contact = new Contact();
-                    contact.setFullName(voce.select("fullname").text());
-                    contact.setRole(voce.select("role").text());
-                    contact.setInternalTelephone(voce.select("internalTelephone").text());
-                    contact.setExternalTelephone(voce.select("externalTelephone").text());
-                    contact.setBuilding(voce.select("building").text());
-                    contact.setEmail(voce.select("email").text());
-                    contactList.add(contact);
-                }
-            }
+			name = name.toLowerCase();
+			surname = surname.toLowerCase();
+			for (Element voce : contatti) {
+				String fullname = voce.select("fullname").text().toLowerCase();
+				if (fullname.contains(name) && fullname.contains(surname)) {
+					Contact contact = new Contact();
+					contact.setFullName(voce.select("fullname").text());
+					contact.setRole(voce.select("role").text());
+					contact.setInternalTelephone(voce.select(
+							"internalTelephone").text());
+					contact.setExternalTelephone(voce.select(
+							"externalTelephone").text());
+					contact.setBuilding(voce.select("building").text());
+					contact.setEmail(voce.select("email").text());
+					contactList.add(contact);
+				}
+			}
 
-        } catch (IOException ex) {
-            Logger.getLogger(AddressBookExtractor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return contactList;
-    }
+		} catch (IOException ex) {
+			Logger.getLogger(AddressBookExtractor.class.getName()).log(
+					Level.SEVERE, null, ex);
+		}
+		return contactList;
+	}
 }
