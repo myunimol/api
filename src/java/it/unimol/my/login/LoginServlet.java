@@ -18,7 +18,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
  *
  * @author Ivan Di Rienzo
  */
-@WebServlet(name = "LoginServlet", urlPatterns = { "/test-credentials" })
+@WebServlet(name = "LoginServlet", urlPatterns = { "/testCredentials" })
 public class LoginServlet extends Esse3AuthServlet {
 
 	/**
