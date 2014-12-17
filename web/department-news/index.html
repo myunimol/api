@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Department News driver page</title>
+    </head>
+    <body>
+        <p>This is a driver page. Submit the desired form to see results.</p>
+        <p>Questa &egrave; una pagina driver. Sottometti il form desiderato per osservare i risultati.</p>
+        <hr>
+        <br>
+        <div>
+            <h3>Feed Rss per Dipartimento</h3>
+            <form action="../department-news-servlet" method="POST">
+                Token
+                <input type="text" name="token" value="13d0d64c9f4a4181728631b98ed75703" /><br>
+                Dipartimento
+                <select name="department">
+                    <option value="agricolturaAmbienteAlimenti">Agricoltura...</option>
+                    <option value="bioscienzeTerritorio">Bioscienze Territorio</option>
+                    <option value="economiaGestioneSocietaIstituzioni">Economia</option>
+                    <option value="giuridico">Giurisprudenza</option>
+                    <option value="medicinaScienzeSalute">Medicina</option>
+                    <option value="scienzeUmanisticheSocialiFormazione">Scienze Umanistiche</option>
+                </select>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+        <br><br><br><br>
+        <hr>
+        <p>If you want to contribute developing please click here to go to the <a href="https://github.com/cbranca/myunimol-webservices">GitHub repository</a></p>
+        <p>Se vuoi contribuire allo sviluppo perfavore clicca qui per andare alla <a href="https://github.com/cbranca/myunimol-webservices">repository GitHub</a></p>
+    </body>
+</html>

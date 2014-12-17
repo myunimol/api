@@ -30,6 +30,17 @@
                     "informatica": "http://www.unimol.it/pls/unimolise/v3_s2ew_consultazione.mostra_pagina?id_pagina=51140",
                     "scienzeBiologiche": "http://www.unimol.it/pls/unimolise/v3_s2ew_consultazione.mostra_pagina?id_pagina=51259"
                 }
+	       	},
+            "feed": {
+                "unimol": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=52241",
+                "department": {
+                    "agricolturaAmbienteAlimenti": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=50239",
+                    "bioscienzeTerritorio": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=51885",
+                    "economiaGestioneSocietaIstituzioni": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=51869",
+                    "giuridico": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=50791",
+                    "medicinaScienzeSalute": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=50799",
+                    "scienzeUmanisticheSocialiFormazione": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=50799"
+                }
             }
         }
     },
