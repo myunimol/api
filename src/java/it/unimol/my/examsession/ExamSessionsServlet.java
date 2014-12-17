@@ -19,7 +19,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
  * 
  * @author Giuseppe Bianco
  */
-@WebServlet(name = "ExamSessionsServlet", urlPatterns = { "/exam-sessions" })
+@WebServlet(name = "ExamSessionsServlet", urlPatterns = { "/getExamSessions" })
 public class ExamSessionsServlet extends Esse3AuthServlet {
 
 	/**
@@ -55,7 +55,7 @@ public class ExamSessionsServlet extends Esse3AuthServlet {
 					password);
 			// conversione della "List" di ExamSession in json e stampa a video
 			String json = gson.toJson(examSessions);
-			writer.println(json);
+			writer.println("{\"result\":\"success\",\"exams\":" + json + "}");
 		} catch (UnirestException e) {
 			e.printStackTrace();
 			writer.println("{\"result\":\"failure\", \"msg\":\"unirest exception\"}");
