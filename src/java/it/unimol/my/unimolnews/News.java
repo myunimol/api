@@ -7,7 +7,7 @@ package it.unimol.my.unimolnews;
  *
  * @author Giuseppe Bianco
  */
-public class SingleUnimolNews {
+public class News {
 
 	private String title;
 	private String link;
@@ -18,7 +18,7 @@ public class SingleUnimolNews {
 	/**
 	 * Costruttore vuoto che non prende parametri.
 	 */
-	public SingleUnimolNews() {
+	public News() {
 	}
 
 	/**
@@ -35,8 +35,8 @@ public class SingleUnimolNews {
 	 * @param pPublishedDate
 	 *            Data di pubblicazione della news
 	 */
-	public SingleUnimolNews(String pAuthor, String pLink, String pTitle,
-			String pContent, String pPublishedDate) {
+	public News(String pAuthor, String pLink, String pTitle, String pContent,
+			String pPublishedDate) {
 		this.title = pTitle;
 		this.link = pLink;
 		this.author = pAuthor;
@@ -54,7 +54,7 @@ public class SingleUnimolNews {
 	 * @param pContenuto
 	 *            Contenuto della news
 	 */
-	public SingleUnimolNews(String pTitle, String pLink, String pContenuto) {
+	public News(String pTitle, String pLink, String pContenuto) {
 		this.title = pTitle;
 		this.link = pLink;
 		this.description = pContenuto;
@@ -109,6 +109,53 @@ public class SingleUnimolNews {
 
 	public void setContent(String content) {
 		this.description = content;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "News [title=" + title + ", link=" + link + ", description="
+				+ description + ", author=" + author + ", publishedDate="
+				+ publishedDate + "]";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((link == null) ? 0 : link.hashCode());
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		News other = (News) obj;
+		if (link == null) {
+			if (other.link != null)
+				return false;
+		} else if (!link.equals(other.link))
+			return false;
+		return true;
 	}
 
 }

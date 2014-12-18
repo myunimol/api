@@ -9,7 +9,7 @@ package it.unimol.my.unimolnews;
  */
 public class NewsExtractorManager {
 
-	private static UnimolNewsExtractorInterface INSTANCE;
+	private static NewsExtractorInterface INSTANCE;
 
 	/**
 	 * Questo metodo serve a richiamare la classe concreta che effettua
@@ -17,9 +17,9 @@ public class NewsExtractorManager {
 	 * 
 	 * @return restituisce una instanza valida di UnimolNewsExtractorInterface.
 	 */
-	public static UnimolNewsExtractorInterface getUnimolNewsExtractor() {
+	public static NewsExtractorInterface getNewsExtractor() {
 		if (INSTANCE == null) {
-			INSTANCE = new UnimolNewsExtractor();
+			INSTANCE = new NewsExtractor();
 		}
 		return INSTANCE;
 	}
