@@ -17,7 +17,7 @@ public class TaxesExtractorManager {
 	 * Questo metodo serve a richiamare la classe concreta che effettua il
 	 * parsing delle tasse
 	 * 
-	 * @return restituisce una istanza valida di RecordBookExtractorInterface
+	 * @return restituisce una istanza valida di TaxesExtractorInterface
 	 */
 	public static TaxesExtractorInterface getTaxesExtractor() {
 		if (TaxesExtractorManager.INSTANCE == null) {

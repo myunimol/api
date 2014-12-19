@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 /**
- *
- * @author Carlo
+ * Servlet della funzionalità tasse
+ * 
+ * @author Carlo Branca
  */
 @WebServlet(name = "TaxesServlet", urlPatterns = {"/getTaxes"})
 public class TaxesServlet extends Esse3AuthServlet {
@@ -23,7 +24,7 @@ public class TaxesServlet extends Esse3AuthServlet {
         String targetUrl = config.getTaxesUrl();
         // recupero l'estrattore
         TaxesExtractorInterface extractor = TaxesExtractorManager.getTaxesExtractor();
-		// Richiamo l'estrattore del manager e la funzione che effettua il
+        // Richiamo l'estrattore del manager e la funzione che effettua il
         // parsing della pagina/file
         // Il risultato è la lista delle tasse
         try {

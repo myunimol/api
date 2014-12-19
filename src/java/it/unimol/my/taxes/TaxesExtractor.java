@@ -13,7 +13,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- *
+ * Estrattore delle tasse universitarie
+ * 
  * @author Carlo Branca
  */
 public class TaxesExtractor implements TaxesExtractorInterface {
