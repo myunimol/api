@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Feed RSS Unimol Page</title>
+<title>News Page</title>
 </head>
 <body>
 	<p>This is a driver page. Submit the desired form to see results.</p>
@@ -10,15 +10,26 @@
 		per osservare i risultati.</p>
 	<hr>
 	<br>
-	<div>
-		<h3>Bacheca degli avvisi - Informatica</h3>
-		<form action="../getUniversityNews" method="POST">
-			Token <input type="text" name="token"
-				value="13d0d64c9f4a4181728631b98ed75703" /><br> <input
-				type="submit" value="submit">
-		</form>
-	</div>
-	<div>
+        <div>
+            <h3>News</h3>
+            <form action="../getNews" method="POST">
+                Token
+                <input type="text" name="token" value="13d0d64c9f4a4181728631b98ed75703" /><br>
+                <select id="newsPage" name="newsPage">
+                    <option value="main">Ateneo</option>
+                    <option value="agricolturaAmbienteAlimenti">Dipartimento Agricoltura, Ambiente e Alimenti</option>
+                    <option value="bioscienzeTerritorio">Dipartimento Bioscienze e Territorio</option>
+                    <option value="economiaGestioneSocietaIstituzioni">Dipartimento Economia, Gestione, Società e Istituzioni</option>
+                    <option value="giuridico">Dipartimento Giuridico</option>
+                    <option value="medicinaScienzeSalute">Dipartimento di Medicina e Scienze della Salute</option>
+                    <option value="scienzeUmanisticheSocialiFormazione">Dipartimento Scienze Umanistiche, Sociali e della Formazione</option>
+                    <option value="informatica">Informatica</option>
+                    <option value="scienzeBiologiche">Scienze Biologiche</option>
+                </select>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+<!--	<div>
 		<h3>Feed Rss per Dipartimento</h3>
 		<form action="../getDepartmentNews" method="POST">
 			Token <input type="text" name="token"
@@ -33,7 +44,7 @@
 					Umanistiche</option>
 			</select> <input type="submit" value="submit">
 		</form>
-	</div>
+	</div>-->
 	<br>
 	<br>
 	<br>
