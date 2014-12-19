@@ -14,7 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ContactServlet", urlPatterns = {"/searchContacts"})
 public class ContactServlet extends WebServiceServlet {
 
-    @Override
+    /**
+	 * Lo uid seriale della versione.
+	 */
+	private static final long serialVersionUID = -4695089031840096808L;
+
+	@Override
     protected void serve(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //recupero l'estrattore
         ContactExtractorXML contactExtractor = new ContactExtractorXML();
@@ -38,7 +43,7 @@ public class ContactServlet extends WebServiceServlet {
             // converto il libretto in json
             String json = gson.toJson(contactList);
             // stampo il json a video
-            writer.println(json);
+            writer.println("{\"result\":\"success\",\"contacts\":" + json + "}");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -12,31 +12,37 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Carlo Branca
  */
-@WebServlet(name = "AddressBookServlet", urlPatterns = {"/getAddressBook"})
+@WebServlet(name = "AddressBookServlet", urlPatterns = { "/getAddressBook" })
 public class AddressBookServlet extends WebServiceServlet {
 
-    @Override
-    protected void serve(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        //recupero l'estrattore
-        AddressBookExtractorXML addressBookExtractor = new AddressBookExtractorXML();
-        // estraggo il libretto degli esami
-        try {
-            List<Contact> addressBook = addressBookExtractor.getAddressBook();
-            if (addressBook == null) {
-                String unknownErrorMsg = config.getMessage("unknownError");
-                writer.println("{\"result\":\"failure\",\"msg\":\""
-                        + unknownErrorMsg + "\"}");
-                return;
-            }
-            // converto il libretto in json
-            String json = gson.toJson(addressBook);
-            // stampo il json a video
-            writer.println(json);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            writer.close();
-        }
-    }
+	/**
+	 * Lo uid seriale della versione.
+	 */
+	private static final long serialVersionUID = -7584318584936697766L;
+
+	@Override
+	protected void serve(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		// recupero l'estrattore
+		AddressBookExtractorXML addressBookExtractor = new AddressBookExtractorXML();
+		// estraggo il libretto degli esami
+		try {
+			List<Contact> addressBook = addressBookExtractor.getAddressBook();
+			if (addressBook == null) {
+				String unknownErrorMsg = config.getMessage("unknownError");
+				writer.println("{\"result\":\"failure\",\"msg\":\""
+						+ unknownErrorMsg + "\"}");
+				return;
+			}
+			// converto il libretto in json
+			String json = gson.toJson(addressBook);
+			// stampo il json a video
+			writer.println("{\"result\":\"success\",\"contacts\":" + json + "}");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			writer.close();
+		}
+	}
 
 }
