@@ -10,7 +10,7 @@ public class Details {
     /**
      * Descrizione variabile
      */
-    private String moduleName;
+    private String name;
 
     /**
      * Descrizione variabile
@@ -36,7 +36,7 @@ public class Details {
      * @param area
      */
     public Details(String moduleName, String cfu, int hours, String area) {
-        this.moduleName = moduleName;
+        this.name = moduleName;
         this.cfu = cfu;
         this.hours = hours;
         this.area = area;
@@ -53,14 +53,14 @@ public class Details {
      * @return the module's name
      */
     public String getModuleName() {
-        return moduleName;
+        return name;
     }
 
     /**
      * @param moduleName the module's name to set
      */
     public void setModuleName(String moduleName) {
-        this.moduleName = moduleName;
+        this.name = moduleName;
     }
 
     /**
@@ -108,7 +108,7 @@ public class Details {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + (this.moduleName != null ? this.moduleName.hashCode() : 0);
+        hash = 29 * hash + (this.name != null ? this.name.hashCode() : 0);
         hash = 29 * hash + (this.cfu != null ? this.cfu.hashCode() : 0);
         hash = 29 * hash + this.hours;
         hash = 29 * hash + (this.area != null ? this.area.hashCode() : 0);
@@ -124,7 +124,7 @@ public class Details {
             return false;
         }
         final Details other = (Details) obj;
-        if ((this.moduleName == null) ? (other.moduleName != null) : !this.moduleName.equals(other.moduleName)) {
+        if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
             return false;
         }
         if ((this.cfu == null) ? (other.cfu != null) : !this.cfu.equals(other.cfu)) {
@@ -141,7 +141,7 @@ public class Details {
 
     @Override
     public String toString() {
-        return "Details{" + "moduleName=" + moduleName + ", cfu=" + cfu + ", hours=" + hours + ", area=" + area + '}';
+        return "Details{" + "moduleName=" + name + ", cfu=" + cfu + ", hours=" + hours + ", area=" + area + '}';
     }
     
     

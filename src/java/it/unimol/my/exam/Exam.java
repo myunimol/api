@@ -22,7 +22,7 @@ public class Exam {
 	/**
 	 * Voto conseguito all'esame
 	 */
-	private String grade;
+	private String vote;
 	/**
 	 * Data di superamento dell'esame
 	 */
@@ -30,7 +30,7 @@ public class Exam {
 	/**
 	 * Anno accademico durante il quale è stato seguito il corso
 	 */
-	private String academicYear;
+	private String year;
 	/**
 	 * Id dell'esame
 	 */
@@ -57,9 +57,9 @@ public class Exam {
 			String academicYear, String adsceId) {
 		this.name = name;
 		this.cfu = cfu;
-		this.grade = grade;
+		this.vote = grade;
 		this.date = date;
-		this.academicYear = academicYear;
+		this.year = academicYear;
 		this.adsceId = adsceId;
 	}
 
@@ -114,7 +114,7 @@ public class Exam {
 	 * @return Voto conseguito come stringa
 	 */
 	public String getGrade() {
-		return grade;
+		return vote;
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class Exam {
 	 *            voto conseguito all' esame
 	 */
 	public void setGrade(String grade) {
-		this.grade = grade;
+		this.vote = grade;
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class Exam {
 	 * @return Anno
 	 */
 	public String getAcademicYear() {
-		return academicYear;
+		return year;
 	}
 
 	/**
@@ -162,7 +162,7 @@ public class Exam {
 	 *            l'anno accademico da settare
 	 */
 	public void setAcademicYear(String academicYear) {
-		this.academicYear = academicYear;
+		this.year = academicYear;
 	}
 
 	/**
@@ -226,8 +226,8 @@ public class Exam {
 	 */
 	@Override
 	public String toString() {
-		return "Exam [name=" + name + ", cfu=" + cfu + ", grade=" + grade
-				+ ", date=" + date + ", academicYear=" + academicYear
+		return "Exam [name=" + name + ", cfu=" + cfu + ", grade=" + vote
+				+ ", date=" + date + ", academicYear=" + year
 				+ ", adsceId=" + adsceId + "]";
 	}
 

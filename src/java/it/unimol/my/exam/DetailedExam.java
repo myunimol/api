@@ -8,7 +8,7 @@ public class DetailedExam extends Exam {
 	/**
 	 * Descrizione variabile
 	 */
-	private List<Details> detailsExam;
+	private List<Details> details;
 
 	/**
 	 * Descrizione costruttore
@@ -23,7 +23,7 @@ public class DetailedExam extends Exam {
 	public DetailedExam(String name, String cfu, String grade, Date date,
 			String academicYear, String adsceId, List<Details> detailsExam) {
 		super(name, cfu, grade, date, academicYear, adsceId);
-		this.detailsExam = detailsExam;
+		this.details = detailsExam;
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class DetailedExam extends Exam {
 	 * @return the detailsExam
 	 */
 	public List<Details> getDetailsExam() {
-		return detailsExam;
+		return details;
 	}
 
 	/**
@@ -45,14 +45,14 @@ public class DetailedExam extends Exam {
 	 *            the detailsExam to set
 	 */
 	public void setDetailsExam(List<Details> detailsExam) {
-		this.detailsExam = detailsExam;
+		this.details = detailsExam;
 	}
 
 	@Override
 	public int hashCode() {
 		int hash = 7;
 		hash = 97 * hash
-				+ (this.detailsExam != null ? this.detailsExam.hashCode() : 0);
+				+ (this.details != null ? this.details.hashCode() : 0);
 		return hash;
 	}
 
@@ -69,9 +69,9 @@ public class DetailedExam extends Exam {
 			return false;
 		}
 		final DetailedExam other = (DetailedExam) obj;
-		if (this.detailsExam != other.detailsExam
-				&& (this.detailsExam == null || !this.detailsExam
-						.equals(other.detailsExam))) {
+		if (this.details != other.details
+				&& (this.details == null || !this.details
+						.equals(other.details))) {
 			return false;
 		}
 		return true;
@@ -80,7 +80,7 @@ public class DetailedExam extends Exam {
 	@Override
 	public String toString() {
 		return super.toString() + "DetailedExam{" + "detailsExam="
-				+ detailsExam + '}';
+				+ details + '}';
 	}
 
 }
