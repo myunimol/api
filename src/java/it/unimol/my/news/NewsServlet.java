@@ -12,68 +12,77 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Carlo Branca
  */
-@WebServlet(name = "NewsServlet", urlPatterns = {"/getNews"})
+@WebServlet(name = "NewsServlet", urlPatterns = { "/getNews" })
 public class NewsServlet extends WebServiceServlet {
 
-    @Override
-    protected void serve(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	/**
+	 * Lo uid seriale della versione.
+	 */
+	private static final long serialVersionUID = -6047777958022308699L;
 
-        //recupero l'estrattore
-        NewsExtractor newsExtractor = new NewsExtractor();
-        // estraggo il libretto degli esami
-        try {
-            //recuperiamo il link alla pagina news desiderata
-            String newsPage = req.getParameter("newsPage");
-            String targetUrl;
-            switch (newsPage) {
-                case "main":
-                    targetUrl = config.getUniversityNewsUrl();
-                    break;
-                case "agricolturaAmbienteAlimenti":
-                    targetUrl = config.getAgricolturaNewsUrl();
-                    break;
-                case "bioscienzeTerritorio":
-                    targetUrl = config.getBioscienzeTerritorioNewsUrl();
-                    break;
-                case "economiaGestioneSocietaIstituzioni":
-                    targetUrl = config.getEconomiaNewsUrl();
-                    break;
-                case "giuridico":
-                    targetUrl = config.getGiuridicoNewsUrl();
-                    break;
-                case "medicinaScienzeSalute":
-                    targetUrl = config.getMedicinaNewsUrl();
-                    break;
-                case "scienzeUmanisticheSocialiFormazione":
-                    targetUrl = config.getUmanisticheNewsUrl();
-                    break;
-                case "informatica":
-                    targetUrl = config.getInformaticaNewsUrl();
-                    break;
-                case "scienzeBiologiche":
-                    targetUrl = config.getScienzeBiologicheNewsUrl();
-                    break;
-                default:
-                    targetUrl = "Invalid input";
-                    break;
-            }
-            List<News> newsList = newsExtractor.getNewsList(targetUrl);
-            if (newsList == null) {
-                String unknownErrorMsg = config.getMessage("unknownError");
-                writer.println("{\"result\":\"failure\",\"msg\":\""
-                        + unknownErrorMsg + "\"}");
-                return;
-            }
-            // converto il libretto in json
-            String json = gson.toJson(newsList);
-            // stampo il json a video
-            writer.println(json);
+	@Override
+	protected void serve(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            writer.close();
-        }
-    }
+		// recupero l'estrattore
+		NewsExtractorInterface newsExtractor = NewsExtractorManager
+				.getNewsExtractor();
+		// estraggo il libretto degli esami
+		try {
+			// recuperiamo il link alla pagina news desiderata
+			String newsPage = req.getParameter("newsPage");
+			String targetUrl;
+			switch (newsPage) {
+			case "main":
+				targetUrl = config.getUniversityNewsUrl();
+				break;
+			case "agricolturaAmbienteAlimenti":
+				targetUrl = config.getAgricolturaNewsUrl();
+				break;
+			case "bioscienzeTerritorio":
+				targetUrl = config.getBioscienzeTerritorioNewsUrl();
+				break;
+			case "economiaGestioneSocietaIstituzioni":
+				targetUrl = config.getEconomiaNewsUrl();
+				break;
+			case "giuridico":
+				targetUrl = config.getGiuridicoNewsUrl();
+				break;
+			case "medicinaScienzeSalute":
+				targetUrl = config.getMedicinaNewsUrl();
+				break;
+			case "scienzeUmanisticheSocialiFormazione":
+				targetUrl = config.getUmanisticheNewsUrl();
+				break;
+			case "informatica":
+				targetUrl = config.getInformaticaNewsUrl();
+				break;
+			case "scienzeBiologiche":
+				targetUrl = config.getScienzeBiologicheNewsUrl();
+				break;
+			default:
+				String badParams = config.getMessage("badParameters");
+				writer.println("{\"result\":\"failure\",\"msg\":\"" + badParams
+						+ "\"}");
+				return;
+			}
+			List<News> newsList = newsExtractor.getNewsList(targetUrl);
+			if (newsList == null) {
+				String unknownErrorMsg = config.getMessage("unknownError");
+				writer.println("{\"result\":\"failure\",\"msg\":\""
+						+ unknownErrorMsg + "\"}");
+				return;
+			}
+			// converto il libretto in json
+			String json = gson.toJson(newsList);
+			// stampo il json a video
+			writer.println("{\"newsList\":" + json + "}");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			writer.close();
+		}
+	}
 
 }

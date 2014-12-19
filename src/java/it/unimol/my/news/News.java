@@ -1,7 +1,5 @@
 package it.unimol.my.news;
 
-import java.util.Objects;
-
 /**
  * Questo bean rappresenta la singola news
  *
