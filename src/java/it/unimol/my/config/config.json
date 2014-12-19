@@ -31,6 +31,17 @@
                     "informatica": "http://dipbioter.unimol.it/blog/categorie/bacheca-informatica/",
                     "scienzeBiologiche": "http://dipbioter.unimol.it/blog/categorie/bacheca-scienze-biologiche/"
                 }
+            },
+            "feed": {
+                "unimol": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=52241",
+                "department": {
+                    "agricolturaAmbienteAlimenti": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=50239",
+                    "bioscienzeTerritorio": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=51885",
+                    "economiaGestioneSocietaIstituzioni": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=51869",
+                    "giuridico": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=50791",
+                    "medicinaScienzeSalute": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=50799",
+                    "scienzeUmanisticheSocialiFormazione": "http://www.unimol.it/pls/unimolise/rss_pagine.elenco_pagine?p_padre=50799"
+                }
             }
         }
     },

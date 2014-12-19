@@ -76,7 +76,7 @@ public class ConfigurationManager {
         return this.getUniversity().getAsJsonObject("links")
                 .getAsJsonObject("news");
     }
-    
+
     public JsonObject getDepartment() {
         return this.getNewsLinks().getAsJsonObject("department");
     }
@@ -112,7 +112,7 @@ public class ConfigurationManager {
     public String getExamSessionDetailUrl() {
         return this.getEsse3Links().get("examSessionDetail").getAsString();
     }
-    
+
     public String getTaxesUrl() {
         return this.getEsse3Links().get("taxes").getAsString();
     }
@@ -129,35 +129,35 @@ public class ConfigurationManager {
         return this.getAddressBookLinks().get("main").getAsString();
 
     }
-    
+
     public String getAddressBookSearchUrl() {
         return this.getAddressBookLinks().get("search").getAsString();
     }
-    
+
     public String getUniversityNewsUrl() {
         return this.getNewsLinks().get("main").getAsString();
     }
-        
+
     public String getAgricolturaNewsUrl() {
         return this.getDepartment().get("agricolturaAmbienteAlimenti").getAsString();
     }
-    
+
     public String getBioscienzeTerritorioNewsUrl() {
         return this.getDepartment().get("bioscienzeTerritorio").getAsString();
     }
-    
+
     public String getEconomiaNewsUrl() {
         return this.getDepartment().get("economiaGestioneSocietaIstituzioni").getAsString();
     }
-    
+
     public String getGiuridicoNewsUrl() {
         return this.getDepartment().get("giuridico").getAsString();
     }
-    
+
     public String getMedicinaNewsUrl() {
         return this.getDepartment().get("medicinaScienzeSalute").getAsString();
     }
-    
+
     public String getUmanisticheNewsUrl() {
         return this.getDepartment().get("scienzeUmanisticheSocialiFormazione").getAsString();
     }
@@ -168,5 +168,23 @@ public class ConfigurationManager {
 
     public String getScienzeBiologicheNewsUrl() {
         return this.getCourseLinks().get("scienzeBiologiche").getAsString();
+    }
+    
+    public JsonObject getFeedLinks() {
+        return this.getUniversity().getAsJsonObject("links")
+                .getAsJsonObject("feed");
+    }
+
+    public JsonObject getDepartmentFeedLinks() {
+        return this.getFeedLinks().getAsJsonObject("department");
+    }
+
+    public String getUnimolFeedUrl() {
+        return this.getFeedLinks().get("unimol").getAsString();
+    }
+
+    public String getBioscienzeTerritorioFeedLink() {
+        return this.getDepartmentFeedLinks().get("bioscienzeTerritorio")
+                .getAsString();
     }
 }
