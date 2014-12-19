@@ -6,10 +6,9 @@ import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.bind.DatatypeConverter;
 
 /**
- * Descrizione servlet
+ * Servlet per l'estrazione delle news
  *
  * @author Carlo Branca
  */
@@ -23,7 +22,7 @@ public class NewsServlet extends WebServiceServlet {
         NewsExtractor newsExtractor = new NewsExtractor();
         // estraggo il libretto degli esami
         try {
-            //recuperiamo il parametro newsPage dal select
+            //recuperiamo il link alla pagina news desiderata
             String newsPage = req.getParameter("newsPage");
             String targetUrl;
             switch (newsPage) {
@@ -55,7 +54,7 @@ public class NewsServlet extends WebServiceServlet {
                     targetUrl = config.getScienzeBiologicheNewsUrl();
                     break;
                 default:
-                    targetUrl = "Invalid month";
+                    targetUrl = "Invalid input";
                     break;
             }
             List<News> newsList = newsExtractor.getNewsList(targetUrl);

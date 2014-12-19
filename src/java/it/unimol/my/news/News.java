@@ -3,7 +3,7 @@ package it.unimol.my.news;
 import java.util.Objects;
 
 /**
- * Questo bean rappresenta la singola news in bacheca
+ * Questo bean rappresenta la singola news
  *
  * @author Carlo Branca
  */

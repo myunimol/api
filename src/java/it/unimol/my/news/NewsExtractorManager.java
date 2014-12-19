@@ -1,7 +1,8 @@
 package it.unimol.my.news;
 
 /**
- *
+ * Manager dell'estrattore news
+ * 
  * @author Carlo Branca
  */
 public class NewsExtractorManager {
@@ -13,9 +14,9 @@ public class NewsExtractorManager {
 
     /**
      * Questo metodo serve a richiamare la classe concreta che effettua il
-     * parsing della bacheca di un corso.
+     * parsing di una pagina news.
      *
-     * @return restituisce una istanza valida di NewsBoardExtractorInterface
+     * @return restituisce una istanza valida di NewsExtractorInterface
      */
     public static NewsExtractorInterface getNewsExtractor() {
         if (NewsExtractorManager.INSTANCE == null) {
