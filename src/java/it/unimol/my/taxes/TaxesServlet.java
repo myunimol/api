@@ -19,7 +19,12 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 @WebServlet(name = "TaxesServlet", urlPatterns = {"/getTaxes"})
 public class TaxesServlet extends Esse3AuthServlet {
 
-    @Override
+    /**
+	 * Lo uid seriale della versione.
+	 */
+	private static final long serialVersionUID = -453669874315713950L;
+
+	@Override
     protected void serve(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String targetUrl = config.getTaxesUrl();
         // recupero l'estrattore
@@ -38,7 +43,7 @@ public class TaxesServlet extends Esse3AuthServlet {
             }
             // conversione della "List" di ExamSession in json e stampa a video
             String json = gson.toJson(taxes);
-            writer.println(json);
+            writer.println("{\"result\":\"success\",\"taxes\":" + json + "}");
         } catch (UnirestException e) {
             e.printStackTrace();
             writer.println("{\"result\":\"failure\", \"msg\":\"unirest exception\"}");
