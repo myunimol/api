@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <addressBook>
-	<contact building="Struttura non disponibile." email="prova@unimol.it"
-		externalTelephone="+39 0874 404 788" fullname="-" internalTelephone="2788"
-		role="" />
 	<contact
 		building="Dipartimento Giuridico c/o I Edificio Polifunzionale - Viale Manzoni - 86100 - Campobasso"
 		email="abbagnanotrione@unimol.it" externalTelephone="+39 0874 404 917"
