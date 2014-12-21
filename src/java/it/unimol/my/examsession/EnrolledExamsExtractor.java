@@ -34,7 +34,7 @@ public class EnrolledExamsExtractor implements EnrolledExamsExtractorInterface {
 		// decommentare per testare in locale
 		String html = null;
 		try {
-			html = requester.get(new URL(targetURL));
+			html = requester.get(new URL(targetURL), username, password);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 			return enrolledExams;
