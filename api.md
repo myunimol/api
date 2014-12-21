@@ -26,6 +26,8 @@ L'applicativo che fornisce i webservices dovrebbe essere installato sul server d
 * Rubrica
   * [`getAddressBook`](#getaddressbook)
   * [`searchContacts`](#searchcontacts)
+* Bacheca degli avvisi
+  * [`getNewsBoard`](#getnewsboard)
 * News
   * [`getUniversityNews`](#getuniversitynews)
   * [`getDepartmentNews`](#getdepartmentnews)
