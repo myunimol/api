@@ -12,6 +12,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
+import it.unimol.my.utils.StringUtils;
 
 /**
  * Classe che fa il parser per il login di esse3 Unimol
@@ -114,7 +115,8 @@ public class UnimolLoginParser implements LoginParser {
         uInfo.setCoursePath(coursePath);
 
         // getting course length
-        String courseLength = userStatusTable.select("p[class=box-cfu-p]").first().child(0).text();
+        String courseLengthUntrimmed = userStatusTable.select("p[class=box-cfu-p]").first().child(0).text();
+        String courseLength = StringUtils.realTrim(courseLengthUntrimmed);
         uInfo.setCourseLength(courseLength);
 
         // getting registration date
