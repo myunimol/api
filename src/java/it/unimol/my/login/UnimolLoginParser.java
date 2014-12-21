@@ -85,16 +85,28 @@ public class UnimolLoginParser implements LoginParser {
         String precedente = "";
         for (Element tableCell : addInform) {
             if (precedente.equals("Tasse")) { // situazione tasse es: regolare
-                uInfo.setTaxes(tableCell.text());
+                String taxesUntrimmed = tableCell.text();
+                String taxesTrimmed = StringUtils.realTrim(taxesUntrimmed);
+                uInfo.setTaxes(taxesTrimmed);
             } else if (precedente.equals("Piano carriera")) {
                 // se il piano carriera e' modificabile
-                uInfo.setCareerPlan(tableCell.text());
+                String careerPlanUntrimmed = tableCell.text();
+                String careerPlanTrimmed = StringUtils.realTrim(careerPlanUntrimmed);
+                uInfo.setCareerPlan(careerPlanTrimmed);
             } else if (precedente.equals("Appelli disponibili")) {
                 // quanti appelli disponibili ci sono
-                uInfo.setAvailableExams(tableCell.text());
+                String avaibleExamsUntrimmed = tableCell.text();
+                String avaibleExamsTrimmed = StringUtils.realTrim(avaibleExamsUntrimmed);
+                String avaibleExams = avaibleExamsTrimmed.replace(" appelli disponibili", "");
+                int noAvaibleExams = Integer.parseInt(avaibleExams);
+                uInfo.setAvailableExams(noAvaibleExams);
             } else if (precedente.equals("Iscrizioni appelli")) {
                 // a quanti appelli lo studente e' iscritto
-                uInfo.setEnrolledExams(tableCell.text());
+                String enrolledExamsUntrimmed = tableCell.text();
+                String enrolledExamsTrimmed = StringUtils.realTrim(enrolledExamsUntrimmed);
+                String enrolledExams = enrolledExamsTrimmed.replace(" prenotazioni", "");
+                int noEnrolledExams = Integer.parseInt(enrolledExams);
+                uInfo.setEnrolledExams(noEnrolledExams);
             }
             precedente = tableCell.text();
         }
@@ -114,7 +126,7 @@ public class UnimolLoginParser implements LoginParser {
         // getting course length
         String courseLengthUntrimmed = doc.select("p[class=box-cfu-p]").first().child(0).text();
         String courseLengthTrimmed = StringUtils.realTrim(courseLengthUntrimmed);
-        String courseLengthNumber = courseLengthTrimmed.replace(" anni","");
+        String courseLengthNumber = courseLengthTrimmed.replace(" anni", "");
         int courseLength = Integer.parseInt(courseLengthNumber);
         uInfo.setCourseLength(courseLength);
 

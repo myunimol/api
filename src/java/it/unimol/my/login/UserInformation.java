@@ -19,8 +19,8 @@ public class UserInformation {
     private String studentClass; //es: INFORMATICA 3°Anno
     private String taxes; //situazione delle tasse
     private String careerPlan; //se il piano carriera è modificabile
-    private String availableExams; // # appelli disponibili
-    private String enrolledExams; // # esami prenotati
+    private int availableExams; // # appelli disponibili
+    private int enrolledExams; // # esami prenotati
     private String course;
     private String department;
     private String coursePath;
@@ -82,19 +82,19 @@ public class UserInformation {
         this.careerPlan = careerPlan;
     }
 
-    public String getAvailableExams() {
+    public int getAvailableExams() {
         return availableExams;
     }
 
-    public void setAvailableExams(String availableExams) {
+    public void setAvailableExams(int availableExams) {
         this.availableExams = availableExams;
     }
 
-    public String getEnrolledExams() {
+    public int getEnrolledExams() {
         return enrolledExams;
     }
 
-    public void setEnrolledExams(String enrolledExams) {
+    public void setEnrolledExams(int enrolledExams) {
         this.enrolledExams = enrolledExams;
     }
 
