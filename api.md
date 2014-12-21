@@ -4,8 +4,8 @@ Myunimol WebServices API
 In questa pagina sono riportate le API dei servizi web forniti dal software [myunimol-webservices](https://github.com/cbranca/myunimol-webservices).
 
 # Indice
-1. [End point del servizio](#endpointdelservizio)
-2. [Specifica API](#specificaapi)
+1. [End point del servizio](#endpoint-del-servizio)
+2. [Specifica API](#specifica-api)
   1. Generali
     * [`version`](#version)
   2. Login
@@ -25,7 +25,7 @@ In questa pagina sono riportate le API dei servizi web forniti dal software [myu
     * [`getNewsBoard`](#getnewsboard)
   7. Tasse
     * [`getTaxes`](#gettaxes)
-3. [Risposte comuni](#rispostecomuni)
+3. [Risposte comuni](#risposte-comuni)
 
 # Endpoint del servizio
 
