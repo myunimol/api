@@ -20,36 +20,36 @@ import it.unimol.my.utils.StringUtils;
  * @author Ivan Di Rienzo
  */
 public class UnimolLoginParser implements LoginParser {
-    
+
     @Override
     public UserInformation getLoginInformation(String username, String password) throws UnirestException {
-        
+
         HTMLRequester requester = new HTMLRequester();
         try {
-            
+
             String resPage = requester.get(new URL(ConfigurationManager.getInstance().getLogonUrl()),
                     username, password);
-            
+
             Document doc = Jsoup.parse(resPage);
-            
+
             if (!this.isLogged(doc)) {
-                
+
                 return null; // login non riuscito
 
             } else {
-                
+
                 UserInformation uInfo = this.parsingUserInfo(doc);
 
                 // Prende la matricola da un'altra pagina (non login)
                 uInfo.setStudentID(this.getStudentID(username, password));
-                
+
                 return uInfo;
             }
-            
+
         } catch (MalformedURLException ex) {
             return null;
         }
-        
+
     }
 
     /**
@@ -60,7 +60,7 @@ public class UnimolLoginParser implements LoginParser {
      * @return Le informazioni dell'utente
      */
     private UserInformation parsingUserInfo(Document doc) {
-        
+
         UserInformation uInfo = new UserInformation();
 
         // Getting Name And Surname
@@ -99,30 +99,27 @@ public class UnimolLoginParser implements LoginParser {
             precedente = tableCell.text();
         }
 
-        // getting stats table info
-        Elements userStatusTable = doc.select("div[id=gu-homepagestudente-cp2]");
-
         // getting course
-        String course = userStatusTable.select("p[id=gu-textStatusStudenteCorsoFac").first().child(0).text();
+        String course = doc.select("p[id=gu-textStatusStudenteCorsoFac").first().child(0).text();
         uInfo.setCourse(course);
 
         // getting department
-        String department = userStatusTable.select("p[id=gu-textStatusStudenteCorsoFac").first().child(1).text();
+        String department = doc.select("p[id=gu-textStatusStudenteCorsoFac").first().child(1).text();
         uInfo.setDepartment(department);
 
         // getting course path
-        String coursePath = userStatusTable.select("p[id=gu-textStatusStudenteCorsoFac").first().child(2).text();
+        String coursePath = doc.select("p[id=gu-textStatusStudenteCorsoFac").first().child(2).text();
         uInfo.setCoursePath(coursePath);
 
         // getting course length
-        String courseLengthUntrimmed = userStatusTable.select("p[class=box-cfu-p]").first().child(0).text();
+        String courseLengthUntrimmed = doc.select("p[class=box-cfu-p]").first().child(0).text();
         String courseLength = StringUtils.realTrim(courseLengthUntrimmed);
         uInfo.setCourseLength(courseLength);
 
         // getting registration date
-        String registrationDate = userStatusTable.select("p[id=gu-textStatusStudenteImma").first().child(0).text();
+        String registrationDate = doc.select("p[id=gu-textStatusStudenteImma").first().child(0).text();
         uInfo.setRegistrationDate(registrationDate);
-        
+
         return uInfo;
     }
 
@@ -142,7 +139,7 @@ public class UnimolLoginParser implements LoginParser {
             // login non riuscito
             return false;
         }
-        
+
         return true;
     }
 
@@ -154,11 +151,11 @@ public class UnimolLoginParser implements LoginParser {
      */
     private String getStudentID(String username, String password)
             throws MalformedURLException, UnirestException {
-        
+
         HTMLRequester req = new HTMLRequester();
         String resPage = req.get(new URL(ConfigurationManager.getInstance().getRecordBookUrl()),
                 username, password);
-        
+
         Document doc = Jsoup.parse(resPage);
         Element name = doc.select("div.titolopagina").first();
 
@@ -168,8 +165,8 @@ public class UnimolLoginParser implements LoginParser {
          * da "MAT. " e prende la seconda stringa ottenuta cioe' la matricola
          */
         String ID = name.text().replaceAll("]", "").split("MAT. ")[1];
-        
+
         return ID;
     }
-    
+
 }
