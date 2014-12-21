@@ -24,7 +24,7 @@ public class UserInformation {
     private String course;
     private String department;
     private String coursePath;
-    private String courseLength;
+    private int courseLength;
     private String registrationDate;
 
     /**
@@ -122,14 +122,14 @@ public class UserInformation {
         this.coursePath = coursePath;
     }
 
-    public String getCourseLength() {
+    public int getCourseLength() {
         return courseLength;
     }
 
-    public void setCourseLength(String courseLength) {
+    public void setCourseLength(int courseLength) {
         this.courseLength = courseLength;
     }
-
+    
     public String getRegistrationDate() {
         return registrationDate;
     }

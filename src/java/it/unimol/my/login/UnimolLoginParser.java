@@ -113,7 +113,9 @@ public class UnimolLoginParser implements LoginParser {
 
         // getting course length
         String courseLengthUntrimmed = doc.select("p[class=box-cfu-p]").first().child(0).text();
-        String courseLength = StringUtils.realTrim(courseLengthUntrimmed);
+        String courseLengthTrimmed = StringUtils.realTrim(courseLengthUntrimmed);
+        String courseLengthNumber = courseLengthTrimmed.replace(" anni","");
+        int courseLength = Integer.parseInt(courseLengthNumber);
         uInfo.setCourseLength(courseLength);
 
         // getting registration date
