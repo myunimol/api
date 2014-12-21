@@ -16,7 +16,7 @@ L'applicativo che fornisce i webservices dovrebbe essere installato sul server d
 * Generali
   * [`version`](#version)
 * Login
-  * [`testCredentials`](#testcredentials)
+  * [`testCredentials(token, username, password)`](#testcredentials)
 * Appelli
   * [`getExamSessions`](#getexamsessions)
   * [`getEnrolledExams`](#getenrolledexams)
