@@ -13,6 +13,7 @@ In questa pagina sono riportate le API dei servizi web forniti dal software [myu
   3. Appelli
     * [`getExamSessions`](#getexamsessions)
     * [`getEnrolledExams`](#getenrolledexams)
+    * [`enrollExam`](#enrollexam)
   4. Libretto
     * [`getRecordBook`](#getrecordbook)
     * [`getRecordBookExam`](#getrecordbookexam)
@@ -129,7 +130,8 @@ Questa API serve a recuperare le sessioni d'esame (appelli) disponibili al momen
       "date": "12/12/2015",
       "expiringDate": "1/12/2015",
       "room": "12A",
-      "notes": "Scritto ore 10 orale giorno dopo"
+      "notes": "Scritto ore 10 orale giorno dopo",
+      "id": "19#10010#3130517#1579806#2011#10019#9998#2011#2#2"
     },
     {
       "name": "Scienze delle scienze",
@@ -138,7 +140,8 @@ Questa API serve a recuperare le sessioni d'esame (appelli) disponibili al momen
       "date": "12/12/2015",
       "expiringDate": "1/12/2015",
       "room": "Del patrono",
-      "notes": ""
+      "notes": "",
+      "id": "19#10018#31305176#1578806#2012#10018#9999#2010#1#1"
     }
   ]
 }
@@ -186,6 +189,29 @@ Questa API serve a recuperare la lista degli appelli d'esame ai quali uno studen
       "notes": ""
     }
   ]
+}
+```
+------------------------
+## enrollExam
+> Come posso prenotare uno studente ad un appello disponibile?
+
+Questa API serve a effettuare la prenotazione dello studente ad un appello disponibile.
+### Nome
+`enrollExam`
+### Metodo
+`POST`
+### Parametri
+`username`|`password`|`token`|`id`
+----------|----------|-------|----
+*Lo username dell'utente su esse3*|*La password dell'utente su esse3*|*Il token che identifica il client sul server dei webservices*|*L'id dell'appello d'esame a cui si intende prenotare lo studente\**
+###### \*Tale id viene restituito dalla API [`getExamSessions`](#getexamsessions): *prima ottengo la lista degli appelli d'esame prenotabili (con relativo `id`) poi effettuo la prenotazione (usando appunto l'`id` in questione)*.
+### Risposta
+`200` *Informazioni estratte correttamente*
+### Esempi
+```json
+{
+  "result": "success",
+  "msg": "Exam session correctly enrolled!"
 }
 ```
 ------------------------
