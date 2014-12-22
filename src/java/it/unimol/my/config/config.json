@@ -52,6 +52,7 @@
         "badLogin": "You probably mistyped something into your username or password: check them twice next time.",
         "unirestException": "Something went wrong while contacting esse3. Probably it depends on cineca.",
         "unknownError": "Ooops... Something went wrong while processing your request. Don't blame on us for that!",
-        "badParameters": "Sorry, the parameters you passed me are malformed."
+        "badParameters": "Sorry, the parameters you passed me are malformed.",
+        "enrollementDone": "Exam session correctly enrolled!"
     }
 }
