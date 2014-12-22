@@ -360,61 +360,130 @@ Questa API consente di reperire un contatto particolare dall'elenco dei contatti
 }
 ```
 ------------------------
-## nome
-Descrizione
+## getUniversityNews
+> Come posso recuperare le notizie relative all'Ateneo Unimol?
+
+Questa API consente di avere le ultime notizie pubblicate sul portale d'ateneo in formato json.
 ### Nome
-`nome`
+`getUniversityNews`
 ### Metodo
 `POST`
 ### Parametri
-`username`|`password`|`token`
-----------|----------|------
-*Lo username dell'utente su esse3*|*La password dell'utente su esse3*|*Il token che identifica il client sul server dei webservices*
+|`token`|
+|-------|
+|*Il token che identifica il client sul server dei webservices*|
 ### Risposta
 `200` *Informazioni estratte correttamente*
 ### Esempi
 ```json
-
+{
+  "newsList": [
+    {
+      "date": "22 dicembre 2014",
+      "title": "Chiusura sedi universitarie per le festività natalizie",
+      "text": "Le strutture dell'Università degli Studi del Molise osserveranno nei mesi di dicembre 2014 e gennaio 2015, i seguenti orari:   PRIMO EDIFICIO POLIFUNZIONALE, Viale Manzoni [...]",
+      "link": "http://www.unimol.it/blog/chiusura-sedi-universitarie-per-le-festivita-natalizie-8004/"
+    },
+    {
+      "date": "22 dicembre 2014",
+      "title": "Piano Integrato 'Giovani Molise' Avviso Pubblico per attuazione 50 Project Work Innovazione",
+      "text": "È stato pubblicato l'Avviso per l'attuazione di n. 50 Project Work Innovazione nell'ambito del Piano Integrato 'Giovani Molise', promosso e realizzato mediante un'azione congiunta tra Regione [...]",
+      "link": "http://www.unimol.it/blog/7072-7072/"
+    }
+  ]
+}
 ```
 ------------------------
-## nome
-Descrizione
+## getDepartmentNews
+> Come faccio a recuperare le ultime notizie pubblicate sul sito del dipartimento?
+
+Questa API consente di recuperare le ultime notizie pubblicate sul sito del dipartimento.
 ### Nome
-`nome`
+`getDepartmentNews`
 ### Metodo
 `POST`
 ### Parametri
-`username`|`password`|`token`
-----------|----------|------
-*Lo username dell'utente su esse3*|*La password dell'utente su esse3*|*Il token che identifica il client sul server dei webservices*
+`token`|`department`
+-------|-----------|
+*Il token che identifica il client sul server dei webservices*|*Il dipartimento a cui si è interessati**
+
+######  \*Il parametro `department` deve essere impostato come segue:
+Valore|Dipartimento
+------|------------
+`"agricolturaAmbienteAlimenti"`|*Dipartimento di Agricoltura , Ambiente e Alimenti*
+`"bioscienzeTerritorio"`|*Dipartimento di Bioscienze e Territorio*
+`"economiaGestioneSocietaIstituzioni"`|*Dipartimento di Economia, Gestione, Società e Istituzioni*
+`"giuridico"`|*Dipartimento Giuridico*
+`"medicinaScienzeSalute"`|*Dipartimento di Medicina e Scienze della Salute*
+`"scienzeUmanisticheSocialiFormazione"`|*Dipartimento di Scienze Umanistiche, Sociali e della Formazione*
+
 ### Risposta
 `200` *Informazioni estratte correttamente*
 ### Esempi
 ```json
-
+{
+  "newsList": [
+    {
+      "date": "5 dicembre 2014",
+      "title": "Settimana UNESCO",
+      "text": "Nell'ambito della settimana UNESCO di Educazione allo Sviluppo Sostenibile 2014, la prof.ssa Gabriella S. Scippa, nell'ambito del Dipartimento di Bioscienze e Territorio, ha organizzato una iniziativa [...]",
+      "link": "http://dipbioter.unimol.it/blog/ciao-5916/"
+    },
+    {
+      "date": "5 dicembre 2014",
+      "title": "Esami di novembre 2014 e aprile 2015",
+      "text": "Gli studenti che nell'a.a. 2013/2014 erano iscritti al III anno di: Informatica Scienze turistiche Ingegneria edile Scienze biologiche al II anno di Ingegneria civile sono equiparati, [...]",
+      "link": "http://dipbioter.unimol.it/blog/pp-5914/"
+    }
+  ]
+}
 ```
 ------------------------
-## nome
-Descrizione
+## getNewsBoard
+> Come recupero gli avvisi o le notizie che afferiscono al singolo corso di studio?
+
+Questa API consente di recuperare le notizie o gli avvisi che appartengono al singolo corso di studi. **Per il momento non tutti i corsi di studi sono supportati**
 ### Nome
-`nome`
+`getNewsBoard`
 ### Metodo
 `POST`
 ### Parametri
-`username`|`password`|`token`
-----------|----------|------
-*Lo username dell'utente su esse3*|*La password dell'utente su esse3*|*Il token che identifica il client sul server dei webservices*
+`token`|`course`
+-------|--------
+*Il token che identifica il client sul server dei webservices*|*Il corso di studi di cui si vogliono estrarre le notizie\**
+###### \*Il parametro `course` deve essere impostato come segue:
+Valore|Corso di Studi
+------|------------
+`"informatica"`|*Corso di Studi in Informatica@UNIMOL*
+`"scienzeBiologiche"`|*Corso di Studi in Scienze Biologiche@UNIMOL*
 ### Risposta
 `200` *Informazioni estratte correttamente*
 ### Esempi
 ```json
-
+{
+  "newsList": [
+    {
+      "date": "18 dicembre 2014",
+      "title": "Basi di dati e sistemi informativi",
+      "text": "La lezione di Basi di dati e sistemi informativi del prof. Oliveto prevista per oggi è sospesa.",
+      "link": "http://dipbioter.unimol.it/blog/basi-di-dati-e-sistemi-informativi-7211/"
+    },
+    {
+      "date": "16 dicembre 2014",
+      "title": "Tecnologie di Sviluppo per il Web",
+      "text": "La lezione di Tecnologie di Sviluppo per il Web del prof. Fasano prevista per il 18 dicembre p.v. è sospesa.",
+      "link": "http://dipbioter.unimol.it/blog/tecnologie-di-sviluppo-per-il-web-7029/"
+    }
+  ]
+}
 ```
 ------------------------
-## nome
-Descrizione
+## getTaxes
+> Come faccio a recuperare la situazione di uno studente per quanto riguarda le tasse?
+
+Questa API consente di ottenere informazioni riguardanti le tasse da pagare o pagate che ciascuno studente ha nella propria area personale sul sistema esse3.
 ### Nome
-`nome`
+`getTaxes`
 ### Metodo
 `POST`
 ### Parametri
@@ -425,24 +494,29 @@ Descrizione
 `200` *Informazioni estratte correttamente*
 ### Esempi
 ```json
-
-```
-------------------------
-## nome
-Descrizione
-### Nome
-`nome`
-### Metodo
-`POST`
-### Parametri
-`username`|`password`|`token`
-----------|----------|------
-*Lo username dell'utente su esse3*|*La password dell'utente su esse3*|*Il token che identifica il client sul server dei webservices*
-### Risposta
-`200` *Informazioni estratte correttamente*
-### Esempi
-```json
-
+{
+  "result": "success",
+  "taxes": [
+    {
+      "billId": "617602",
+      "bullettinCode": "00000000000000617602",
+      "year": "11/12",
+      "description": "Tasse di Iscrizione",
+      "expiringDate": "20/09/2011",
+      "amount": 284.62,
+      "statusPayment": "pagato"
+    },
+    {
+      "billId": "584872",
+      "bullettinCode": "00000000000000584872",
+      "year": "10/11",
+      "description": "Tasse di Iscrizione",
+      "expiringDate": "01/10/2010",
+      "amount": 271.54,
+      "statusPayment": "pagato"
+    }
+  ]
+}
 ```
 ------------------------
 # Risposte comuni
