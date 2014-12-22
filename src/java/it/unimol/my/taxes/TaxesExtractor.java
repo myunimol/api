@@ -52,7 +52,10 @@ public class TaxesExtractor implements TaxesExtractorInterface {
                     String year = ite.next().text();
                     String description = ite.next().text();
                     String expiringDate = ite.next().text();
-                    String amount = ite.next().text();
+                    String amountString = ite.next().text();
+                    amountString = amountString.replace(',', '.');
+                    amountString = amountString.replaceAll("[^0-9\\.]", "");
+                    Double amountDouble = Double.parseDouble(amountString);
                     Element statusElement = ite.next().child(0);
                     String status = "";
                     if (statusElement.attr("title").contains("non pagato")) {
@@ -61,7 +64,7 @@ public class TaxesExtractor implements TaxesExtractorInterface {
                         status = "pagato";
                     }
                     Tax tax = new Tax(billId, bullettinCode, year, description,
-                            expiringDate, amount, status);
+                            expiringDate, amountDouble, status);
                     taxes.add(tax);
                 }
             }
