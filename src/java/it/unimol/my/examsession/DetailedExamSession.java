@@ -67,8 +67,9 @@ public class DetailedExamSession extends ExamSession {
 	 */
 	public DetailedExamSession(ExamSessionInfo info, String name, Date date,
 			Date expiringDate, String room, String sessionType,
-			String professor, String enrolled, String notes, String cfu) {
-		super(name, date, room, professor, notes, cfu);
+			String professor, String enrolled, String notes, String id,
+			String cfu) {
+		super(name, date, room, professor, notes, id, cfu);
 		this.info = info;
 		this.expiringDate = expiringDate;
 		this.sessionType = sessionType;

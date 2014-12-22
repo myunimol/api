@@ -25,6 +25,10 @@ public class ExamSession {
 	 */
 	private String notes;
 	/**
+	 * Id dell'appello d'esame (usato per la prenotazione)
+	 */
+	private String id;
+	/**
 	 * CFU dell'esame
 	 * 
 	 * @deprecated Per questa versione non ci interessiamo ai CFU
@@ -57,13 +61,14 @@ public class ExamSession {
 	 *            I CFU dell'esame
 	 */
 	public ExamSession(String name, Date date, String room, String professor,
-			String notes, String cfu) {
+			String notes, String id, String cfu) {
 		super();
 		this.name = name;
 		this.date = date;
 		this.room = room;
 		this.professor = professor;
 		this.notes = notes;
+		this.id = id;
 		this.cfu = cfu;
 	}
 
@@ -182,16 +187,19 @@ public class ExamSession {
 		return this.notes;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the id
 	 */
-	@Override
-	public String toString() {
-		return "ExamSession [name=" + name + ", date=" + date + ", room="
-				+ room + ", professor=" + professor + ", notes=" + notes
-				+ ", cfu=" + cfu + "]";
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	/*
@@ -203,13 +211,7 @@ public class ExamSession {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cfu == null) ? 0 : cfu.hashCode());
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((notes == null) ? 0 : notes.hashCode());
-		result = prime * result
-				+ ((professor == null) ? 0 : professor.hashCode());
-		result = prime * result + ((room == null) ? 0 : room.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -227,37 +229,24 @@ public class ExamSession {
 		if (getClass() != obj.getClass())
 			return false;
 		ExamSession other = (ExamSession) obj;
-		if (cfu == null) {
-			if (other.cfu != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!cfu.equals(other.cfu))
-			return false;
-		if (date == null) {
-			if (other.date != null)
-				return false;
-		} else if (!date.equals(other.date))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (notes == null) {
-			if (other.notes != null)
-				return false;
-		} else if (!notes.equals(other.notes))
-			return false;
-		if (professor == null) {
-			if (other.professor != null)
-				return false;
-		} else if (!professor.equals(other.professor))
-			return false;
-		if (room == null) {
-			if (other.room != null)
-				return false;
-		} else if (!room.equals(other.room))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ExamSession [name=" + name + ", date=" + date + ", room="
+				+ room + ", professor=" + professor + ", notes=" + notes
+				+ ", id=" + id + "]";
 	}
 
 }

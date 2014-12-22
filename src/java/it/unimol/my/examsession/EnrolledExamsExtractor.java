@@ -1,6 +1,7 @@
 package it.unimol.my.examsession;
 
 import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.utils.StringUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -53,7 +54,7 @@ public class EnrolledExamsExtractor implements EnrolledExamsExtractorInterface {
 			Element nameHeader = tableRows.get(0);
 			String name = "/";
 			if (nameHeader != null) {
-				name = nameHeader.select("th").text().trim();
+				name = StringUtils.realTrim(nameHeader.select("th").text());
 			}
 			Element enrollmentHeader = tableRows.get(1);
 			String enrollmentPosition = "/";
@@ -78,7 +79,7 @@ public class EnrolledExamsExtractor implements EnrolledExamsExtractorInterface {
 			}
 			String dateString = contentCells.get(0).text();
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-			String hour = contentCells.get(1).text().trim();
+			String hour = StringUtils.realTrim(contentCells.get(1).text());
 			Date date = null;
 			try {
 				date = sdf.parse(dateString+" "+hour);
@@ -87,10 +88,10 @@ public class EnrolledExamsExtractor implements EnrolledExamsExtractorInterface {
 				date = new Date();
 			}
 			
-			String building = contentCells.get(2).text().trim();
-			String room = contentCells.get(3).text().trim();
-			String notes = contentCells.get(4).text().trim();
-			String firstProfessor = contentCells.get(5).text().trim();
+			String building = StringUtils.realTrim(contentCells.get(2).text());
+			String room = StringUtils.realTrim(contentCells.get(3).text());
+			String notes = StringUtils.realTrim(contentCells.get(4).text());
+			String firstProfessor = StringUtils.realTrim(contentCells.get(5).text());
 			List<String> professors = new ArrayList<String>();
 			professors.add(firstProfessor);
 			// continuo nelle righe della tabella (dalla 6^ in poi - se
@@ -115,8 +116,19 @@ public class EnrolledExamsExtractor implements EnrolledExamsExtractorInterface {
 			// rimuovo l'ultimo ,
 			professorList = professorList.substring(0,
 					professorList.length() - 2);
+			
+			Elements inputs = contentCells.get(6).select("input");
+			String id = "";
+			for (Element input : inputs) {
+				if(input.attr("name").equalsIgnoreCase("imageField") || input.attr("name").equalsIgnoreCase("return")) {
+					continue;
+				}
+				id+=input.val()+"#";
+			}
+			// remove last '#'
+			id = id.substring(0, id.length()-1);
 			EnrolledExamSession enrolledExamSession = new EnrolledExamSession(
-					name, date, room, professorList, notes, "0",
+					name, date, room, professorList, notes, id, "0",
 					enrollmentPosition, enrolled);
 			enrolledExams.add(enrolledExamSession);
 		}
