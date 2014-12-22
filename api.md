@@ -209,7 +209,7 @@ Questa API consente di recuperare la lista degli esami sostenuti da uno studente
   "exams": [
     {
       "name": "411008 - Lingua Inglese",
-      "cfu": "3",
+      "cfu": 3,
       "vote": "IDO",
       "date": "16/06/2010",
       "year": "2009/2010",
@@ -217,7 +217,7 @@ Questa API consente di recuperare la lista degli esami sostenuti da uno studente
     },
     {
       "name": "411898 - Lingua inglese B1",
-      "cfu": "3",
+      "cfu": 3,
       "vote": "IDO",
       "date": "18/02/2010",
       "year": "2009/2010",
@@ -225,7 +225,7 @@ Questa API consente di recuperare la lista degli esami sostenuti da uno studente
     },
     {
       "name": "411006 - Lingua Italiana I",
-      "cfu": "4",
+      "cfu": 4,
       "vote": "28",
       "date": "08/09/2010",
       "year": "2009/2010",
@@ -233,7 +233,7 @@ Questa API consente di recuperare la lista degli esami sostenuti da uno studente
     },
     {
       "name": "411007 - Lingua Italiana II (Idoneità)",
-      "cfu": "2",
+      "cfu": 2,
       "vote": "IDO",
       "date": "07/07/2010",
       "year": "2009/2010",
@@ -241,7 +241,7 @@ Questa API consente di recuperare la lista degli esami sostenuti da uno studente
     },
     {
       "name": "411005 - Linguaggi di programmazione e laboratorio",
-      "cfu": "11",
+      "cfu": 11,
       "vote": "30L",
       "date": "18/06/2010",
       "year": "2009/2010",
