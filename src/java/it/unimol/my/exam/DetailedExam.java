@@ -20,7 +20,7 @@ public class DetailedExam extends Exam {
 	 * @param academicYear
 	 * @param detailsExam
 	 */
-	public DetailedExam(String name, String cfu, String grade, Date date,
+	public DetailedExam(String name, int cfu, String grade, Date date,
 			String academicYear, String adsceId, List<Details> detailsExam) {
 		super(name, cfu, grade, date, academicYear, adsceId);
 		this.details = detailsExam;

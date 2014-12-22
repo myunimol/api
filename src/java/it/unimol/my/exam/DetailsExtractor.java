@@ -1,6 +1,7 @@
 package it.unimol.my.exam;
 
 import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.utils.StringUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -60,9 +61,9 @@ public class DetailsExtractor implements ExtractorInterface {
 		String dateString = "";
 		String grade = "/";
 		if (tdsTplMaster != null && tdsTplMaster.size() >= 5) {
-			year = tdsTplMaster.get(0).text().trim();
-			dateString = tdsTplMaster.get(2).text().trim();
-			grade = tdsTplMaster.get(3).text().trim();
+			year = StringUtils.realTrim(tdsTplMaster.get(0).text());
+			dateString = StringUtils.realTrim(tdsTplMaster.get(2).text());
+			grade = StringUtils.realTrim(tdsTplMaster.get(3).text());
 		}
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -82,19 +83,23 @@ public class DetailsExtractor implements ExtractorInterface {
 			for (int i = 1; i < detailRows.size(); i++) {
 				Element row = detailRows.get(i);
 				Elements detailTds = row.select("td");
-				String moduleName = detailTds.get(0).text().trim();
-				String area = detailTds.get(3).text().trim();
-				String cfu = detailTds.get(4).text().trim();
-				sumCfu += Integer.parseInt(cfu);
-				String hoursString = detailTds.get(5).text().trim();
+				String moduleName = StringUtils.realTrim(detailTds.get(0)
+						.text());
+				String area = StringUtils.realTrim(detailTds.get(3).text());
+				String cfuString = StringUtils
+						.realTrim(detailTds.get(4).text());
+				int cfu = Integer.parseInt(cfuString);
+				sumCfu += cfu;
+				String hoursString = StringUtils.realTrim(detailTds.get(5)
+						.text());
 				int hours = Integer.parseInt(hoursString);
 				sumHours += hours;
 				Details details = new Details(moduleName, cfu, hours, area);
 				examsDetails.add(details);
 			}
 		}
-		DetailedExam detailedExam = new DetailedExam(name,
-				String.valueOf(sumCfu), grade, date, year, examId, examsDetails);
+		DetailedExam detailedExam = new DetailedExam(name, sumCfu, grade, date,
+				year, examId, examsDetails);
 		return detailedExam;
 	}
 
