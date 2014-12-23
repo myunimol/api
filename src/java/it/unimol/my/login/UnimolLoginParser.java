@@ -97,14 +97,24 @@ public class UnimolLoginParser implements LoginParser {
                 // quanti appelli disponibili ci sono
                 String avaibleExamsUntrimmed = tableCell.text();
                 String avaibleExamsTrimmed = StringUtils.realTrim(avaibleExamsUntrimmed);
-                String avaibleExams = avaibleExamsTrimmed.replace(" appelli disponibili", "");
+                String avaibleExams;
+                if (avaibleExamsTrimmed.contains("appello disponibile")) {
+                    avaibleExams = avaibleExamsTrimmed.replace(" appello disponibile", "");
+                } else {
+                    avaibleExams = avaibleExamsTrimmed.replace(" appelli disponibili", "");
+                }
                 int noAvaibleExams = Integer.parseInt(avaibleExams);
                 uInfo.setAvailableExams(noAvaibleExams);
             } else if (precedente.equals("Iscrizioni appelli")) {
                 // a quanti appelli lo studente e' iscritto
                 String enrolledExamsUntrimmed = tableCell.text();
                 String enrolledExamsTrimmed = StringUtils.realTrim(enrolledExamsUntrimmed);
-                String enrolledExams = enrolledExamsTrimmed.replace(" prenotazioni", "");
+                String enrolledExams;
+                if (enrolledExamsTrimmed.contains("prenotazione")) {
+                    enrolledExams = enrolledExamsTrimmed.replace(" prenotazione", "");
+                } else {
+                    enrolledExams = enrolledExamsTrimmed.replace(" prenotazioni", "");
+                }                
                 int noEnrolledExams = Integer.parseInt(enrolledExams);
                 uInfo.setEnrolledExams(noEnrolledExams);
             }
