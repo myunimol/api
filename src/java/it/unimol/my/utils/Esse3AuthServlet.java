@@ -33,6 +33,7 @@ public class Esse3AuthServlet extends WebServiceServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		this.setHeaders(resp);
 		// ottengo un writer dalla response
 		writer = resp.getWriter();
 		if (tokenIsValid(req, resp)) {
