@@ -57,6 +57,7 @@ public class WebServiceServlet extends HttpServlet {
 	@Override
 	protected final void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		this.setHeaders(resp);
 		String noGetRequestMsg = config.getMessage("noGetRequest");
 		resp.setStatus(HttpStatus.SC_METHOD_NOT_ALLOWED);
 		writer = resp.getWriter();
@@ -75,6 +76,7 @@ public class WebServiceServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		this.setHeaders(resp);
 		// ottengo un writer dalla response
 		writer = resp.getWriter();
 		if (tokenIsValid(req, resp)) {
@@ -122,9 +124,9 @@ public class WebServiceServlet extends HttpServlet {
 
 	protected void setHeaders(HttpServletResponse response) {
 		// imposto il character encoding
-		response.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("utf8");
 		// setto il tipo del contenuto
-		response.setContentType("application/json");
+		response.setContentType("application/json; charset=UTF-8");
 	}
 
 }

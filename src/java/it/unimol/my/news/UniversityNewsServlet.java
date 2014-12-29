@@ -12,38 +12,43 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Carlo Branca
  */
-@WebServlet(name = "UniversityNewsServlet", urlPatterns = {"/getUniversityNews"})
+@WebServlet(name = "UniversityNewsServlet", urlPatterns = { "/getUniversityNews" })
 public class UniversityNewsServlet extends WebServiceServlet {
 
-    @Override
-    protected void serve(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+	/**
+	 * Lo uid seriale della versione.
+	 */
+	private static final long serialVersionUID = -8976875665816142425L;
 
-        // recupero l'estrattore
-        NewsExtractorInterface newsExtractor = NewsExtractorManager
-                .getNewsExtractor();
-        // estraggo il libretto degli esami
-        try {
-            // recuperiamo il link alla pagina news desiderata
-            String targetUrl = config.getUniversityNewsUrl();
+	@Override
+	protected void serve(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
 
-            List<News> newsList = newsExtractor.getNewsList(targetUrl);
-            if (newsList == null) {
-                String unknownErrorMsg = config.getMessage("unknownError");
-                writer.println("{\"result\":\"failure\",\"msg\":\""
-                        + unknownErrorMsg + "\"}");
-                return;
-            }
-            // converto il libretto in json
-            String json = gson.toJson(newsList);
-            // stampo il json a video
-            writer.println("{\"newsList\":" + json + "}");
+		// recupero l'estrattore
+		NewsExtractorInterface newsExtractor = NewsExtractorManager
+				.getNewsExtractor();
+		// estraggo il libretto degli esami
+		try {
+			// recuperiamo il link alla pagina news desiderata
+			String targetUrl = config.getUniversityNewsUrl();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            writer.close();
-        }
-    }
+			List<News> newsList = newsExtractor.getNewsList(targetUrl);
+			if (newsList == null) {
+				String unknownErrorMsg = config.getMessage("unknownError");
+				writer.println("{\"result\":\"failure\",\"msg\":\""
+						+ unknownErrorMsg + "\"}");
+				return;
+			}
+			// converto il libretto in json
+			String json = gson.toJson(newsList);
+			// stampo il json a video
+			writer.println("{\"newsList\":" + json + "}");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			writer.close();
+		}
+	}
 
 }
