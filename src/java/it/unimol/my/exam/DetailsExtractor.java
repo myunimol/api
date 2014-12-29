@@ -67,7 +67,7 @@ public class DetailsExtractor implements ExtractorInterface {
 		}
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		if (!dateString.equals("/")) {
+		if (!dateString.equals("")) {
 			try {
 				date = sdf.parse(dateString);
 			} catch (ParseException ex) {

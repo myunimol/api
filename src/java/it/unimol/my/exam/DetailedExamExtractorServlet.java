@@ -35,7 +35,7 @@ public class DetailedExamExtractorServlet extends Esse3AuthServlet {
 	protected void serve(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		// recupero examId dalla richiesta
-		String examId = request.getParameter("examId");
+		String examId = request.getParameter("id");
 		// chiedo l'url al gestore configurazioni
 		String targetUrl = ConfigurationManager.getInstance()
 				.getExamDetailUrl();
