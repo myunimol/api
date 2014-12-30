@@ -1,7 +1,6 @@
 package it.unimol.my.requesterhtml;
 
 import it.unimol.my.config.ConfigurationManager;
-import it.unimol.my.utils.InsecureHttpClientFactory;
 
 import java.net.URL;
 import java.util.List;
@@ -141,7 +140,7 @@ public class HTMLRequester implements HTMLRequesterInterface {
 	 */
 	private int logout(String username, String password, String jsessionId) {
 		try {
-			Unirest.setHttpClient(InsecureHttpClientFactory.getInsecureClient());
+//			Unirest.setHttpClient(InsecureHttpClientFactory.getInsecureClient());
 			HttpResponse<String> logout = Unirest.get(
 					config.getLogoutUrl() + ";" + jsessionId).asString();
 			return logout.getStatus();
@@ -165,7 +164,7 @@ public class HTMLRequester implements HTMLRequesterInterface {
 	 */
 	private String refreshJsessionId(String username, String password) {
 		try {
-			Unirest.setHttpClient(InsecureHttpClientFactory.getInsecureClient());
+//			Unirest.setHttpClient(InsecureHttpClientFactory.getInsecureClient());
 			HttpResponse<String> response = Unirest.get(
 					config.getLogonUrl() + "?cod_lingua=ita").asString();
 			Headers headers = response.getHeaders();
