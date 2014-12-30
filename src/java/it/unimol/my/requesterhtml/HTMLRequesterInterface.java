@@ -27,18 +27,18 @@ public interface HTMLRequesterInterface {
 	public String get(URL targetPage, String username, String password)
 			throws UnirestException;
 
-	public String get(URL targetPage, Map<String, String> parameters,
+	public String get(URL targetPage, Map<String, Object> parameters,
 			String username, String password) throws UnirestException;
 
-	public String get(URL targetPage, Map<String, String> parameters)
+	public String get(URL targetPage, Map<String, Object> parameters)
 			throws UnirestException;
 
 	public String get(URL targetPage) throws UnirestException;
 
-	public String post(URL targetPage, Map<String, String> parameters,
+	public String post(URL targetPage, Map<String, Object> parameters,
 			String username, String password) throws UnirestException;
 
-	public String post(URL targetPage, Map<String, String> parameters)
+	public String post(URL targetPage, Map<String, Object> parameters)
 			throws UnirestException;
 
 }

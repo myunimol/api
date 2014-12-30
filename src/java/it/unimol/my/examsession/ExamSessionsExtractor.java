@@ -56,7 +56,7 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 				String targetPage = ConfigurationManager.getInstance()
 						.getExamSessionDetailUrl();
 
-				Map<String, String> parameters = new HashMap<String, String>();
+				Map<String, Object> parameters = new HashMap<String, Object>();
 				parameters.put("APP_ID", examSessionInfo.getAppId());
 				parameters.put("CDS_ESA_ID", examSessionInfo.getCdsEsaId());
 				parameters.put("ATT_DID_ESA_ID",

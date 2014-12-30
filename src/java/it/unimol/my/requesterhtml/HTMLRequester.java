@@ -32,6 +32,125 @@ public class HTMLRequester implements HTMLRequesterInterface {
 	 */
 	private ConfigurationManager config = ConfigurationManager.getInstance();
 
+	@Override
+	public String get(URL targetPage, String username, String password)
+			throws UnirestException {
+		HttpRequest request = Unirest.get(targetPage.toString());
+		this.myUnimolDefaults(request);
+		String jSessionId = this.getJsessionId(username, password);
+		this.cookie(request, jSessionId);
+		this.auth(request, username, password);
+		HttpResponse<String> response = request.asString();
+		// effettuiamo il logout dal sistema esse3
+		this.logout(username, password, jSessionId);
+		return response.getBody();
+	}
+
+	@Override
+	public String get(URL targetPage) throws UnirestException {
+		HttpRequest request = Unirest.get(targetPage.toString());
+		this.myUnimolDefaults(request);
+		HttpResponse<String> response = request.asString();
+		return response.getBody();
+	}
+
+	@Override
+	public String post(URL targetPage, Map<String, Object> parameters,
+			String username, String password) throws UnirestException {
+		String jsessionId = this.getJsessionId(username, password);
+		HttpRequestWithBody request = Unirest.post(targetPage.toString()
+				+ jsessionId);
+		this.myUnimolDefaults(request);
+		this.cookie(request, jsessionId);
+		this.auth(request, username, password);
+		request.fields(parameters);
+		HttpResponse<String> response = request.asString();
+		// effettuiamo il logout dal sistema esse3
+		this.logout(username, password, jsessionId);
+		return response.getBody();
+	}
+
+	@Override
+	public String post(URL targetPage, Map<String, Object> parameters)
+			throws UnirestException {
+		HttpRequestWithBody request = Unirest.post(targetPage.toString());
+		this.myUnimolDefaults(request);
+		request.fields(parameters);
+		HttpResponse<String> response = request.asString();
+		return response.getBody();
+	}
+
+	@Override
+	public String get(URL targetPage, Map<String, Object> parameters,
+			String username, String password) throws UnirestException {
+		String jSessionId = this.getJsessionId(username, password);
+		HttpRequest request = Unirest.get(targetPage.toString());
+		this.myUnimolDefaults(request);
+		this.cookie(request, jSessionId);
+		this.auth(request, username, password);
+		request.queryString(parameters);
+		HttpResponse<String> response = request.asString();
+		// effettuiamo il logout dal sistema esse3
+		this.logout(username, password, jSessionId);
+		return response.getBody();
+	}
+
+	@Override
+	public String get(URL targetPage, Map<String, Object> parameters)
+			throws UnirestException {
+		HttpRequest request = Unirest.get(targetPage.toString());
+		this.myUnimolDefaults(request);
+		request.queryString(parameters);
+		HttpResponse<String> response = request.asString();
+		return response.getBody();
+	}
+
+	private HttpRequest myUnimolDefaults(HttpRequest request) {
+		return request.header("user-agent",
+				"MyUnimol fucking user-agent: developed in 2014");
+	}
+
+	private HttpRequest cookie(HttpRequest request, String jSessionId) {
+		return request.header("cookie", "testCookieEnabled=; JSESSIONID="
+				+ jSessionId.replaceFirst(";jsessionid=", ""));
+	}
+
+	private HttpRequest auth(HttpRequest request, String username,
+			String password) {
+		return request.basicAuth(username, password);
+	}
+
+	private String getJsessionId(String username, String password) {
+		String jsessionId = this.refreshJsessionId(username, password);
+		if (!jsessionId.equalsIgnoreCase("")) {
+			jsessionId = ";" + jsessionId;
+		}
+		return jsessionId;
+	}
+
+	/**
+	 * Questo metodo effettua il logout della sessione.
+	 *
+	 * @param username
+	 *            Lo username dell'utente da autenticare.
+	 * @param password
+	 *            La password dell'utente da autenticare.
+	 * @param jsessionId
+	 *
+	 * @return conferma del logout, altrimenti errore 500.
+	 */
+	private int logout(String username, String password, String jsessionId) {
+		try {
+			Unirest.setHttpClient(InsecureHttpClientFactory.getInsecureClient());
+			HttpResponse<String> logout = Unirest.get(
+					config.getLogoutUrl() + ";" + jsessionId).asString();
+			return logout.getStatus();
+		} catch (UnirestException e) {
+			e.printStackTrace();
+			return 500;
+		}
+	}
+
 	/**
 	 * Questo metodo aggiorna la sessione inviando Username e Password. Una
 	 * volta autenticati, salva le credenziali nei cookie.
@@ -62,159 +181,4 @@ public class HTMLRequester implements HTMLRequesterInterface {
 			return "";
 		}
 	}
-
-	/**
-	 * Questo metodo effettua il logout della sessione.
-	 *
-	 * @param username
-	 *            Lo username dell'utente da autenticare.
-	 * @param password
-	 *            La password dell'utente da autenticare.
-	 * @param jsessionId
-	 *
-	 * @return conferma del logout, altrimenti errore 500.
-	 */
-	private int logout(String username, String password, String jsessionId) {
-		try {
-			Unirest.setHttpClient(InsecureHttpClientFactory.getInsecureClient());
-			HttpResponse<String> logout = Unirest.get(
-					config.getLogoutUrl() + ";" + jsessionId).asString();
-			return logout.getStatus();
-		} catch (UnirestException e) {
-			e.printStackTrace();
-			return 500;
-		}
-	}
-
-	@Override
-	public String get(URL targetPage, String username, String password)
-			throws UnirestException {
-		String jsessionId = this.refreshJsessionId(username, password);
-		if (!jsessionId.equalsIgnoreCase("")) {
-			jsessionId = ";" + jsessionId;
-		}
-		HttpRequest request = this.createGetRequest(targetPage.toString(),
-				username, password, jsessionId);
-
-		HttpResponse<String> response = request.asString();
-
-		// effettuiamo il logout dal sistema esse3
-		this.logout(username, password, jsessionId);
-
-		// ritorniamo il codice di markup html in un oggetto String
-		return response.getBody();
-	}
-
-	@Override
-	public String get(URL targetPage) throws UnirestException {
-		HttpResponse<String> response = this.createGetRequest(
-				targetPage.toString()).asString();
-		return response.getBody();
-	}
-
-	@Override
-	public String post(URL targetPage, Map<String, String> parameters,
-			String username, String password) throws UnirestException {
-		String jsessionId = this.getJsessionId(username, password);
-
-		HttpRequestWithBody request = Unirest.post(targetPage.toString()
-				+ jsessionId);
-		this.fillRequestWithParams(request, parameters);
-		HttpResponse<String> response = request.asString();
-		// effettuiamo il logout dal sistema esse3
-		this.logout(username, password, jsessionId);
-		return response.getBody();
-	}
-
-	@Override
-	public String post(URL targetPage, Map<String, String> parameters)
-			throws UnirestException {
-		HttpRequestWithBody request = Unirest.post(targetPage.toString());
-		this.fillRequestWithParams(request, parameters);
-		HttpResponse<String> response = request.asString();
-		return response.getBody();
-	}
-
-	/**
-	 * Questo metodo riempie la richiesta effettuata in post con tutti i
-	 * parametri che sono nella mappa che viene passata come parametro formale.
-	 *
-	 * @param request
-	 * @param parameters
-	 */
-	private void fillRequestWithParams(HttpRequestWithBody request,
-			Map<String, String> parameters) {
-		for (Map.Entry<String, String> entry : parameters.entrySet()) {
-			request.field(entry.getKey(), entry.getValue());
-		}
-	}
-
-	private String getJsessionId(String username, String password) {
-		String jsessionId = this.refreshJsessionId(username, password);
-		if (!jsessionId.equalsIgnoreCase("")) {
-			jsessionId = ";" + jsessionId;
-		}
-		return jsessionId;
-	}
-
-	private void buildQueryString(HttpRequest request,
-			Map<String, String> parameters) {
-		for (Map.Entry<String, String> entry : parameters.entrySet()) {
-			request.queryString(entry.getKey(), entry.getValue());
-		}
-	}
-
-	private HttpRequest createGetRequest(String urlTarget,
-			Map<String, String> parameters, String username, String password,
-			String jsessionId) {
-		HttpRequest request = this.createGetRequest(urlTarget, username,
-				password, jsessionId);
-		this.buildQueryString(request, parameters);
-		return request;
-	}
-
-	private HttpRequest createGetRequest(String urlTarget,
-			Map<String, String> parameters) {
-		HttpRequest request = this.createGetRequest(urlTarget);
-		this.buildQueryString(request, parameters);
-		return request;
-	}
-
-	private HttpRequest createGetRequest(String urlTarget, String username,
-			String password, String jsessionId) {
-		HttpRequest request = this.createGetRequest(urlTarget + jsessionId);
-		request.header(
-				"cookie",
-				"testCookieEnabled=; JSESSIONID="
-						+ jsessionId.replaceFirst("jsessionid=", ""));
-		request.basicAuth(username, password);
-		return request;
-	}
-
-	private HttpRequest createGetRequest(String urlTarget) {
-		HttpRequest request = Unirest.get(urlTarget);
-		request.header("user-agent",
-				"MyUnimol fucking user-agent: developed in 2014");
-		return request;
-	}
-
-	@Override
-	public String get(URL targetPage, Map<String, String> parameters,
-			String username, String password) throws UnirestException {
-		String jsessionId = this.getJsessionId(username, password);
-		HttpRequest request = this.createGetRequest(targetPage.toString(),
-				parameters, username, password, jsessionId);
-		HttpResponse<String> response = request.asString();
-		return response.getBody();
-	}
-
-	@Override
-	public String get(URL targetPage, Map<String, String> parameters)
-			throws UnirestException {
-		HttpRequest request = this.createGetRequest(targetPage.toString(),
-				parameters);
-		HttpResponse<String> response = request.asString();
-		return response.getBody();
-	}
-
 }

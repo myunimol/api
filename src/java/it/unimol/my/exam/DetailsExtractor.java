@@ -39,7 +39,7 @@ public class DetailsExtractor implements ExtractorInterface {
 		HTMLRequester requester = new HTMLRequester();
 		String html = null;
 		try {
-			Map<String, String> parameters = new HashMap<String, String>();
+			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("adsce_id", examId);
 			URL target = new URL(urlServlet);
 			html = requester.get(target, parameters, username, password);
