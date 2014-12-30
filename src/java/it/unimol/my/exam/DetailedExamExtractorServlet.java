@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.http.HttpStatus;
+
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 /**
@@ -36,6 +38,13 @@ public class DetailedExamExtractorServlet extends Esse3AuthServlet {
 			HttpServletResponse response) throws IOException {
 		// recupero examId dalla richiesta
 		String examId = request.getParameter("id");
+		if (examId == null) {
+			response.setStatus(HttpStatus.SC_BAD_REQUEST);
+			String msg = config.getMessage("badParameters");
+			writer.write("{\"result\":\"failure\",\"msg\":\"" + msg + "\"}");
+			writer.close();
+			return;
+		}
 		// chiedo l'url al gestore configurazioni
 		String targetUrl = ConfigurationManager.getInstance()
 				.getExamDetailUrl();
