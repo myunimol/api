@@ -28,15 +28,10 @@ public class APIVersion extends WebServiceServlet {
 	@Override
 	protected void serve(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		try {
-			// recupera la versione dal web.xml (context-param)
-			String output = "{\"APIVersion\" : \""
-					+ getServletContext().getInitParameter("API.Version")
-					+ "\"}";
-			writer.print(output);
-		} finally {
-			writer.close();
-		}
+		// recupera la versione dal web.xml (context-param)
+		String output = "{\"APIVersion\" : \""
+				+ getServletContext().getInitParameter("API.Version") + "\"}";
+		writer.print(output);
 	}
 
 }
