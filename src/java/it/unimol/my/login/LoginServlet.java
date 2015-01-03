@@ -53,8 +53,6 @@ public class LoginServlet extends Esse3AuthServlet {
 			String unirestExceptionMsg = config.getMessage("unirestException");
 			writer.print("{\"result\":\"failure\", \"msg\":\""
 					+ unirestExceptionMsg + "\"}");
-		} finally {
-			writer.close();
 		}
 	}
 

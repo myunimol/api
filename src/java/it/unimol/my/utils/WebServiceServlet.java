@@ -82,6 +82,7 @@ public class WebServiceServlet extends HttpServlet {
 		if (tokenIsValid(req, resp)) {
 			this.serve(req, resp);
 		}
+		writer.close();
 	}
 
 	/**

@@ -46,8 +46,6 @@ public class SearchContactsServlet extends WebServiceServlet {
 			writer.println("{\"result\":\"success\",\"contacts\":" + json + "}");
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			writer.close();
 		}
 	}
 

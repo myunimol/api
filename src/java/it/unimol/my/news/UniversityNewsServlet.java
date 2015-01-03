@@ -46,8 +46,6 @@ public class UniversityNewsServlet extends WebServiceServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			writer.close();
 		}
 	}
 
