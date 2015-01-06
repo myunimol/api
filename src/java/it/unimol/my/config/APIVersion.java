@@ -3,6 +3,7 @@ package it.unimol.my.config;
 import it.unimol.my.utils.WebServiceServlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +29,7 @@ public class APIVersion extends WebServiceServlet {
 	@Override
 	protected void serve(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+		PrintWriter writer = resp.getWriter();
 		try {
 			// recupera la versione dal web.xml (context-param)
 			String output = "{\"APIVersion\" : \""

@@ -4,6 +4,7 @@ import it.unimol.my.config.ConfigurationManager;
 import it.unimol.my.utils.Esse3AuthServlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +37,8 @@ public class ExamSessionsServlet extends Esse3AuthServlet {
 	@Override
 	protected void serve(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+		PrintWriter writer = resp.getWriter();
+		
 		String targetURL = ConfigurationManager.getInstance()
 				.getExamSessionsUrl();
 		// commentare per testare online

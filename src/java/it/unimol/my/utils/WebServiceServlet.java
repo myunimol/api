@@ -38,10 +38,7 @@ public class WebServiceServlet extends HttpServlet {
 	 * Istanza del gestore dei token. Serve a verificare la validità del token.
 	 */
 	protected TokenManager tokenManager = TokenManager.getInstance();
-	/**
-	 * Istanza del <code>PrintWriter</code>
-	 */
-	protected PrintWriter writer;
+
 	/**
 	 * Il token utilizzato per il dialogo coi client
 	 */
@@ -57,6 +54,7 @@ public class WebServiceServlet extends HttpServlet {
 	@Override
 	protected final void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		PrintWriter writer = resp.getWriter();
 		this.setHeaders(resp);
 		String noGetRequestMsg = config.getMessage("noGetRequest");
 		resp.setStatus(HttpStatus.SC_METHOD_NOT_ALLOWED);
@@ -77,6 +75,7 @@ public class WebServiceServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		this.setHeaders(resp);
+		PrintWriter writer = resp.getWriter();
 		// ottengo un writer dalla response
 		writer = resp.getWriter();
 		if (tokenIsValid(req, resp)) {
@@ -99,6 +98,8 @@ public class WebServiceServlet extends HttpServlet {
 	 */
 	protected boolean tokenIsValid(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
+		PrintWriter writer = resp.getWriter();
+		
 		boolean tokenIsValid = false;
 		// Ottengo il token
 		token = req.getParameter("token");
