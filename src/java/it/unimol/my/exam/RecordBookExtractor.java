@@ -80,7 +80,7 @@ public class RecordBookExtractor implements RecordBookExtractorInterface {
 			}
 			Element link = cells.get(1).child(0);
 			String linkString = link.attr("href");
-			Pattern adsceIdPattern = Pattern.compile("adsce_id=[0-9]{7}\\&");
+			Pattern adsceIdPattern = Pattern.compile("adsce_id=[0-9]+\\&");
 			Matcher m = adsceIdPattern.matcher(linkString);
 			String adsceId = "";
 			while (m.find()) {
