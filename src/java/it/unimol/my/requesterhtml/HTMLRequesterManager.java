@@ -2,12 +2,9 @@ package it.unimol.my.requesterhtml;
 
 import it.unimol.my.utils.StringUtils;
 
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.jsoup.helper.StringUtil;
 
 
 public class HTMLRequesterManager {
