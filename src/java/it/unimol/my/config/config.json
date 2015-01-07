@@ -4,6 +4,7 @@
         "shortName": "unimol",
         "links": {
             "esse3": {
+            	"home": "https://unimol.esse3.cineca.it/Home.do",
                 "logon": "https://unimol.esse3.cineca.it/auth/Logon.do",
                 "logout": "https://unimol.esse3.cineca.it/Logout.do",
                 "recordBook": "https://unimol.esse3.cineca.it/auth/studente/Libretto/LibrettoHome.do",

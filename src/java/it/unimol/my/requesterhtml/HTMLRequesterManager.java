@@ -32,10 +32,6 @@ public class HTMLRequesterManager {
 			String key = pUsername + StringUtils.md5(pUsername+pPassword);
 			if (this.requesters.get(key) == null) {
 				HTMLRequesterInterface requester = registerRequester(key, pUsername, pPassword);
-				if (requester != null)
-					this.requesters.put(key, requester);
-				else
-					requester = new HTMLRequester();
 				
 				return requester;
 			} else {
