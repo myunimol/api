@@ -58,8 +58,6 @@ public class NewsBoardServlet extends WebServiceServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			writer.close();
 		}
 	}
 

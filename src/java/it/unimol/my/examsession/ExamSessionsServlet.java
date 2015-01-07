@@ -62,8 +62,6 @@ public class ExamSessionsServlet extends Esse3AuthServlet {
 		} catch (UnirestException e) {
 			e.printStackTrace();
 			writer.println("{\"result\":\"failure\", \"msg\":\"unirest exception\"}");
-		} finally {
-			writer.close();
 		}
 	}
 

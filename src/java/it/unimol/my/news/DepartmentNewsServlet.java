@@ -70,8 +70,6 @@ public class DepartmentNewsServlet extends WebServiceServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			writer.close();
 		}
 	}
 

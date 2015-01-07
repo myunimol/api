@@ -45,7 +45,6 @@ public class DetailedExamExtractorServlet extends Esse3AuthServlet {
 			response.setStatus(HttpStatus.SC_BAD_REQUEST);
 			String msg = config.getMessage("badParameters");
 			writer.write("{\"result\":\"failure\",\"msg\":\"" + msg + "\"}");
-			writer.close();
 			return;
 		}
 		// chiedo l'url al gestore configurazioni
@@ -65,8 +64,6 @@ public class DetailedExamExtractorServlet extends Esse3AuthServlet {
 		} catch (UnirestException ex) {
 			ex.printStackTrace();
 			writer.println("{\"result\":\"failure\",\"msg\":\"unirest exception\"}");
-		} finally {
-			writer.close();
 		}
 	}
 }

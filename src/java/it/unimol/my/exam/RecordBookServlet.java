@@ -61,8 +61,6 @@ public class RecordBookServlet extends Esse3AuthServlet {
 			writer.print("{\"result\":\"failure\", \"msg\":\""
 					+ unirestExceptionMsg + "\"}");
 			return;
-		} finally {
-			writer.close();
 		}
 	}
 }
