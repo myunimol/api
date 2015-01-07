@@ -40,7 +40,6 @@ public class Esse3AuthServlet extends WebServiceServlet {
 				this.serve(req, resp);
 			}
 		}
-		writer.close();
 	}
 
 	/**

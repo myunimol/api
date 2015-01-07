@@ -75,13 +75,10 @@ public class WebServiceServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		this.setHeaders(resp);
-		PrintWriter writer = resp.getWriter();
 		// ottengo un writer dalla response
-		writer = resp.getWriter();
 		if (tokenIsValid(req, resp)) {
 			this.serve(req, resp);
 		}
-		writer.close();
 	}
 
 	/**
