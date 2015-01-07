@@ -4,6 +4,7 @@ import it.unimol.my.config.ConfigurationManager;
 import it.unimol.my.utils.Esse3AuthServlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +37,8 @@ public class DetailedExamExtractorServlet extends Esse3AuthServlet {
 	@Override
 	protected void serve(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
+		PrintWriter writer = response.getWriter();
+		
 		// recupero examId dalla richiesta
 		String examId = request.getParameter("id");
 		if (examId == null) {

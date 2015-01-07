@@ -1,8 +1,11 @@
 package it.unimol.my.news;
 
 import it.unimol.my.utils.WebServiceServlet;
+
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +26,7 @@ public class UniversityNewsServlet extends WebServiceServlet {
 	@Override
 	protected void serve(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+		PrintWriter writer = resp.getWriter();
 
 		// recupero l'estrattore
 		NewsExtractorInterface newsExtractor = NewsExtractorManager

@@ -3,6 +3,7 @@ package it.unimol.my.taxes;
 import it.unimol.my.utils.Esse3AuthServlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +27,8 @@ public class TaxesServlet extends Esse3AuthServlet {
 
 	@Override
     protected void serve(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		PrintWriter writer = resp.getWriter();
+		
         String targetUrl = config.getTaxesUrl();
         // recupero l'estrattore
         TaxesExtractorInterface extractor = TaxesExtractorManager.getTaxesExtractor();

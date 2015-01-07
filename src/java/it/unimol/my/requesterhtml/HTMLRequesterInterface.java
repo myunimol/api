@@ -24,6 +24,8 @@ public interface HTMLRequesterInterface {
 	 *
 	 * @author Emilio Fabrizio
 	 */
+	public boolean connect(String username, String password);
+	
 	public String get(URL targetPage, String username, String password)
 			throws UnirestException;
 
@@ -41,4 +43,7 @@ public interface HTMLRequesterInterface {
 	public String post(URL targetPage, Map<String, Object> parameters)
 			throws UnirestException;
 
+	public boolean isTimeout();
+	
+	public void logout(String pUsername, String pPassword);
 }

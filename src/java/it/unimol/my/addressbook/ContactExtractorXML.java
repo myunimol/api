@@ -76,21 +76,23 @@ public class ContactExtractorXML {
 			}
 			for (Element voce : contatti) {
 				String fullname = voce.attr("fullname").toLowerCase();
+				boolean result = true;
 				for (String token : tokens) {
-					if (fullname.contains(token)) {
-						Contact contact = new Contact();
-						contact.setFullName(voce.attr("fullname"));
-						contact.setRole(voce.attr("role"));
-						contact.setBuilding(voce.attr("building"));
-						contact.setInternalTelephone(voce
-								.attr("internalTelephone"));
-						contact.setExternalTelephone(voce
-								.attr("externalTelephone"));
-						contact.setEmail(voce.attr("email"));
-						if (!contactList.contains(contact)) {
-							contactList.add(contact);
-						}
-					}
+					if (!fullname.contains(token))
+						result = false;
+				}
+				
+				if (result) {
+					Contact contact = new Contact();
+					contact.setFullName(voce.attr("fullname"));
+					contact.setRole(voce.attr("role"));
+					contact.setBuilding(voce.attr("building"));
+					contact.setInternalTelephone(voce
+							.attr("internalTelephone"));
+					contact.setExternalTelephone(voce
+							.attr("externalTelephone"));
+					contact.setEmail(voce.attr("email"));
+					contactList.add(contact);
 				}
 			}
 

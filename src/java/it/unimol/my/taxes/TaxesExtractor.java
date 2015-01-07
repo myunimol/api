@@ -1,12 +1,17 @@
 package it.unimol.my.taxes;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
+
 import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.requesterhtml.HTMLRequesterInterface;
+import it.unimol.my.requesterhtml.HTMLRequesterManager;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,7 +28,7 @@ public class TaxesExtractor implements TaxesExtractorInterface {
     public List<Tax> getTaxesList(String targetURL,
             String username, String password) throws UnirestException {
         List<Tax> taxes = new ArrayList<Tax>();
-        HTMLRequester requester = new HTMLRequester();
+        HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
         String html = null;
         try {
             html = requester.get(new URL(targetURL), username, password);

@@ -3,6 +3,7 @@ package it.unimol.my.login;
 import it.unimol.my.utils.Esse3AuthServlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,8 @@ public class LoginServlet extends Esse3AuthServlet {
 	@Override
 	protected void serve(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
+		PrintWriter writer = response.getWriter();
+		
 		try {
 			LoginParser parser = LoginParserManager.getLoginParser();
 			UserInformation logInfo = parser.getLoginInformation(username,
