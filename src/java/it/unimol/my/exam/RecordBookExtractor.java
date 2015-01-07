@@ -1,6 +1,8 @@
 package it.unimol.my.exam;
 
 import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.requesterhtml.HTMLRequesterInterface;
+import it.unimol.my.requesterhtml.HTMLRequesterManager;
 import it.unimol.my.utils.StringUtils;
 
 import java.net.MalformedURLException;
@@ -32,7 +34,7 @@ public class RecordBookExtractor implements RecordBookExtractorInterface {
 	public RecordBook getExamsList(String targetUrl, String username,
 			String password) throws UnirestException {
 		RecordBook recordBook = null;
-		HTMLRequester requester = new HTMLRequester();
+		HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
 		try {
 			String html = requester.get(new URL(targetUrl), username, password);
 			recordBook = this.extractRecordBook(html);

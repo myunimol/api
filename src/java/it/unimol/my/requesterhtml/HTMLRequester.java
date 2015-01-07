@@ -3,6 +3,7 @@ package it.unimol.my.requesterhtml;
 import it.unimol.my.config.ConfigurationManager;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,10 @@ import com.mashape.unirest.request.HttpRequest;
 import com.mashape.unirest.request.HttpRequestWithBody;
 
 public class HTMLRequester implements HTMLRequesterInterface {
-
+	private static final int TIMEOUT_MIN = 30; 
+	
+	private String jsessionid;
+	private Date lastAccess;
 	/**
 	 * Questo metodo restituisce il codice HTML di una pagina web sottoforma di
 	 * stringa. La richiesta al server web viene effettuata tramite una
@@ -30,18 +34,19 @@ public class HTMLRequester implements HTMLRequesterInterface {
 	 * @author Emilio Fabrizio
 	 */
 	private ConfigurationManager config = ConfigurationManager.getInstance();
+	
+	protected HTMLRequester() {
+	}
 
 	@Override
 	public String get(URL targetPage, String username, String password)
 			throws UnirestException {
 		HttpRequest request = Unirest.get(targetPage.toString());
 		this.myUnimolDefaults(request);
-		String jSessionId = this.getJsessionId(username, password);
-		this.cookie(request, jSessionId);
+		this.cookie(request, this.jsessionid);
 		this.auth(request, username, password);
 		HttpResponse<String> response = request.asString();
 		// effettuiamo il logout dal sistema esse3
-		this.logout(username, password, jSessionId);
 		return response.getBody();
 	}
 
@@ -56,16 +61,12 @@ public class HTMLRequester implements HTMLRequesterInterface {
 	@Override
 	public String post(URL targetPage, Map<String, Object> parameters,
 			String username, String password) throws UnirestException {
-		String jsessionId = this.getJsessionId(username, password);
-		HttpRequestWithBody request = Unirest.post(targetPage.toString()
-				+ jsessionId);
+		HttpRequestWithBody request = Unirest.post(targetPage.toString() + this.jsessionid);
 		this.myUnimolDefaults(request);
-		this.cookie(request, jsessionId);
+		this.cookie(request, this.jsessionid);
 		this.auth(request, username, password);
 		request.fields(parameters);
 		HttpResponse<String> response = request.asString();
-		// effettuiamo il logout dal sistema esse3
-		this.logout(username, password, jsessionId);
 		return response.getBody();
 	}
 
@@ -82,15 +83,12 @@ public class HTMLRequester implements HTMLRequesterInterface {
 	@Override
 	public String get(URL targetPage, Map<String, Object> parameters,
 			String username, String password) throws UnirestException {
-		String jSessionId = this.getJsessionId(username, password);
 		HttpRequest request = Unirest.get(targetPage.toString());
 		this.myUnimolDefaults(request);
-		this.cookie(request, jSessionId);
+		this.cookie(request, this.jsessionid);
 		this.auth(request, username, password);
 		request.queryString(parameters);
 		HttpResponse<String> response = request.asString();
-		// effettuiamo il logout dal sistema esse3
-		this.logout(username, password, jSessionId);
 		return response.getBody();
 	}
 
@@ -105,12 +103,13 @@ public class HTMLRequester implements HTMLRequesterInterface {
 	}
 
 	private HttpRequest myUnimolDefaults(HttpRequest request) {
+		this.lastAccess = new Date();
 		return request.header("user-agent",
 				"MyUnimol fucking user-agent: developed in 2014");
 	}
 
 	private HttpRequest cookie(HttpRequest request, String jSessionId) {
-		return request.header("cookie", "testCookieEnabled=; JSESSIONID="
+		return request.header("cookie", "JSESSIONID="
 				+ jSessionId.replaceFirst(";jsessionid=", ""));
 	}
 
@@ -138,15 +137,11 @@ public class HTMLRequester implements HTMLRequesterInterface {
 	 *
 	 * @return conferma del logout, altrimenti errore 500.
 	 */
-	private int logout(String username, String password, String jsessionId) {
+	public void logout(String username, String password) {
 		try {
-//			Unirest.setHttpClient(InsecureHttpClientFactory.getInsecureClient());
-			HttpResponse<String> logout = Unirest.get(
-					config.getLogoutUrl() + ";" + jsessionId).asString();
-			return logout.getStatus();
+			Unirest.get(config.getLogoutUrl() + ";" + this.jsessionid).asString();
 		} catch (UnirestException e) {
 			e.printStackTrace();
-			return 500;
 		}
 	}
 
@@ -179,5 +174,30 @@ public class HTMLRequester implements HTMLRequesterInterface {
 			e.printStackTrace();
 			return "";
 		}
+	}
+
+	@Override
+	public boolean connect(String username, String password) {
+		try {
+			this.jsessionid = this.getJsessionId(username, password);
+			HttpRequest request = Unirest.get(config.getLogonUrl());
+			this.myUnimolDefaults(request);
+			this.cookie(request, this.jsessionid);
+			this.auth(request, username, password);
+			HttpResponse<String> response = request.asString();
+			return (response.getStatus() == 200);
+		} catch (UnirestException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean isTimeout() {
+		Date now = new Date();
+		
+		if (now.getTime() - this.lastAccess.getTime() > TIMEOUT_MIN*60*1000)
+			return true;
+		else
+			return false;
 	}
 }

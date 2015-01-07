@@ -2,6 +2,8 @@ package it.unimol.my.examsession;
 
 import it.unimol.my.config.ConfigurationManager;
 import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.requesterhtml.HTMLRequesterInterface;
+import it.unimol.my.requesterhtml.HTMLRequesterManager;
 import it.unimol.my.utils.StringUtils;
 
 import java.net.MalformedURLException;
@@ -37,7 +39,7 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 		List<DetailedExamSession> examSessions = null;
 		List<ExamSessionInfo> examSessionsInfo = null;
 		try {
-			HTMLRequester requester = new HTMLRequester();
+			HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
 			String html = requester.get(new URL(targetURL), username, password);
 			// decommentare per testare in locale
 			// html = requester

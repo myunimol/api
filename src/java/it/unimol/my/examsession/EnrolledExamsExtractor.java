@@ -1,6 +1,8 @@
 package it.unimol.my.examsession;
 
 import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.requesterhtml.HTMLRequesterInterface;
+import it.unimol.my.requesterhtml.HTMLRequesterManager;
 import it.unimol.my.utils.StringUtils;
 
 import java.net.MalformedURLException;
@@ -29,7 +31,7 @@ public class EnrolledExamsExtractor implements EnrolledExamsExtractorInterface {
 	public List<EnrolledExamSession> getEnrolledExamSessions(String targetURL,
 			String username, String password) throws UnirestException {
 		List<EnrolledExamSession> enrolledExams = new ArrayList<EnrolledExamSession>();
-		HTMLRequester requester = new HTMLRequester();
+		HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
 		// String html = requester.get(new URL(targetURL), username,
 		// password);
 		// decommentare per testare in locale

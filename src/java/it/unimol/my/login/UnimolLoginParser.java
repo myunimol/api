@@ -2,6 +2,8 @@ package it.unimol.my.login;
 
 import it.unimol.my.config.ConfigurationManager;
 import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.requesterhtml.HTMLRequesterInterface;
+import it.unimol.my.requesterhtml.HTMLRequesterManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,6 +14,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
+
 import it.unimol.my.utils.StringUtils;
 
 /**
@@ -24,7 +27,7 @@ public class UnimolLoginParser implements LoginParser {
     @Override
     public UserInformation getLoginInformation(String username, String password) throws UnirestException {
 
-        HTMLRequester requester = new HTMLRequester();
+    	HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
         try {
 
             String resPage = requester.get(new URL(ConfigurationManager.getInstance().getLogonUrl()),
@@ -176,7 +179,7 @@ public class UnimolLoginParser implements LoginParser {
     private String getStudentID(String username, String password)
             throws MalformedURLException, UnirestException {
 
-        HTMLRequester req = new HTMLRequester();
+        HTMLRequesterInterface req = HTMLRequesterManager.getManager().getInstance(username, password);
         String resPage = req.get(new URL(ConfigurationManager.getInstance().getRecordBookUrl()),
                 username, password);
 
