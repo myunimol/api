@@ -32,7 +32,7 @@ public class UnimolLoginParser implements LoginParser {
 
             String resPage = requester.get(new URL(ConfigurationManager.getInstance().getLogonUrl()),
                     username, password);
-
+            
             Document doc = Jsoup.parse(resPage);
 
             if (!this.isLogged(doc)) {
@@ -191,7 +191,9 @@ public class UnimolLoginParser implements LoginParser {
          * [MAT. 148432]" elimina la parentesi chiusa e infine splitta dividendo
          * da "MAT. " e prende la seconda stringa ottenuta cioe' la matricola
          */
-        String ID = name.text().replaceAll("]", "").split("MAT. ")[1];
+        String ID = "???";
+        if (name != null)
+        	ID = name.text().replaceAll("]", "").split("MAT. ")[1];
 
         return ID;
     }

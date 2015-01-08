@@ -88,6 +88,10 @@ public class ConfigurationManager {
     public String getLogonUrl() {
         return this.getEsse3Links().get("logon").getAsString();
     }
+    
+    public String getHomeUrl() {
+        return this.getEsse3Links().get("logon").getAsString();
+    }
 
     public String getLogoutUrl() {
         return this.getEsse3Links().get("logout").getAsString();
