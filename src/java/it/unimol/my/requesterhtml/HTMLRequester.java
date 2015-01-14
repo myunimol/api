@@ -76,7 +76,7 @@ public class HTMLRequester implements HTMLRequesterInterface {
 	@Override
 	public String post(URL targetPage, Map<String, Object> parameters,
 			String username, String password) throws UnirestException {
-		HttpRequestWithBody request = Unirest.post(targetPage.toString() + this.jsessionid);
+		HttpRequestWithBody request = Unirest.post(targetPage.toString());
 		this.myUnimolDefaults(request);
 		this.cookie(request, this.jsessionid);
 		this.auth(request, username, password);
