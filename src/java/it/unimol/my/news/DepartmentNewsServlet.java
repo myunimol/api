@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Carlo Branca
  */
-@WebServlet(name = "NewsBoardServlet", urlPatterns = {"/getNewsBoard"})
-public class NewsBoardServlet extends WebServiceServlet {
+@WebServlet(name = "DepartmentNewsServlet", urlPatterns = {"/getDepartmentNews"})
+public class DepartmentNewsServlet extends WebServiceServlet {
 
 	@Override
 	protected void serve(HttpServletRequest req, HttpServletResponse resp)
@@ -29,14 +29,26 @@ public class NewsBoardServlet extends WebServiceServlet {
 		// estraggo il libretto degli esami
 		try {
 			// recuperiamo il link alla pagina news desiderata
-			String newsPage = req.getParameter("course");
+			String newsPage = req.getParameter("department");
 			String targetUrl;
 			switch (newsPage) {
-			case "informatica":
-				targetUrl = config.getInformaticaNewsUrl();
+			case "agricolturaAmbienteAlimenti":
+				targetUrl = config.getAgricolturaNewsUrl();
 				break;
-			case "scienzeBiologiche":
-				targetUrl = config.getScienzeBiologicheNewsUrl();
+			case "bioscienzeTerritorio":
+				targetUrl = config.getBioscienzeTerritorioNewsUrl();
+				break;
+			case "economiaGestioneSocietaIstituzioni":
+				targetUrl = config.getEconomiaNewsUrl();
+				break;
+			case "giuridico":
+				targetUrl = config.getGiuridicoNewsUrl();
+				break;
+			case "medicinaScienzeSalute":
+				targetUrl = config.getMedicinaNewsUrl();
+				break;
+			case "scienzeUmanisticheSocialiFormazione":
+				targetUrl = config.getUmanisticheNewsUrl();
 				break;
 			default:
 				String badParams = config.getMessage("badParameters");

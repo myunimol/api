@@ -4,6 +4,7 @@ import it.unimol.my.config.ConfigurationManager;
 import it.unimol.my.utils.Esse3AuthServlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -32,6 +33,8 @@ public class EnrolledExamsServlet extends Esse3AuthServlet {
 	@Override
 	protected void serve(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+		PrintWriter writer = resp.getWriter();
+		
 		String targetURL = ConfigurationManager.getInstance()
 				.getEnrolledExamSessionsUrl();
 		// commentare per testare online
@@ -50,7 +53,7 @@ public class EnrolledExamsServlet extends Esse3AuthServlet {
 					username, password);
 			// conversione della "List" di ExamSession in json e stampa a video
 			String json = gson.toJson(examSessions);
-			writer.println(json);
+			writer.println("{\"result\":\"success\", \"exams\":" + json + "}");
 		} catch (UnirestException e) {
 			e.printStackTrace();
 			writer.println("{\"result\":\"failure\", \"msg\":\"unirest exception\"}");

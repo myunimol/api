@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.StringTokenizer;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -26,7 +26,7 @@ public class ContactExtractorXML {
 	 *            Il cognome desiderato
 	 * @return Una lista di contatti che soddisfa i parametri di input
 	 */
-	public List<Contact> getContact(String name, String surname) {
+	public List<Contact> searchContacts(String name, String surname) {
 
 		List<Contact> contactList = new ArrayList<Contact>();
 
@@ -39,24 +39,65 @@ public class ContactExtractorXML {
 			name = name.toLowerCase();
 			surname = surname.toLowerCase();
 			for (Element voce : contatti) {
-				String fullname = voce.select("fullname").text().toLowerCase();
+				String fullname = voce.attr("fullname").toLowerCase();
 				if (fullname.contains(name) && fullname.contains(surname)) {
 					Contact contact = new Contact();
-					contact.setFullName(voce.select("fullname").text());
-					contact.setRole(voce.select("role").text());
-					contact.setInternalTelephone(voce.select(
-							"internalTelephone").text());
-					contact.setExternalTelephone(voce.select(
-							"externalTelephone").text());
-					contact.setBuilding(voce.select("building").text());
-					contact.setEmail(voce.select("email").text());
+					contact.setFullName(voce.attr("fullname"));
+					contact.setRole(voce.attr("role"));
+					contact.setBuilding(voce.attr("building"));
+					contact.setInternalTelephone(voce.attr("internalTelephone"));
+					contact.setExternalTelephone(voce.attr("externalTelephone"));
+					contact.setEmail(voce.attr("email"));
 					contactList.add(contact);
 				}
 			}
 
 		} catch (IOException ex) {
-			Logger.getLogger(AddressBookExtractor.class.getName()).log(
-					Level.SEVERE, null, ex);
+			ex.printStackTrace();
+		}
+		return contactList;
+	}
+
+	public List<Contact> searchContacts(String query) {
+		List<Contact> contactList = new ArrayList<Contact>();
+
+		try {
+			File file = new File(ContactExtractorXML.class.getResource(
+					"addressBook.xml").getPath());
+			Document doc = Jsoup.parse(file, "UTF-8");
+			Elements contatti = doc.select("contact");
+
+			StringTokenizer stringTokenizer = new StringTokenizer(query.trim(),
+					" ");
+			List<String> tokens = new ArrayList<String>();
+			while (stringTokenizer.hasMoreTokens()) {
+				String search = stringTokenizer.nextToken().toLowerCase();
+				tokens.add(search);
+			}
+			for (Element voce : contatti) {
+				String fullname = voce.attr("fullname").toLowerCase();
+				boolean result = true;
+				for (String token : tokens) {
+					if (!fullname.contains(token))
+						result = false;
+				}
+				
+				if (result) {
+					Contact contact = new Contact();
+					contact.setFullName(voce.attr("fullname"));
+					contact.setRole(voce.attr("role"));
+					contact.setBuilding(voce.attr("building"));
+					contact.setInternalTelephone(voce
+							.attr("internalTelephone"));
+					contact.setExternalTelephone(voce
+							.attr("externalTelephone"));
+					contact.setEmail(voce.attr("email"));
+					contactList.add(contact);
+				}
+			}
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
 		}
 		return contactList;
 	}

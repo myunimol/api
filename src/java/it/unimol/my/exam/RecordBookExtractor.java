@@ -1,6 +1,9 @@
 package it.unimol.my.exam;
 
 import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.requesterhtml.HTMLRequesterInterface;
+import it.unimol.my.requesterhtml.HTMLRequesterManager;
+import it.unimol.my.utils.StringUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,7 +34,7 @@ public class RecordBookExtractor implements RecordBookExtractorInterface {
 	public RecordBook getExamsList(String targetUrl, String username,
 			String password) throws UnirestException {
 		RecordBook recordBook = null;
-		HTMLRequester requester = new HTMLRequester();
+		HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
 		try {
 			String html = requester.get(new URL(targetUrl), username, password);
 			recordBook = this.extractRecordBook(html);
@@ -79,30 +82,35 @@ public class RecordBookExtractor implements RecordBookExtractorInterface {
 			}
 			Element link = cells.get(1).child(0);
 			String linkString = link.attr("href");
-			Pattern adsceIdPattern = Pattern.compile("adsce_id=[0-9]{7}\\&");
+			Pattern adsceIdPattern = Pattern.compile("adsce_id=[0-9]+\\&");
 			Matcher m = adsceIdPattern.matcher(linkString);
 			String adsceId = "";
 			while (m.find()) {
-			    adsceId = m.group(0);
+				adsceId = m.group(0);
 			}
 			adsceId = adsceId.replace("adsce_id=", "");
 			adsceId = adsceId.replace("&", "");
 
-			String name = link.text().trim();
+			String name = StringUtils.realTrim(link.text());
 
-			String cfu = "0";
+			String cfuString = "0";
+			int cfu = 0;
 			Element cfuCell = cells.get(6);
 			if (cfuCell != null) {
-				cfu = cfuCell.text().trim();
+				cfuString = StringUtils.realTrim(cfuCell.text());
+				cfu = Integer.parseInt(cfuString);
 			}
 			String grade = "/";
 			Date date = new Date();
 			Element gradeDateCell = cells.get(9);
 			if (gradeDateCell != null) {
-				String gradeDate = gradeDateCell.text().trim();
+				String gradeDate = StringUtils.realTrim(gradeDateCell.text());
 				/**
 				 * elimino il non-breaking space di html
-				 * @see http://stackoverflow.com/questions/1461907/html-encoding-issues-Â-character-showing-up-instead-of-nbsp
+				 * 
+				 * @see http
+				 *      ://stackoverflow.com/questions/1461907/html-encoding-
+				 *      issues-Â-character-showing-up-instead-of-nbsp
 				 */
 				gradeDate = gradeDate.replace('\u00c2', '\u0020');
 				gradeDate = gradeDate.replace('\u00a0', '\u0020');
@@ -120,7 +128,7 @@ public class RecordBookExtractor implements RecordBookExtractorInterface {
 			String academicYear = "/";
 			Element academicYearCell = cells.get(8);
 			if (academicYearCell != null) {
-				academicYear = academicYearCell.text().trim();
+				academicYear = StringUtils.realTrim(academicYearCell.text());
 			}
 
 			Exam exam = new Exam(name, cfu, grade, date, academicYear, adsceId);

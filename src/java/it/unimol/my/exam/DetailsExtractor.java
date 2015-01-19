@@ -1,6 +1,8 @@
 package it.unimol.my.exam;
 
-import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.requesterhtml.HTMLRequesterInterface;
+import it.unimol.my.requesterhtml.HTMLRequesterManager;
+import it.unimol.my.utils.StringUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -35,10 +37,10 @@ public class DetailsExtractor implements ExtractorInterface {
 	@Override
 	public DetailedExam getDetails(String urlServlet, String username,
 			String password, String examId) throws UnirestException {
-		HTMLRequester requester = new HTMLRequester();
+		HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
 		String html = null;
 		try {
-			Map<String, String> parameters = new HashMap<String, String>();
+			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("adsce_id", examId);
 			URL target = new URL(urlServlet);
 			html = requester.get(target, parameters, username, password);
@@ -60,13 +62,13 @@ public class DetailsExtractor implements ExtractorInterface {
 		String dateString = "";
 		String grade = "/";
 		if (tdsTplMaster != null && tdsTplMaster.size() >= 5) {
-			year = tdsTplMaster.get(0).text().trim();
-			dateString = tdsTplMaster.get(2).text().trim();
-			grade = tdsTplMaster.get(3).text().trim();
+			year = StringUtils.realTrim(tdsTplMaster.get(0).text());
+			dateString = StringUtils.realTrim(tdsTplMaster.get(2).text());
+			grade = StringUtils.realTrim(tdsTplMaster.get(3).text());
 		}
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		if (!dateString.equals("/")) {
+		if (!dateString.equals("")) {
 			try {
 				date = sdf.parse(dateString);
 			} catch (ParseException ex) {
@@ -82,19 +84,23 @@ public class DetailsExtractor implements ExtractorInterface {
 			for (int i = 1; i < detailRows.size(); i++) {
 				Element row = detailRows.get(i);
 				Elements detailTds = row.select("td");
-				String moduleName = detailTds.get(0).text().trim();
-				String area = detailTds.get(3).text().trim();
-				String cfu = detailTds.get(4).text().trim();
-				sumCfu += Integer.parseInt(cfu);
-				String hoursString = detailTds.get(5).text().trim();
+				String moduleName = StringUtils.realTrim(detailTds.get(0)
+						.text());
+				String area = StringUtils.realTrim(detailTds.get(3).text());
+				String cfuString = StringUtils
+						.realTrim(detailTds.get(4).text());
+				int cfu = Integer.parseInt(cfuString);
+				sumCfu += cfu;
+				String hoursString = StringUtils.realTrim(detailTds.get(5)
+						.text());
 				int hours = Integer.parseInt(hoursString);
 				sumHours += hours;
 				Details details = new Details(moduleName, cfu, hours, area);
 				examsDetails.add(details);
 			}
 		}
-		DetailedExam detailedExam = new DetailedExam(name,
-				String.valueOf(sumCfu), grade, date, year, examId, examsDetails);
+		DetailedExam detailedExam = new DetailedExam(name, sumCfu, grade, date,
+				year, examId, examsDetails);
 		return detailedExam;
 	}
 

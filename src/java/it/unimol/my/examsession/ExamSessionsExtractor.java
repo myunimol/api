@@ -2,6 +2,9 @@ package it.unimol.my.examsession;
 
 import it.unimol.my.config.ConfigurationManager;
 import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.requesterhtml.HTMLRequesterInterface;
+import it.unimol.my.requesterhtml.HTMLRequesterManager;
+import it.unimol.my.utils.StringUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,10 +39,12 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 		List<DetailedExamSession> examSessions = null;
 		List<ExamSessionInfo> examSessionsInfo = null;
 		try {
-			HTMLRequester requester = new HTMLRequester();
+			HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
 			String html = requester.get(new URL(targetURL), username, password);
 			// decommentare per testare in locale
-			// String html = requester.get(new URL(targetURL));
+			// html = requester
+			// .get(new URL(
+			// "http://localhost:8080/myunimol-webservices/pagine-target/elencoappelliUNIMOL.html"));
 			examSessions = this.parseSessions(html);
 			examSessionsInfo = this.parseSessionInfo(html);
 
@@ -53,7 +58,7 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 				String targetPage = ConfigurationManager.getInstance()
 						.getExamSessionDetailUrl();
 
-				Map<String, String> parameters = new HashMap<String, String>();
+				Map<String, Object> parameters = new HashMap<String, Object>();
 				parameters.put("APP_ID", examSessionInfo.getAppId());
 				parameters.put("CDS_ESA_ID", examSessionInfo.getCdsEsaId());
 				parameters.put("ATT_DID_ESA_ID",
@@ -66,11 +71,25 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 				parameters.put("ISCR_APERTA", examSessionInfo.getIscrAperta());
 				parameters.put("TIPO_ATTIVITA",
 						examSessionInfo.getTipoAttivita());
-				parameters.put("TIPO_APP_COD", examSessionInfo.getTipoAppCod());
 
 				String htmlDetails = requester.post(new URL(targetPage),
 						parameters, username, password);
 				Document doc = Jsoup.parse(htmlDetails);
+				String cdsEsaId = doc.select("input[name=CDS_ESA_ID]").get(0)
+						.val();
+				String attDidEsaId = doc.select("input[name=ATT_DID_ESA_ID]")
+						.get(0).val();
+				String appId = doc.select("input[name=APP_ID]").get(0).val();
+				String adSceId = doc.select("input[name=ADSCE_ID]").get(0)
+						.val();
+				String attDidId = doc.select("input[name=ATT_DID_ID]").get(0)
+						.val();
+				String tipoIscr = doc.select("input[name=TIPO_ISCR]").get(0)
+						.val();
+				ExamSessionEnrollementId enrollementId = new ExamSessionEnrollementId(
+						cdsEsaId, attDidEsaId, appId, adSceId, attDidId,
+						tipoIscr);
+
 				Elements tdsTplForm = doc.select("td[class=tplForm]");
 				String sessionType = "/";
 				if (tdsTplForm.get(2) != null) {
@@ -93,7 +112,9 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 				examSessions.get(i).setProfessor(professor);
 				examSessions.get(i).setRoom(room);
 				examSessions.get(i).setEnrolled(enrolled);
+				examSessions.get(i).setId(enrollementId.buildEnrollementId());
 				i++;
+
 			}
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -131,13 +152,11 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 			return eSession;
 		}
 		Element table = tables.get(0);
-		Iterator<Element> ite = table.select("td[class=detail_table]")
-				.iterator();
-		while (ite.hasNext()) {
-			// skippo il link
-			ite.next();
-			String name = ite.next().text();
-			String dateString = ite.next().text();
+		Elements rows = table.select("tr");
+		for (int i = 1; i < rows.size(); i++) {
+			Elements cells = rows.get(i).select("td[class=detail_table]");
+			String name = StringUtils.realTrim(cells.get(1).text());
+			String dateString = StringUtils.realTrim(cells.get(2).text());
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Date date = null;
 			try {
@@ -146,24 +165,23 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 				ex.printStackTrace();
 				date = new Date();
 			}
-			String window = ite.next().toString();
+			String window = cells.get(3).html();
 			String[] bits = window.split("<br>");
 			Date start = null;
 			try {
-				start = sdf.parse(bits[0]);
+				start = sdf.parse(StringUtils.realTrim(bits[0]));
 			} catch (ParseException ex) {
 				ex.printStackTrace();
 				start = new Date();
 			}
 			Date end = null;
 			try {
-				end = sdf.parse(bits[1]);
+				end = sdf.parse(StringUtils.realTrim(bits[1]));
 			} catch (ParseException ex) {
 				ex.printStackTrace();
 				end = new Date();
 			}
-			String notes = ite.next().text();
-
+			String notes = StringUtils.realTrim(cells.get(4).text());
 			DetailedExamSession examSession = new DetailedExamSession();
 			examSession.setName(name);
 			examSession.setDate(date);
@@ -191,24 +209,38 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 	private List<ExamSessionInfo> parseSessionInfo(String html) {
 		ArrayList<ExamSessionInfo> infoList = new ArrayList<ExamSessionInfo>();
 		Document doc = Jsoup.parse(html);
-		Elements form = doc.select("td[colspan=2]");
-		Iterator<Element> info = form.select("input[type=hidden]").iterator();
-		String action = form.select("form[method=post]").attr("action");
-		while (info.hasNext()) {
-			String appId = info.next().val();
-			String cdsEsaId = info.next().val();
-			String attDidEsaId = info.next().val();
-			String adsceId = info.next().val();
-			String aaOffId = info.next().val();
-			String cdsId = info.next().val();
-			String pdsId = info.next().val();
-			String aaOrdId = info.next().val();
-			String iscrAperta = info.next().val();
-			String tipoAttivita = info.next().val();
-			String tipoAppCod = info.next().val();
-			infoList.add(new ExamSessionInfo(action, appId, cdsEsaId,
-					attDidEsaId, adsceId, aaOffId, cdsId, pdsId, aaOrdId,
-					iscrAperta, tipoAttivita, tipoAppCod));
+
+		Elements tables = doc.select("table.detail_table");
+		if (tables == null || tables.size() == 0) {
+			return infoList;
+		}
+		Element table = tables.get(0);
+		Elements rows = table.select("tr");
+		for (int i = 1; i < rows.size(); i++) {
+			Element cell = rows.get(i).select("td.detail_table").get(0);
+			String appId = cell.select("input[name=APP_ID]").get(0).val();
+			String cdsEsaId = cell.select("input[name=CDS_ESA_ID]").get(0)
+					.val();
+			String attDidEsaId = cell.select("input[name=ATT_DID_ESA_ID]")
+					.get(0).val();
+			String adSceId = cell.select("input[name=ADSCE_ID]").get(0).val();
+			String aaOffId = cell.select("input[name=AA_OFF_ID]").get(0).val();
+			String cdsId = cell.select("input[name=CDS_ID]").get(0).val();
+			String pdsId = cell.select("input[name=PDS_ID]").get(0).val();
+			String aaOrdId = cell.select("input[name=AA_ORD_ID]").get(0).val();
+			String iscrAperta = cell.select("input[name=ISCR_APERTA]").get(0)
+					.val();
+			String tipoAttivita = cell.select("input[name=TIPO_ATTIVITA]")
+					.get(0).val();
+
+			Element form = cell.select("form").get(0);
+			String action = form.attr("action");
+
+			ExamSessionInfo examSessionInfo = new ExamSessionInfo(action,
+					appId, cdsEsaId, attDidEsaId, adSceId, aaOffId, cdsId,
+					pdsId, aaOrdId, iscrAperta, tipoAttivita);
+
+			infoList.add(examSessionInfo);
 		}
 		return infoList;
 	}

@@ -18,11 +18,11 @@ public class Exam {
 	/**
 	 * Peso in cfu dell'esame
 	 */
-	private String cfu;
+	private int cfu;
 	/**
 	 * Voto conseguito all'esame
 	 */
-	private String grade;
+	private String vote;
 	/**
 	 * Data di superamento dell'esame
 	 */
@@ -30,11 +30,11 @@ public class Exam {
 	/**
 	 * Anno accademico durante il quale è stato seguito il corso
 	 */
-	private String academicYear;
+	private String year;
 	/**
 	 * Id dell'esame
 	 */
-	private String adsceId;
+	private String id;
 
 	/**
 	 * Costruttore completo per la creazione di un oggetto Exam. Prende in input
@@ -53,14 +53,14 @@ public class Exam {
 	 * @param adsceId
 	 *            L'id dell'esame
 	 */
-	public Exam(String name, String cfu, String grade, Date date,
+	public Exam(String name, int cfu, String grade, Date date,
 			String academicYear, String adsceId) {
 		this.name = name;
 		this.cfu = cfu;
-		this.grade = grade;
+		this.vote = grade;
 		this.date = date;
-		this.academicYear = academicYear;
-		this.adsceId = adsceId;
+		this.year = academicYear;
+		this.id = adsceId;
 	}
 
 	/**
@@ -92,9 +92,9 @@ public class Exam {
 	/**
 	 * Restituisce il numero dei cfu dell'esame
 	 * 
-	 * @return il numero dei cfu come stringa
+	 * @return il numero dei cfu
 	 */
-	public String getCfu() {
+	public int getCfu() {
 		return cfu;
 	}
 
@@ -102,9 +102,9 @@ public class Exam {
 	 * Imposta il numero del peso in cfu dell'esame
 	 * 
 	 * @param cfu
-	 *            I cfu dell'esame come stringa
+	 *            I cfu dell'esame
 	 */
-	public void setCfu(String cfu) {
+	public void setCfu(int cfu) {
 		this.cfu = cfu;
 	}
 
@@ -114,7 +114,7 @@ public class Exam {
 	 * @return Voto conseguito come stringa
 	 */
 	public String getGrade() {
-		return grade;
+		return vote;
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class Exam {
 	 *            voto conseguito all' esame
 	 */
 	public void setGrade(String grade) {
-		this.grade = grade;
+		this.vote = grade;
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class Exam {
 	 * @return Anno
 	 */
 	public String getAcademicYear() {
-		return academicYear;
+		return year;
 	}
 
 	/**
@@ -162,7 +162,7 @@ public class Exam {
 	 *            l'anno accademico da settare
 	 */
 	public void setAcademicYear(String academicYear) {
-		this.academicYear = academicYear;
+		this.year = academicYear;
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class Exam {
 	 * @return the adsceId L'id dell'esame
 	 */
 	public String getAdsceId() {
-		return adsceId;
+		return id;
 	}
 
 	/**
@@ -181,7 +181,7 @@ public class Exam {
 	 *            L'id dell'esame
 	 */
 	public void setAdsceId(String adsceId) {
-		this.adsceId = adsceId;
+		this.id = adsceId;
 	}
 
 	/*
@@ -193,7 +193,7 @@ public class Exam {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((adsceId == null) ? 0 : adsceId.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -211,10 +211,10 @@ public class Exam {
 		if (getClass() != obj.getClass())
 			return false;
 		Exam other = (Exam) obj;
-		if (adsceId == null) {
-			if (other.adsceId != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!adsceId.equals(other.adsceId))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
@@ -226,9 +226,9 @@ public class Exam {
 	 */
 	@Override
 	public String toString() {
-		return "Exam [name=" + name + ", cfu=" + cfu + ", grade=" + grade
-				+ ", date=" + date + ", academicYear=" + academicYear
-				+ ", adsceId=" + adsceId + "]";
+		return "Exam [name=" + name + ", cfu=" + cfu + ", grade=" + vote
+				+ ", date=" + date + ", academicYear=" + year + ", adsceId="
+				+ id + "]";
 	}
 
 }

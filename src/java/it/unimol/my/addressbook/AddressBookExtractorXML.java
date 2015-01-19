@@ -1,9 +1,7 @@
 package it.unimol.my.addressbook;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,12 +33,12 @@ public class AddressBookExtractorXML {
 
             for (Element voce : contacts) {
                 Contact contact = new Contact();
-                contact.setFullName(voce.select("fullname").text());
-                contact.setRole(voce.select("role").text());
-                contact.setInternalTelephone(voce.select("internalTelephone").text());
-                contact.setExternalTelephone(voce.select("externalTelephone").text());
-                contact.setBuilding(voce.select("building").text());
-                contact.setEmail(voce.select("email").text());
+                contact.setFullName(voce.attr("fullname"));
+                contact.setRole(voce.attr("role"));
+                contact.setBuilding(voce.attr("building"));
+                contact.setInternalTelephone(voce.attr("internalTelephone"));
+                contact.setExternalTelephone(voce.attr("externalTelephone"));
+                contact.setEmail(voce.attr("email"));
                 contactList.add(contact);
             }
 

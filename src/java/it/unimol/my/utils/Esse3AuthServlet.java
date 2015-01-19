@@ -1,6 +1,7 @@
 package it.unimol.my.utils;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +34,7 @@ public class Esse3AuthServlet extends WebServiceServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// ottengo un writer dalla response
-		writer = resp.getWriter();
+		this.setHeaders(resp);
 		if (tokenIsValid(req, resp)) {
 			if (credentialsAreOk(req, resp)) {
 				this.serve(req, resp);
@@ -59,6 +59,8 @@ public class Esse3AuthServlet extends WebServiceServlet {
 	 */
 	protected boolean credentialsAreOk(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
+		PrintWriter writer = resp.getWriter();
+		
 		boolean credentialsAreOk = false;
 		// recupero le credenziali dalla richiesta
 		username = req.getParameter("username");

@@ -38,10 +38,7 @@ public class WebServiceServlet extends HttpServlet {
 	 * Istanza del gestore dei token. Serve a verificare la validità del token.
 	 */
 	protected TokenManager tokenManager = TokenManager.getInstance();
-	/**
-	 * Istanza del <code>PrintWriter</code>
-	 */
-	protected PrintWriter writer;
+
 	/**
 	 * Il token utilizzato per il dialogo coi client
 	 */
@@ -57,6 +54,8 @@ public class WebServiceServlet extends HttpServlet {
 	@Override
 	protected final void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		PrintWriter writer = resp.getWriter();
+		this.setHeaders(resp);
 		String noGetRequestMsg = config.getMessage("noGetRequest");
 		resp.setStatus(HttpStatus.SC_METHOD_NOT_ALLOWED);
 		writer = resp.getWriter();
@@ -75,8 +74,8 @@ public class WebServiceServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		this.setHeaders(resp);
 		// ottengo un writer dalla response
-		writer = resp.getWriter();
 		if (tokenIsValid(req, resp)) {
 			this.serve(req, resp);
 		}
@@ -97,6 +96,8 @@ public class WebServiceServlet extends HttpServlet {
 	 */
 	protected boolean tokenIsValid(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
+		PrintWriter writer = resp.getWriter();
+		
 		boolean tokenIsValid = false;
 		// Ottengo il token
 		token = req.getParameter("token");
@@ -122,9 +123,9 @@ public class WebServiceServlet extends HttpServlet {
 
 	protected void setHeaders(HttpServletResponse response) {
 		// imposto il character encoding
-		response.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("utf8");
 		// setto il tipo del contenuto
-		response.setContentType("application/json");
+		response.setContentType("application/json; charset=UTF-8");
 	}
 
 }

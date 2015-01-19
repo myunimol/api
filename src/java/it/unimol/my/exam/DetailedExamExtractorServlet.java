@@ -4,11 +4,14 @@ import it.unimol.my.config.ConfigurationManager;
 import it.unimol.my.utils.Esse3AuthServlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.http.HttpStatus;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 
@@ -34,8 +37,16 @@ public class DetailedExamExtractorServlet extends Esse3AuthServlet {
 	@Override
 	protected void serve(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
+		PrintWriter writer = response.getWriter();
+		
 		// recupero examId dalla richiesta
-		String examId = request.getParameter("examId");
+		String examId = request.getParameter("id");
+		if (examId == null) {
+			response.setStatus(HttpStatus.SC_BAD_REQUEST);
+			String msg = config.getMessage("badParameters");
+			writer.write("{\"result\":\"failure\",\"msg\":\"" + msg + "\"}");
+			return;
+		}
 		// chiedo l'url al gestore configurazioni
 		String targetUrl = ConfigurationManager.getInstance()
 				.getExamDetailUrl();
@@ -53,8 +64,6 @@ public class DetailedExamExtractorServlet extends Esse3AuthServlet {
 		} catch (UnirestException ex) {
 			ex.printStackTrace();
 			writer.println("{\"result\":\"failure\",\"msg\":\"unirest exception\"}");
-		} finally {
-			writer.close();
 		}
 	}
 }

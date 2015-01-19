@@ -3,6 +3,7 @@ package it.unimol.my.exam;
 import it.unimol.my.utils.Esse3AuthServlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +35,8 @@ public class RecordBookServlet extends Esse3AuthServlet {
 	@Override
 	protected void serve(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+		PrintWriter writer = resp.getWriter();
+		
 		String targetUrl = config.getRecordBookUrl();
 		// recupero l'estrattore
 		RecordBookExtractorInterface recordBookExtractor = RecordBookExtractorManager
@@ -58,8 +61,6 @@ public class RecordBookServlet extends Esse3AuthServlet {
 			writer.print("{\"result\":\"failure\", \"msg\":\""
 					+ unirestExceptionMsg + "\"}");
 			return;
-		} finally {
-			writer.close();
 		}
 	}
 }

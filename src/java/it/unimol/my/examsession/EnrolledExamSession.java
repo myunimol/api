@@ -23,9 +23,9 @@ public class EnrolledExamSession extends ExamSession {
 	 * @param enrolled
 	 */
 	public EnrolledExamSession(String name, Date date, String room,
-			String professor, String notes, String cfu,
+			String professor, String notes, String id, String cfu,
 			String enrollmentPosition, String enrolled) {
-		super(name, date, room, professor, notes, cfu);
+		super(name, date, room, professor, notes, id, cfu);
 		this.enrollmentPosition = enrollmentPosition;
 		this.enrolled = enrolled;
 	}

@@ -17,7 +17,8 @@ public class ExamSessionInfo {
 	private String aaOrdId;
 	private String iscrAperta;
 	private String tipoAttivita;
-	private String tipoAppCod;
+
+	private static final String DELIMITER = "#";
 
 	public ExamSessionInfo() {
 	}
@@ -25,7 +26,7 @@ public class ExamSessionInfo {
 	public ExamSessionInfo(String pAction, String pAppId, String pCdsEsaId,
 			String pAttDidEsaId, String pAdsceId, String pAaOffId,
 			String pCdsId, String pPdsId, String pAaOrdId, String pIscrAperta,
-			String pTipoAttivita, String pTipoAppCod) {
+			String pTipoAttivita) {
 		this.action = pAction;
 		this.appId = pAppId;
 		this.cdsEsaId = pCdsEsaId;
@@ -37,8 +38,31 @@ public class ExamSessionInfo {
 		this.aaOrdId = pAaOrdId;
 		this.iscrAperta = pIscrAperta;
 		this.tipoAttivita = pTipoAttivita;
-		this.tipoAppCod = pTipoAppCod;
 	}
+
+	// public String buildExamSessionId() {
+	// StringBuffer id = new StringBuffer();
+	// id.append(this.cdsEsaId);
+	// id.append(DELIMITER);
+	// id.append(this.attDidEsaId);
+	// id.append(DELIMITER);
+	// id.append(this.adsceId);
+	// id.append(DELIMITER);
+	// id.append(aaOffId);
+	// id.append(DELIMITER);
+	// id.append(cdsId);
+	// id.append(DELIMITER);
+	// id.append(this.pdsId);
+	// id.append(DELIMITER);
+	// id.append(this.aaOrdId);
+	// id.append(DELIMITER);
+	// id.append(this.iscrAperta);
+	// id.append(DELIMITER);
+	// id.append(this.tipoAttivita);
+	// id.append(DELIMITER);
+	// id.append(this.tipoAppCod);
+	// return id.toString();
+	// }
 
 	public String getAction() {
 		return action;
@@ -128,12 +152,19 @@ public class ExamSessionInfo {
 		this.tipoAttivita = tipoAttivita;
 	}
 
-	public String getTipoAppCod() {
-		return tipoAppCod;
-	}
-
-	public void setTipoAppCod(String tipoAppCod) {
-		this.tipoAppCod = tipoAppCod;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ExamSessionInfo [action=" + action + ", appId=" + appId
+				+ ", cdsEsaId=" + cdsEsaId + ", attDidEsaId=" + attDidEsaId
+				+ ", adsceId=" + adsceId + ", aaOffId=" + aaOffId + ", cdsId="
+				+ cdsId + ", pdsId=" + pdsId + ", aaOrdId=" + aaOrdId
+				+ ", iscrAperta=" + iscrAperta + ", tipoAttivita="
+				+ tipoAttivita + "]";
 	}
 
 	/*
@@ -158,8 +189,6 @@ public class ExamSessionInfo {
 		result = prime * result
 				+ ((iscrAperta == null) ? 0 : iscrAperta.hashCode());
 		result = prime * result + ((pdsId == null) ? 0 : pdsId.hashCode());
-		result = prime * result
-				+ ((tipoAppCod == null) ? 0 : tipoAppCod.hashCode());
 		result = prime * result
 				+ ((tipoAttivita == null) ? 0 : tipoAttivita.hashCode());
 		return result;
@@ -229,32 +258,12 @@ public class ExamSessionInfo {
 				return false;
 		} else if (!pdsId.equals(other.pdsId))
 			return false;
-		if (tipoAppCod == null) {
-			if (other.tipoAppCod != null)
-				return false;
-		} else if (!tipoAppCod.equals(other.tipoAppCod))
-			return false;
 		if (tipoAttivita == null) {
 			if (other.tipoAttivita != null)
 				return false;
 		} else if (!tipoAttivita.equals(other.tipoAttivita))
 			return false;
 		return true;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "ExamSessionInfo [action=" + action + ", appId=" + appId
-				+ ", cdsEsaId=" + cdsEsaId + ", attDidEsaId=" + attDidEsaId
-				+ ", adsceId=" + adsceId + ", aaOffId=" + aaOffId + ", cdsId="
-				+ cdsId + ", pdsId=" + pdsId + ", aaOrdId=" + aaOrdId
-				+ ", iscrAperta=" + iscrAperta + ", tipoAttivita="
-				+ tipoAttivita + ", tipoAppCod=" + tipoAppCod + "]";
 	}
 
 }
