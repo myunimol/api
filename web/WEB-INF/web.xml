@@ -14,7 +14,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>APIVersion</servlet-name>
-        <url-pattern>/api-version</url-pattern>
+        <url-pattern>/getVersion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
