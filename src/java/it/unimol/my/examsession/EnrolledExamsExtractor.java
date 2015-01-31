@@ -128,7 +128,7 @@ public class EnrolledExamsExtractor implements EnrolledExamsExtractorInterface {
 				id+=input.val()+"#";
 			}
 			// remove last '#'
-			id = id.substring(0, id.length()-1);
+			//id = id.substring(0, id.length()-1);
 			EnrolledExamSession enrolledExamSession = new EnrolledExamSession(
 					name, date, room, professorList, notes, id, "0",
 					enrollmentPosition, enrolled);
