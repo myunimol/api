@@ -40,9 +40,7 @@ public class UnimolLoginParser implements LoginParser {
                 return null; // login non riuscito
 
             } else {
-                System.out.println("Login effettuato correttamente");
                 if(haveManyCarriers(doc) == false){
-                    System.out.println("L'utente ha una sola carriera");
                     UserInformation uInfo = this.parsingUserInfo(doc);
 
                     // Prende la matricola da un'altra pagina (non login)
@@ -51,7 +49,6 @@ public class UnimolLoginParser implements LoginParser {
                     return uInfo;
                 } else {
                     String curretnCareer = getCurrentCareer(doc);
-                    System.out.println("L'utente ha più di una carriera");
                     resPage = requester.get(new URL(curretnCareer),
                             username, password);
                     doc = Jsoup.parse(resPage);
@@ -188,7 +185,6 @@ public class UnimolLoginParser implements LoginParser {
         Element elementPageTitle = doc.select("div[class=titolopagina]").first();
         if (elementPageTitle != null) {
             String pageTitle = elementPageTitle.text();
-            System.out.println("Il titolo della pagina non è nullo");
             if (pageTitle != null) {
                 if (pageTitle.equals("Scegli carriera")) {
                     return true;
@@ -196,11 +192,9 @@ public class UnimolLoginParser implements LoginParser {
                     return false;
                 }
             } else {
-                System.out.println("Elemento trovato ma titolo pagina nullo");
                 return false;
             }
         } else {
-            System.out.println("Elemento della pagina nullo");
             return false;
         }
     }
