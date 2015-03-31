@@ -23,7 +23,7 @@ import it.unimol.my.utils.StringUtils;
  * @author Ivan Di Rienzo
  */
 public class UnimolLoginParser implements LoginParser {
-
+    
     @Override
     public UserInformation getLoginInformation(String username, String password) throws UnirestException {
 
@@ -40,13 +40,23 @@ public class UnimolLoginParser implements LoginParser {
                 return null; // login non riuscito
 
             } else {
+                if(haveManyCarriers(doc) == false){
+                    UserInformation uInfo = this.parsingUserInfo(doc);
 
-                UserInformation uInfo = this.parsingUserInfo(doc);
+                    // Prende la matricola da un'altra pagina (non login)
+                    uInfo.setStudentID(this.getStudentID(username, password));
 
-                // Prende la matricola da un'altra pagina (non login)
-                uInfo.setStudentID(this.getStudentID(username, password));
-
-                return uInfo;
+                    return uInfo;
+                } else {
+                    String curretnCareer = getCurrentCareer(doc);
+                    resPage = requester.get(new URL(curretnCareer),
+                            username, password);
+                    doc = Jsoup.parse(resPage);
+                    UserInformation uInfo = this.parsingUserInfo(doc);
+                    // Prende la matricola da un'altra pagina (non login)
+                    uInfo.setStudentID(this.getStudentID(username, password));
+                    return uInfo;
+                }
             }
 
         } catch (MalformedURLException ex) {
@@ -169,7 +179,39 @@ public class UnimolLoginParser implements LoginParser {
 
         return true;
     }
-
+    
+    
+    private boolean haveManyCarriers(Document doc) {
+        Element elementPageTitle = doc.select("div[class=titolopagina]").first();
+        if (elementPageTitle != null) {
+            String pageTitle = elementPageTitle.text();
+            if (pageTitle != null) {
+                if (pageTitle.equals("Scegli carriera")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+    private String getCurrentCareer(Document doc){
+        String result = "";
+        Element detailTable = doc.select("table[class=detail_table]").first();
+        if(detailTable != null){
+            Elements tdDetailTable = detailTable.select("td");
+            if(tdDetailTable != null){
+                String urlCareer = tdDetailTable.get(0).select("a").attr("abs:href");
+                result = urlCareer;
+            }
+        }
+        return result;
+    }
+    
     /**
      * Recupera la matricola da un'altra pagina! dato che non e' presente nella
      * home di esse3
