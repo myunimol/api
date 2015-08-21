@@ -101,7 +101,7 @@ public class RecordBookExtractor implements RecordBookExtractorInterface {
 				cfu = Integer.parseInt(cfuString);
 			}
 			String grade = "/";
-			Date date = new Date();
+			Date date = null;
 			Element gradeDateCell = cells.get(9);
 			if (gradeDateCell != null) {
 				String gradeDate = StringUtils.realTrim(gradeDateCell.text());

@@ -57,18 +57,25 @@ public class DetailsExtractor implements ExtractorInterface {
 			name.replaceFirst("\\[[0-9]*\\]", "");
 			name.trim();
 		}
+		
 		Elements tdsTplMaster = doc.select("td[class=tplMaster]");
+		
+		boolean passed = false;
 		String year = "/";
 		String dateString = "";
 		String grade = "/";
 		if (tdsTplMaster != null && tdsTplMaster.size() >= 5) {
+			passed = tdsTplMaster.get(1).text().toLowerCase().contains("superat");
 			year = StringUtils.realTrim(tdsTplMaster.get(0).text());
 			dateString = StringUtils.realTrim(tdsTplMaster.get(2).text());
-			grade = StringUtils.realTrim(tdsTplMaster.get(3).text());
+			if (passed)
+				grade = StringUtils.realTrim(tdsTplMaster.get(3).text());
+			else
+				grade = null;
 		}
-		Date date = new Date();
+		Date date = null;
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		if (!dateString.equals("")) {
+		if (passed && !dateString.equals("")) {
 			try {
 				date = sdf.parse(dateString);
 			} catch (ParseException ex) {
