@@ -1,17 +1,13 @@
-MyUnimol Web Services
+MyUnimol API
 ====================
 
-Questa repository rigurada [questo](http://teammolise.rocks/MyUnimol) progetto.
+[Leggi la specifica delle API](https://github.com/cbranca/myunimol-webservices/wiki/APIs)
 
-Scopri qualcosa di più visitando la sezione wiki. Troverai a [questo](https://github.com/cbranca/myunimol-webservices/wiki/APIs) indirizzo una baseline delle API implementate in questo progetto.
+Chi utilizza queste API? 
+
+* [MyUnimol Webapp](https://github.com/myunimol/webapp)
 
 
-Contatti
----------------------
-carlo@teammolise.rocks
+-------
 
-giovanni@teammolise.rocks
-
-matteo@teammolise.rocks
-
-simone@teammolise.rocks
+Per segnalare problemi o suggerimenti utilizzare le issues.
