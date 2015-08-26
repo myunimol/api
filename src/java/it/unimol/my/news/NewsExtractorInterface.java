@@ -15,6 +15,14 @@ public interface NewsExtractorInterface {
      * @param url Url della pagina da estrarre
      * @return lista di news
      */
+    public List<News> getNewsList();
+    
+    /**
+     * Metodo che estrae le news
+     *
+     * @param url Url della pagina da estrarre
+     * @return lista di news
+     */
     public List<News> getNewsList(String url);
 
 }

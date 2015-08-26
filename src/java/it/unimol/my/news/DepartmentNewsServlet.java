@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "DepartmentNewsServlet", urlPatterns = {"/getDepartmentNews"})
 public class DepartmentNewsServlet extends WebServiceServlet {
+	private static NewsExtractorInterface newsExtractor;
 
 	@Override
 	protected void serve(HttpServletRequest req, HttpServletResponse resp)
@@ -24,8 +25,9 @@ public class DepartmentNewsServlet extends WebServiceServlet {
 		PrintWriter writer = resp.getWriter();
 
 		// recupero l'estrattore
-		NewsExtractorInterface newsExtractor = NewsExtractorManager
-				.getNewsExtractor();
+		if (newsExtractor == null)
+			newsExtractor = new GenericNewsExtractor();
+		
 		// estraggo il libretto degli esami
 		try {
 			// recuperiamo il link alla pagina news desiderata

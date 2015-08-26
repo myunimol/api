@@ -23,28 +23,14 @@ public class NewsBoardServlet extends WebServiceServlet {
 			throws IOException {
 		PrintWriter writer = resp.getWriter();
 
-		// recupero l'estrattore
-		NewsExtractorInterface newsExtractor = NewsExtractorManager
-				.getNewsExtractor();
-		// estraggo il libretto degli esami
+				
 		try {
 			// recuperiamo il link alla pagina news desiderata
 			String newsPage = req.getParameter("course");
-			String targetUrl;
-			switch (newsPage) {
-			case "informatica":
-				targetUrl = config.getInformaticaNewsUrl();
-				break;
-			case "scienzeBiologiche":
-				targetUrl = config.getScienzeBiologicheNewsUrl();
-				break;
-			default:
-				String badParams = config.getMessage("badParameters");
-				writer.println("{\"result\":\"failure\",\"msg\":\"" + badParams
-						+ "\"}");
-				return;
-			}
-			List<News> newsList = newsExtractor.getNewsList(targetUrl);
+			
+			NewsExtractorInterface newsExtractor = NewsBoardBridge.getInstance().getNewsExtractor(newsPage);
+			
+			List<News> newsList = newsExtractor.getNewsList();
 			if (newsList == null) {
 				String unknownErrorMsg = config.getMessage("unknownError");
 				writer.println("{\"result\":\"failure\",\"msg\":\""
@@ -58,6 +44,7 @@ public class NewsBoardServlet extends WebServiceServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			writer.println("{\"result\":\"failure\", \"message\":\"" + e.getMessage() + "\"}");
 		}
 	}
 

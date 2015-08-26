@@ -30,7 +30,27 @@
                 },
                 "course": {
                     "informatica": "http://dipbioter.unimol.it/blog/categorie/bacheca-informatica/",
-                    "scienzeBiologiche": "http://dipbioter.unimol.it/blog/categorie/bacheca-scienze-biologiche/"
+                    "scienzeBiologiche": "http://dipbioter.unimol.it/blog/categorie/bacheca-scienze-biologiche/",
+                    "medicina1": "http://dipmedicina.unimol.it/didattica/corsi-di-laurea-magistrale-a-ciclo-unico/medicina-e-chirurgia/avvisi-variazioni-lezioni/",
+                    "medicina2": "http://dipmedicina.unimol.it/didattica/corsi-di-laurea-magistrale-a-ciclo-unico/medicina-e-chirurgia/avvisi-variazioni/",
+                    "economia": "http://dipeconomia.unimol.it/blog/categorie/bacheca-economia-aziendale/",
+                    "scienzePolitiche": "http://dipeconomia.unimol.it/blog/categorie/bacheca-scienze-della-politica-e-dellamministrazione/",
+                    "scienzeServizioSociale": "http://dipeconomia.unimol.it/blog/categorie/bacheca-scienze-del-servizio-sociale/",
+                    "scienzePoliticheIstituzioniEuropee": "http://dipeconomia.unimol.it/blog/categorie/bacheca-scienze-politiche-e-istituzioni-europee/",
+                    "servizioSocialePoliticheSociali": "http://dipeconomia.unimol.it/blog/categorie/bacheca-servizio-sociale-e-politiche-sociali/",
+                    "giurisprudenza": "http://dipgiuridico.unimol.it/blog/categorie/giuri/",
+                    "scienzeTecnologieAlimentari": "http://dipagricoltura.unimol.it/blog/categorie/scienze-tecn-alim/",
+                    "agraria": "http://dipagricoltura.unimol.it/blog/categorie/scienze-e-tecnologie-agrarie/",
+                    "tecnologieForestaliAmbientali": "http://dipagricoltura.unimol.it/blog/categorie/bacheca-tecnologie-e-forestali-ed-ambientali/",
+                    "lettere": "http://dipscienzeumanistiche.unimol.it/blog/categorie/bacheca-lettere-beni-culturali/",
+                    "comunicazione": "http://dipscienzeumanistiche.unimol.it/blog/categorie/bacheca-scienze-della-comunicazione/",
+                    "scienzeFormazionePrimaria": "http://dipscienzeumanistiche.unimol.it/blog/categorie/scienze-formazione-primaria/",
+                    "ingEdile": "http://dipbioter.unimol.it/blog/categorie/bacheca-ing-edile/",
+                    "ingCivile": "http://dipbioter.unimol.it/blog/categorie/bacheca-ing-civile/",
+                    "scienzeTuristiche": "http://dipbioter.unimol.it/blog/categorie/sc_turistiche/",
+                    "scienzeBiologicheMaster": "http://dipbioter.unimol.it/blog/categorie/bacheca-biologia-lm/",
+                    "ingCivileMaster": "http://dipbioter.unimol.it/blog/categorie/bacheca-ing-civile/",
+                    "turismoBeniCulturali": "http://dipbioter.unimol.it/blog/categorie/bacheca-beni-culturali-turismo/"
                 }
             },
             "feed": {

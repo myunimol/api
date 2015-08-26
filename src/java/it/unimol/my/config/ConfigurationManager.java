@@ -165,14 +165,94 @@ public class ConfigurationManager {
     public String getUmanisticheNewsUrl() {
         return this.getDepartment().get("scienzeUmanisticheSocialiFormazione").getAsString();
     }
+    
+    public String getMedicinaNewsBoardUrl1() {
+    	return this.getCourseLinks().get("medicina1").getAsString();
+    }
+    
+    public String getMedicinaNewsBoardUrl2() {
+    	return this.getCourseLinks().get("medicina2").getAsString();
+    }
 
-    public String getInformaticaNewsUrl() {
+    public String getInformaticaNewsBoardUrl() {
         return this.getCourseLinks().get("informatica").getAsString();
     }
 
-    public String getScienzeBiologicheNewsUrl() {
+    public String getScienzeBiologicheNewsBoardUrl() {
         return this.getCourseLinks().get("scienzeBiologiche").getAsString();
     }
+    
+    public String getEconomiaNewsBoardUrl() {
+    	return this.getCourseLinks().get("economia").getAsString();
+	}
+    
+    public String getScienzePoliticheNewsBoardUrl() {
+    	return this.getCourseLinks().get("scienzePolitiche").getAsString();
+	}
+    
+    public String getScienzeServizioSocialeNewsBoardUrl() {
+    	return this.getCourseLinks().get("scienzeServizioSociale").getAsString();
+	}
+    
+    public String getScienzePoliticheIstituzioniEuropeeNewsBoardUrl() {
+    	return this.getCourseLinks().get("scienzePoliticheIstituzioniEuropee").getAsString();
+	}
+    
+    public String getServizioSocialePoliticheSocialiNewsBoardUrl() {
+    	return this.getCourseLinks().get("servizioSocialePoliticheSociali").getAsString();
+	}
+    
+    public String getGiurisprudenzaNewsBoardUrl() {
+    	return this.getCourseLinks().get("giurisprudenza").getAsString();
+	}
+    
+    public String getScienzeTecnologieAlimentariNewsBoardUrl() {
+    	return this.getCourseLinks().get("scienzeTecnologieAlimentari").getAsString();
+	}
+    
+    public String getAgrariaNewsBoardUrl() {
+    	return this.getCourseLinks().get("agraria").getAsString();
+	}
+    
+    public String getTecnologieForestaliAmbientaliNewsBoardUrl() {
+    	return this.getCourseLinks().get("tecnologieForestaliAmbientali").getAsString();
+	}
+    
+    public String getLettereNewsBoardUrl() {
+    	return this.getCourseLinks().get("lettere").getAsString();
+	}
+    
+    public String getMerendeNewsBoardUrl() {
+    	return this.getCourseLinks().get("comunicazione").getAsString();
+	}
+    
+    public String getScienzeFormazionePrimariaNewsBoardUrl() {
+    	return this.getCourseLinks().get("scienzeFormazionePrimaria").getAsString();
+	}
+    
+    public String getIngegneriaEdileNewsBoardUrl() {
+    	return this.getCourseLinks().get("ingEdile").getAsString();
+	}
+    
+    public String getIngegneriaCivileNewsBoardUrl() {
+    	return this.getCourseLinks().get("ingCivile").getAsString();
+	}
+    
+    public String getIngegneriaCivileMasterNewsBoardUrl() {
+    	return this.getCourseLinks().get("ingCivileMaster").getAsString();
+	}
+    
+    public String getScienzeTuristicheNewsBoardUrl() {
+    	return this.getCourseLinks().get("scienzeTuristiche").getAsString();
+	}
+    
+    public String getScienzeBiologicheMasterNewsBoardUrl() {
+    	return this.getCourseLinks().get("scienzeBiologicheMaster").getAsString();
+	}
+    
+    public String getTurismoBeniCulturaliNewsBoardUrl() {
+    	return this.getCourseLinks().get("turismoBeniCulturali").getAsString();
+	}
     
     public JsonObject getFeedLinks() {
         return this.getUniversity().getAsJsonObject("links")
@@ -191,4 +271,5 @@ public class ConfigurationManager {
         return this.getDepartmentFeedLinks().get("bioscienzeTerritorio")
                 .getAsString();
     }
+
 }

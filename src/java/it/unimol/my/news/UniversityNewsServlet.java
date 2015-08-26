@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "UniversityNewsServlet", urlPatterns = { "/getUniversityNews" })
 public class UniversityNewsServlet extends WebServiceServlet {
+	private static NewsExtractorInterface newsExtractor;
 
 	/**
 	 * Lo uid seriale della versione.
@@ -29,8 +30,9 @@ public class UniversityNewsServlet extends WebServiceServlet {
 		PrintWriter writer = resp.getWriter();
 
 		// recupero l'estrattore
-		NewsExtractorInterface newsExtractor = NewsExtractorManager
-				.getNewsExtractor();
+		if (newsExtractor == null)
+			newsExtractor = new GenericNewsExtractor();
+		
 		// estraggo il libretto degli esami
 		try {
 			// recuperiamo il link alla pagina news desiderata

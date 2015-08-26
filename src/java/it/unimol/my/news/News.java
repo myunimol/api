@@ -1,11 +1,17 @@
 package it.unimol.my.news;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
+import java.text.ParseException;
+
+
 /**
  * Questo bean rappresenta la singola news
  *
  * @author Carlo Branca
  */
-public class News {
+public class News implements Comparable<News> {
 
 	private String date;
 	private String title;
@@ -103,6 +109,31 @@ public class News {
 		} else if (!title.equals(other.title))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(News arg0) {
+		String myDate = this.date;
+		String otDate = arg0.date;
+		
+		if (myDate.equals("")) {
+			if (otDate.equals("")) {
+				return this.text.compareTo(arg0.text);
+			} else
+				return -1;
+		} else {
+			if (otDate.equals(""))
+				return 1;
+		}
+		try {
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			Date myRealDate = formatter.parse(myDate);
+			Date otRealDate = formatter.parse(otDate);
+			
+			return myRealDate.compareTo(otRealDate);
+		} catch (ParseException e) {
+			return 0;
+		}
 	}
 
 }
