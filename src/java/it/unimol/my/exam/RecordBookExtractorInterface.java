@@ -1,5 +1,7 @@
 package it.unimol.my.exam;
 
+import it.unimol.my.exam.exceptions.NoSuchUserException;
+
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 /**
@@ -19,6 +21,6 @@ public interface RecordBookExtractorInterface {
 	 * @return RecordBook Il libretto degli esami
 	 */
 	public RecordBook getExamsList(String targetUrl, String username,
-			String password) throws UnirestException;
+			String password) throws UnirestException, NoSuchUserException;
 
 }

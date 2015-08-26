@@ -1,5 +1,6 @@
 package it.unimol.my.exam;
 
+import it.unimol.my.exam.exceptions.NoSuchUserException;
 import it.unimol.my.utils.Esse3AuthServlet;
 
 import java.io.IOException;
@@ -60,6 +61,12 @@ public class RecordBookServlet extends Esse3AuthServlet {
 			String unirestExceptionMsg = config.getMessage("unirestException");
 			writer.print("{\"result\":\"failure\", \"msg\":\""
 					+ unirestExceptionMsg + "\"}");
+			return;
+		} catch (NoSuchUserException e) {
+			e.printStackTrace();
+			String badLoginExceptionMsg = config.getMessage("badLogin");
+			writer.print("{\"result\":\"failure\", \"msg\":\""
+					+ badLoginExceptionMsg + "\"}");
 			return;
 		}
 	}

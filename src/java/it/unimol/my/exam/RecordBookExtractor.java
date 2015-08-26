@@ -1,6 +1,6 @@
 package it.unimol.my.exam;
 
-import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.exam.exceptions.NoSuchUserException;
 import it.unimol.my.requesterhtml.HTMLRequesterInterface;
 import it.unimol.my.requesterhtml.HTMLRequesterManager;
 import it.unimol.my.utils.StringUtils;
@@ -32,11 +32,14 @@ public class RecordBookExtractor implements RecordBookExtractorInterface {
 
 	@Override
 	public RecordBook getExamsList(String targetUrl, String username,
-			String password) throws UnirestException {
+			String password) throws UnirestException, NoSuchUserException {
 		RecordBook recordBook = null;
 		HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
 		try {
 			String html = requester.get(new URL(targetUrl), username, password);
+			if(html.contains("<meta http-equiv=\"refresh\" content=\"0;")) {
+				throw new NoSuchUserException(username);
+			}
 			recordBook = this.extractRecordBook(html);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
