@@ -29,8 +29,9 @@ public class MedicinaNewsExtractor implements NewsExtractorInterface {
 		String urlLectures = ConfigurationManager.getInstance().getMedicinaNewsBoardUrl1();
 		String urlExams = ConfigurationManager.getInstance().getMedicinaNewsBoardUrl2();
 		
-		List<News> newsList1 = new ArrayList<News>();
-		List<News> newsList2 = new ArrayList<News>();
+		List<News> newsListLectures = new ArrayList<News>();
+		List<News> newsListExams = new ArrayList<News>();
+		List<News> newsListExamsResults = new ArrayList<News>();
 
 		Document doc;
 		try {
@@ -54,7 +55,7 @@ public class MedicinaNewsExtractor implements NewsExtractorInterface {
 				String titleString = "Avviso lezioni";
 				
 				News singleNews = new News(newsDate, titleString, newsBody, urlLectures);
-				newsList1.add(singleNews);
+				newsListLectures.add(singleNews);
 			}
 
 		} catch (IOException e) {
@@ -68,33 +69,43 @@ public class MedicinaNewsExtractor implements NewsExtractorInterface {
 			Elements news = html.select("p");
 			
 			for (Element postDiv : news) {
+				List<News> addToMe = null;
+				
 				String newsBody = "";
 				String newsDate = "";
 				Elements links = postDiv.select("a");
 				String link = urlExams;
+				
+				String titleString;
+				
 				if (!links.isEmpty()) {
 					link = links.first().attr("href");
 					newsBody = links.first().text();
+					titleString = "Avviso risultati esami";
+					
+					addToMe = newsListExamsResults;
 				} else {
+					titleString = "Avviso esami";
 					newsBody = postDiv.text();
+					
+					addToMe = newsListExams;
 				}
 				
-				String titleString = "Avviso esami";
-				
 				News singleNews = new News(newsDate, titleString, newsBody, link);
-				newsList2.add(singleNews);
+				addToMe.add(singleNews);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		
-		Collections.reverse(newsList1);
-		Collections.reverse(newsList2);
+		Collections.reverse(newsListLectures);
+		Collections.reverse(newsListExams);
 		
 		List<News> result = new ArrayList<News>();
-		result.addAll(newsList1.subList(0, (newsList1.size() >= 5 ? 4 : newsList1.size())));
-		result.addAll(newsList2.subList(0, (newsList2.size() >= 5 ? 4 : newsList2.size())));
+		result.addAll(newsListLectures.subList(0, (newsListLectures.size() >= 5 ? 4 : newsListLectures.size())));
+		result.addAll(newsListExams.subList(0, (newsListExams.size() >= 5 ? 4 : newsListExams.size())));
+		result.addAll(newsListExamsResults.subList(0, (newsListExamsResults.size() >= 5 ? 4 : newsListExamsResults.size())));
 		
 
 		return result;
