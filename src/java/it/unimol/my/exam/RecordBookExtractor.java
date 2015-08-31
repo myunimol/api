@@ -56,7 +56,7 @@ public class RecordBookExtractor implements RecordBookExtractorInterface {
 	 * @return L'oggetto RecordBook contenente tutte le informazioni relative al
 	 *         libretto vituale.
 	 */
-	private RecordBook extractRecordBook(String targetURL) {
+	private RecordBook extractRecordBook(String targetURL) throws UnirestException {
 		List<Exam> exams = new ArrayList<Exam>();
 		Document doc = Jsoup.parse(targetURL);
 		Elements tplMasterCells = doc.select("td[class=tplMaster]");
@@ -75,7 +75,9 @@ public class RecordBookExtractor implements RecordBookExtractorInterface {
 		double average = Double.parseDouble(averageString);
 		double weightedAverage = Double.parseDouble(weightedAverageString);
 		Elements detailTableRows = doc.select("table[class=detail_table] tr");
-		if (detailTableRows == null || detailTableRows.size() == 0) {
+		if (detailTableRows == null)
+			throw new UnirestException("Problems with Esse3: Not responding!");
+		else if (detailTableRows.size() == 0) {
 			return new RecordBook(exams, average, weightedAverage);
 		}
 		for (Element row : detailTableRows) {

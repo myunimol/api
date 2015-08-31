@@ -46,7 +46,7 @@ public class DetailsExtractor implements ExtractorInterface {
 			html = requester.get(target, parameters, username, password);
 		} catch (MalformedURLException ex) {
 			ex.printStackTrace();
-			return null;
+			throw new UnirestException(ex);
 		}
 		Document doc = Jsoup.parse(html);
 		Elements tds = doc.select("td[class=tplTitolo]");
@@ -64,7 +64,10 @@ public class DetailsExtractor implements ExtractorInterface {
 		String year = "/";
 		String dateString = "";
 		String grade = "/";
-		if (tdsTplMaster != null && tdsTplMaster.size() >= 5) {
+		if (tdsTplMaster == null)
+			throw new UnirestException("Problems with Esse3: Not responding!");
+		
+		if (tdsTplMaster.size() >= 5) {
 			passed = tdsTplMaster.get(1).text().toLowerCase().contains("superat");
 			year = StringUtils.realTrim(tdsTplMaster.get(0).text());
 			dateString = StringUtils.realTrim(tdsTplMaster.get(2).text());

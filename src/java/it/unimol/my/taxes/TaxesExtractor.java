@@ -34,12 +34,15 @@ public class TaxesExtractor implements TaxesExtractorInterface {
             html = requester.get(new URL(targetURL), username, password);
             Document doc = Jsoup.parse(html);
             Elements tableRows = doc.select("table[class=detail_table] tr");
-            if (tableRows == null || tableRows.isEmpty()) {
+            if (tableRows == null)
+            	throw new UnirestException("Problems with Esse3: Not responding!");
+            else if (tableRows.isEmpty())
                 return taxes;
-            }
             for (Element element : tableRows.subList(1, tableRows.size())) {
                 Elements columns = element.select("td[class=detail_table]");
-                if (columns == null || columns.isEmpty()) {
+                if (columns == null)
+                	throw new UnirestException("Problems with Esse3: Not responding!");
+                else if (columns.isEmpty()) {
                     return taxes;
                 }
                 if (element.text().equals("Pagamento non pervenuto")) {

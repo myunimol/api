@@ -72,12 +72,14 @@ public class UnimolLoginParser implements LoginParser {
      * @param doc il Document da parsare
      * @return Le informazioni dell'utente
      */
-    private UserInformation parsingUserInfo(Document doc) {
+    private UserInformation parsingUserInfo(Document doc) throws UnirestException {
 
         UserInformation uInfo = new UserInformation();
 
         // Getting Name And Surname
         Element name = doc.select("description").first();
+        if (name == null)
+        	throw new UnirestException("Problems with Esse3: not responding.");
         String[] nameAndSurname = name.html().split("\\u0026nbsp;");
         uInfo.setName(nameAndSurname[0]);
         uInfo.setSurname(nameAndSurname[1]);

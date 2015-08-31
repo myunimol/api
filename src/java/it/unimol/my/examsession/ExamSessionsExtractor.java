@@ -119,6 +119,7 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new UnirestException(e);
 		}
 		return examSessions;
 	}
@@ -163,7 +164,6 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 				date = sdf.parse(dateString);
 			} catch (ParseException ex) {
 				ex.printStackTrace();
-				date = new Date();
 			}
 			String window = cells.get(3).html();
 			String[] bits = window.split("<br>");
@@ -172,14 +172,12 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 				start = sdf.parse(StringUtils.realTrim(bits[0]));
 			} catch (ParseException ex) {
 				ex.printStackTrace();
-				start = new Date();
 			}
 			Date end = null;
 			try {
 				end = sdf.parse(StringUtils.realTrim(bits[1]));
 			} catch (ParseException ex) {
 				ex.printStackTrace();
-				end = new Date();
 			}
 			String notes = StringUtils.realTrim(cells.get(4).text());
 			DetailedExamSession examSession = new DetailedExamSession();

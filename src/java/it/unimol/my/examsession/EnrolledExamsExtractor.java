@@ -40,12 +40,14 @@ public class EnrolledExamsExtractor implements EnrolledExamsExtractorInterface {
 			html = requester.get(new URL(targetURL), username, password);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
-			return enrolledExams;
+			throw new UnirestException(e);
 		}
 
 		Document doc = Jsoup.parse(html);
 		Elements detailTables = doc.select("table[class=detail_table]");
-		if (detailTables == null || detailTables.size() == 0) {
+		if (detailTables == null)
+			throw new UnirestException("Problems with Esse3: Not responding!");
+		else if (detailTables.size() == 0) {
 			return enrolledExams;
 		}
 		for (Element detailTable : detailTables) {
