@@ -59,12 +59,6 @@ public class ExamSessionsServlet extends Esse3AuthServlet {
             // conversione della "List" di ExamSession in json e stampa a video
             String json = gson.toJson(examSessions);
             writer.println("{\"result\":\"success\",\"exams\":" + json + "}</br></br><hr>");
-
-            writer.println("<table><thead><th>ESAME</th><th>DATA</th><th>PRENOTA</th></thead><tbody>");
-            for (DetailedExamSession exam : examSessions) {
-                writer.println("<tr><td>" + exam.getName() + "</td><td>" + exam.getDate() + "</td><td>PRENOTA</td></tr>");
-            }
-            writer.println("</tbody></table></br>");
             writer.println("<form method=\"POST\" action=\"enrollExam\">");
             writer.println("<input type=\"hidden\" name=\"token\" value=\"13d0d64c9f4a4181728631b98ed75703\">");
             writer.println("<input type=\"hidden\" name=\"username\" value=\""+ username +"\">");
