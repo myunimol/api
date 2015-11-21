@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.unimol.my.examsession;
+package enrollexam;
 
 import it.unimol.my.config.ConfigurationManager;
 import it.unimol.my.utils.Esse3AuthServlet;
@@ -27,5 +27,6 @@ public class EsamSessionEnrollmentServlet extends Esse3AuthServlet {
         PrintWriter writer = resp.getWriter();
 	String parameters = req.getParameter("exam-info");	
         writer.println("Parametri:" + parameters);
+        
     }
 }
