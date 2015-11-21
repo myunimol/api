@@ -6,264 +6,278 @@ package it.unimol.my.examsession;
  */
 public class ExamSessionInfo {
 
-	private String action;
-	private String appId;
-	private String cdsEsaId;
-	private String attDidEsaId;
-	private String adsceId;
-	private String aaOffId;
-	private String cdsId;
-	private String pdsId;
-	private String aaOrdId;
-	private String iscrAperta;
-	private String tipoAttivita;
+    private String action;
+    private String APP_ID;
+    private String CDS_ESA_ID;
+    private String ATT_DID_ESA_ID;
+    private String ADSCE_ID;
+    private String AA_OFF_ID;
+    private String CDS_ID;
+    private String PDS_ID;
+    private String AA_ORD_ID;
+    private String ISCR_APERTA;
+    private String TIPO_ATTIVITA;
+    private String TIPO_APP_COD;
 
-	private static final String DELIMITER = "#";
+    private static final String DELIMITER = "#";
 
-	public ExamSessionInfo() {
-	}
+    public ExamSessionInfo() {
+    }
 
-	public ExamSessionInfo(String pAction, String pAppId, String pCdsEsaId,
-			String pAttDidEsaId, String pAdsceId, String pAaOffId,
-			String pCdsId, String pPdsId, String pAaOrdId, String pIscrAperta,
-			String pTipoAttivita) {
-		this.action = pAction;
-		this.appId = pAppId;
-		this.cdsEsaId = pCdsEsaId;
-		this.attDidEsaId = pAttDidEsaId;
-		this.adsceId = pAdsceId;
-		this.aaOffId = pAaOffId;
-		this.cdsId = pCdsId;
-		this.pdsId = pPdsId;
-		this.aaOrdId = pAaOrdId;
-		this.iscrAperta = pIscrAperta;
-		this.tipoAttivita = pTipoAttivita;
-	}
+    public ExamSessionInfo(String pAction, String pAppId, String pCdsEsaId,
+            String pAttDidEsaId, String pAdsceId, String pAaOffId,
+            String pCdsId, String pPdsId, String pAaOrdId, String pIscrAperta,
+            String pTipoAttivita, String pTipoAppCod) {
+        this.action = pAction;
+        this.APP_ID = pAppId;
+        this.CDS_ESA_ID = pCdsEsaId;
+        this.ATT_DID_ESA_ID = pAttDidEsaId;
+        this.ADSCE_ID = pAdsceId;
+        this.AA_OFF_ID = pAaOffId;
+        this.CDS_ID = pCdsId;
+        this.PDS_ID = pPdsId;
+        this.AA_ORD_ID = pAaOrdId;
+        this.ISCR_APERTA = pIscrAperta;
+        this.TIPO_ATTIVITA = pTipoAttivita;
+        this.TIPO_APP_COD = pTipoAppCod;
+    }
 
-	// public String buildExamSessionId() {
-	// StringBuffer id = new StringBuffer();
-	// id.append(this.cdsEsaId);
-	// id.append(DELIMITER);
-	// id.append(this.attDidEsaId);
-	// id.append(DELIMITER);
-	// id.append(this.adsceId);
-	// id.append(DELIMITER);
-	// id.append(aaOffId);
-	// id.append(DELIMITER);
-	// id.append(cdsId);
-	// id.append(DELIMITER);
-	// id.append(this.pdsId);
-	// id.append(DELIMITER);
-	// id.append(this.aaOrdId);
-	// id.append(DELIMITER);
-	// id.append(this.iscrAperta);
-	// id.append(DELIMITER);
-	// id.append(this.tipoAttivita);
-	// id.append(DELIMITER);
-	// id.append(this.tipoAppCod);
-	// return id.toString();
-	// }
+    public String getAction() {
+        return action;
+    }
 
-	public String getAction() {
-		return action;
-	}
+    public void setAction(String action) {
+        this.action = action;
+    }
 
-	public void setAction(String action) {
-		this.action = action;
-	}
+    public String getAppId() {
+        return APP_ID;
+    }
 
-	public String getAppId() {
-		return appId;
-	}
+    public void setAppId(String appId) {
+        this.APP_ID = appId;
+    }
 
-	public void setAppId(String appId) {
-		this.appId = appId;
-	}
+    public String getCdsEsaId() {
+        return CDS_ESA_ID;
+    }
 
-	public String getCdsEsaId() {
-		return cdsEsaId;
-	}
+    public void setCdsEsaId(String cdsEsaId) {
+        this.CDS_ESA_ID = cdsEsaId;
+    }
 
-	public void setCdsEsaId(String cdsEsaId) {
-		this.cdsEsaId = cdsEsaId;
-	}
+    public String getAttDidEsaId() {
+        return ATT_DID_ESA_ID;
+    }
 
-	public String getAttDidEsaId() {
-		return attDidEsaId;
-	}
+    public void setAttDidEsaId(String attDidEsaId) {
+        this.ATT_DID_ESA_ID = attDidEsaId;
+    }
 
-	public void setAttDidEsaId(String attDidEsaId) {
-		this.attDidEsaId = attDidEsaId;
-	}
+    public String getAdsceId() {
+        return ADSCE_ID;
+    }
 
-	public String getAdsceId() {
-		return adsceId;
-	}
+    public void setAdsceId(String adsceId) {
+        this.ADSCE_ID = adsceId;
+    }
 
-	public void setAdsceId(String adsceId) {
-		this.adsceId = adsceId;
-	}
+    public String getAaOffId() {
+        return AA_OFF_ID;
+    }
 
-	public String getAaOffId() {
-		return aaOffId;
-	}
+    public void setAaOffId(String aaOffId) {
+        this.AA_OFF_ID = aaOffId;
+    }
 
-	public void setAaOffId(String aaOffId) {
-		this.aaOffId = aaOffId;
-	}
+    public String getCdsId() {
+        return CDS_ID;
+    }
 
-	public String getCdsId() {
-		return cdsId;
-	}
+    public void setCdsId(String cdsId) {
+        this.CDS_ID = cdsId;
+    }
 
-	public void setCdsId(String cdsId) {
-		this.cdsId = cdsId;
-	}
+    public String getPdsId() {
+        return PDS_ID;
+    }
 
-	public String getPdsId() {
-		return pdsId;
-	}
+    public void setPdsId(String pdsId) {
+        this.PDS_ID = pdsId;
+    }
 
-	public void setPdsId(String pdsId) {
-		this.pdsId = pdsId;
-	}
+    public String getAaOrdId() {
+        return AA_ORD_ID;
+    }
 
-	public String getAaOrdId() {
-		return aaOrdId;
-	}
+    public void setAaOrdId(String aaOrdId) {
+        this.AA_ORD_ID = aaOrdId;
+    }
 
-	public void setAaOrdId(String aaOrdId) {
-		this.aaOrdId = aaOrdId;
-	}
+    public String getIscrAperta() {
+        return ISCR_APERTA;
+    }
 
-	public String getIscrAperta() {
-		return iscrAperta;
-	}
+    public void setIscrAperta(String iscrAperta) {
+        this.ISCR_APERTA = iscrAperta;
+    }
 
-	public void setIscrAperta(String iscrAperta) {
-		this.iscrAperta = iscrAperta;
-	}
+    public String getTipoAttivita() {
+        return TIPO_ATTIVITA;
+    }
 
-	public String getTipoAttivita() {
-		return tipoAttivita;
-	}
+    public void setTipoAttivita(String tipoAttivita) {
+        this.TIPO_ATTIVITA = tipoAttivita;
+    }
 
-	public void setTipoAttivita(String tipoAttivita) {
-		this.tipoAttivita = tipoAttivita;
-	}
+    public String getTipoAppCod() {
+        return TIPO_APP_COD;
+    }
 
-	/*
+    public void setTipoAppCod(String pTipoAppCod) {
+        this.TIPO_APP_COD = pTipoAppCod;
+    }
+
+    /*
 	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "ExamSessionInfo [action=" + action + ", appId=" + appId
-				+ ", cdsEsaId=" + cdsEsaId + ", attDidEsaId=" + attDidEsaId
-				+ ", adsceId=" + adsceId + ", aaOffId=" + aaOffId + ", cdsId="
-				+ cdsId + ", pdsId=" + pdsId + ", aaOrdId=" + aaOrdId
-				+ ", iscrAperta=" + iscrAperta + ", tipoAttivita="
-				+ tipoAttivita + "]";
-	}
+     */
+    @Override
+    public String toString() {
+        return "ExamSessionInfo [action=" + action + ", appId=" + APP_ID
+                + ", cdsEsaId=" + CDS_ESA_ID + ", attDidEsaId=" + ATT_DID_ESA_ID
+                + ", adsceId=" + ADSCE_ID + ", aaOffId=" + AA_OFF_ID + ", cdsId="
+                + CDS_ID + ", pdsId=" + PDS_ID + ", aaOrdId=" + AA_ORD_ID
+                + ", iscrAperta=" + ISCR_APERTA + ", tipoAttivita="
+                + TIPO_ATTIVITA + ", tipoAppCod="+ TIPO_APP_COD +"]";
+    }
 
-	/*
+    /*
 	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((aaOffId == null) ? 0 : aaOffId.hashCode());
-		result = prime * result + ((aaOrdId == null) ? 0 : aaOrdId.hashCode());
-		result = prime * result + ((action == null) ? 0 : action.hashCode());
-		result = prime * result + ((adsceId == null) ? 0 : adsceId.hashCode());
-		result = prime * result + ((appId == null) ? 0 : appId.hashCode());
-		result = prime * result
-				+ ((attDidEsaId == null) ? 0 : attDidEsaId.hashCode());
-		result = prime * result
-				+ ((cdsEsaId == null) ? 0 : cdsEsaId.hashCode());
-		result = prime * result + ((cdsId == null) ? 0 : cdsId.hashCode());
-		result = prime * result
-				+ ((iscrAperta == null) ? 0 : iscrAperta.hashCode());
-		result = prime * result + ((pdsId == null) ? 0 : pdsId.hashCode());
-		result = prime * result
-				+ ((tipoAttivita == null) ? 0 : tipoAttivita.hashCode());
-		return result;
-	}
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((AA_OFF_ID == null) ? 0 : AA_OFF_ID.hashCode());
+        result = prime * result + ((AA_ORD_ID == null) ? 0 : AA_ORD_ID.hashCode());
+        result = prime * result + ((action == null) ? 0 : action.hashCode());
+        result = prime * result + ((ADSCE_ID == null) ? 0 : ADSCE_ID.hashCode());
+        result = prime * result + ((APP_ID == null) ? 0 : APP_ID.hashCode());
+        result = prime * result
+                + ((ATT_DID_ESA_ID == null) ? 0 : ATT_DID_ESA_ID.hashCode());
+        result = prime * result
+                + ((CDS_ESA_ID == null) ? 0 : CDS_ESA_ID.hashCode());
+        result = prime * result + ((CDS_ID == null) ? 0 : CDS_ID.hashCode());
+        result = prime * result
+                + ((ISCR_APERTA == null) ? 0 : ISCR_APERTA.hashCode());
+        result = prime * result + ((PDS_ID == null) ? 0 : PDS_ID.hashCode());
+        result = prime * result
+                + ((TIPO_ATTIVITA == null) ? 0 : TIPO_ATTIVITA.hashCode());
+        result = prime *  result + ((TIPO_APP_COD == null) ? 0 : TIPO_APP_COD.hashCode());
+        return result;
+    }
 
-	/*
+    /*
 	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ExamSessionInfo other = (ExamSessionInfo) obj;
-		if (aaOffId == null) {
-			if (other.aaOffId != null)
-				return false;
-		} else if (!aaOffId.equals(other.aaOffId))
-			return false;
-		if (aaOrdId == null) {
-			if (other.aaOrdId != null)
-				return false;
-		} else if (!aaOrdId.equals(other.aaOrdId))
-			return false;
-		if (action == null) {
-			if (other.action != null)
-				return false;
-		} else if (!action.equals(other.action))
-			return false;
-		if (adsceId == null) {
-			if (other.adsceId != null)
-				return false;
-		} else if (!adsceId.equals(other.adsceId))
-			return false;
-		if (appId == null) {
-			if (other.appId != null)
-				return false;
-		} else if (!appId.equals(other.appId))
-			return false;
-		if (attDidEsaId == null) {
-			if (other.attDidEsaId != null)
-				return false;
-		} else if (!attDidEsaId.equals(other.attDidEsaId))
-			return false;
-		if (cdsEsaId == null) {
-			if (other.cdsEsaId != null)
-				return false;
-		} else if (!cdsEsaId.equals(other.cdsEsaId))
-			return false;
-		if (cdsId == null) {
-			if (other.cdsId != null)
-				return false;
-		} else if (!cdsId.equals(other.cdsId))
-			return false;
-		if (iscrAperta == null) {
-			if (other.iscrAperta != null)
-				return false;
-		} else if (!iscrAperta.equals(other.iscrAperta))
-			return false;
-		if (pdsId == null) {
-			if (other.pdsId != null)
-				return false;
-		} else if (!pdsId.equals(other.pdsId))
-			return false;
-		if (tipoAttivita == null) {
-			if (other.tipoAttivita != null)
-				return false;
-		} else if (!tipoAttivita.equals(other.tipoAttivita))
-			return false;
-		return true;
-	}
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        ExamSessionInfo other = (ExamSessionInfo) obj;
+        if (AA_OFF_ID == null) {
+            if (other.AA_OFF_ID != null) {
+                return false;
+            }
+        } else if (!AA_OFF_ID.equals(other.AA_OFF_ID)) {
+            return false;
+        }
+        if (AA_ORD_ID == null) {
+            if (other.AA_ORD_ID != null) {
+                return false;
+            }
+        } else if (!AA_ORD_ID.equals(other.AA_ORD_ID)) {
+            return false;
+        }
+        if (action == null) {
+            if (other.action != null) {
+                return false;
+            }
+        } else if (!action.equals(other.action)) {
+            return false;
+        }
+        if (ADSCE_ID == null) {
+            if (other.ADSCE_ID != null) {
+                return false;
+            }
+        } else if (!ADSCE_ID.equals(other.ADSCE_ID)) {
+            return false;
+        }
+        if (APP_ID == null) {
+            if (other.APP_ID != null) {
+                return false;
+            }
+        } else if (!APP_ID.equals(other.APP_ID)) {
+            return false;
+        }
+        if (ATT_DID_ESA_ID == null) {
+            if (other.ATT_DID_ESA_ID != null) {
+                return false;
+            }
+        } else if (!ATT_DID_ESA_ID.equals(other.ATT_DID_ESA_ID)) {
+            return false;
+        }
+        if (CDS_ESA_ID == null) {
+            if (other.CDS_ESA_ID != null) {
+                return false;
+            }
+        } else if (!CDS_ESA_ID.equals(other.CDS_ESA_ID)) {
+            return false;
+        }
+        if (CDS_ID == null) {
+            if (other.CDS_ID != null) {
+                return false;
+            }
+        } else if (!CDS_ID.equals(other.CDS_ID)) {
+            return false;
+        }
+        if (ISCR_APERTA == null) {
+            if (other.ISCR_APERTA != null) {
+                return false;
+            }
+        } else if (!ISCR_APERTA.equals(other.ISCR_APERTA)) {
+            return false;
+        }
+        if (PDS_ID == null) {
+            if (other.PDS_ID != null) {
+                return false;
+            }
+        } else if (!PDS_ID.equals(other.PDS_ID)) {
+            return false;
+        }
+        if (TIPO_ATTIVITA == null) {
+            if (other.TIPO_ATTIVITA != null) {
+                return false;
+            }
+        } else if (!TIPO_ATTIVITA.equals(other.TIPO_ATTIVITA)) {
+            return false;
+        } else if (!TIPO_APP_COD.equals(other.TIPO_APP_COD)){
+            return false;
+        }
+        return true;
+    }
 
 }

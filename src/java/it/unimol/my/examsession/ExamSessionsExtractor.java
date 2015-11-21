@@ -230,13 +230,14 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 					.val();
 			String tipoAttivita = cell.select("input[name=TIPO_ATTIVITA]")
 					.get(0).val();
-
+                        String tipoAppCod = cell.select("input[name=TIPO_APP_COD]")
+					.get(0).val();
 			Element form = cell.select("form").get(0);
 			String action = form.attr("action");
 
 			ExamSessionInfo examSessionInfo = new ExamSessionInfo(action,
 					appId, cdsEsaId, attDidEsaId, adSceId, aaOffId, cdsId,
-					pdsId, aaOrdId, iscrAperta, tipoAttivita);
+					pdsId, aaOrdId, iscrAperta, tipoAttivita, tipoAppCod);
 
 			infoList.add(examSessionInfo);
 		}
