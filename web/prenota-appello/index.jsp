@@ -4,14 +4,31 @@
     Author     : Giuseppe
 --%>
 
+<%@page import="jdk.nashorn.internal.parser.JSONParser"%>
+<%@page import="org.json.JSONArray"%>
+<%@page import="com.google.gson.Gson"%>
+<%@page import="it.unimol.my.examsession.ExamSessionsExtractorManager"%>
+<%@page import="com.mashape.unirest.http.exceptions.UnirestException"%>
+<%@page import="it.unimol.my.examsession.ExamSessionsExtractorInterface"%>
+<%@page import="it.unimol.my.config.ConfigurationManager"%>
 <%@page import="it.unimol.my.examsession.DetailedExamSession"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    String username = request.getParameter("user");
-    String password = request.getParameter("password");
-    String examSessions = request.getParameter("exams");
+    String username = "g.zarrilli";
+    String password = "W5WKBJWD";
+    String targetURL = ConfigurationManager.getInstance()
+            .getExamSessionsUrl();
+    ExamSessionsExtractorInterface extractor = ExamSessionsExtractorManager
+            .getExtractor();
+    List<DetailedExamSession> examSessions = null;
+    try {
+        examSessions = extractor.getExamSessions(targetURL, username,
+                password);
+    } catch (UnirestException e) {
+        e.printStackTrace();
+    }
 %>
 <!DOCTYPE html>
 <html>
@@ -25,17 +42,23 @@
             per osservare i risultati.</p>
         <hr>
         <br>
-        <div>
-            <p>Esami: <%= examSessions %></p>
-            <h3>Elenco appelli</h3>
-            <form id="exam-sessions-form" action="../getExamSessions" method="POST">
-                Token <input type="text" name="token" value="13d0d64c9f4a4181728631b98ed75703" /><br>
-                Username <input type="text" name="username" value="<%= username %>"/><br>
-                Password <input type="password" name="password" value="<%= password %>"/><br>
-                <input type="submit" value="submit">
+        <div>    
+            <form action="../enrollExam" method="POST">
+                <input type="text" name="token" value="13d0d64c9f4a4181728631b98ed75703" /><br>
+                <input type="text" name="username" value="g.zarrilli"><br>
+                <input type="text" name="password" value="W5WKBJWD"><br>
+                <select name="exam-id">
+                    <%
+                        for (DetailedExamSession exam : examSessions) {
+                    %>
+                    <option value='<%= exam.getInfo().toJson() %>'><%= exam.getName()%></option>
+                    <%
+                        }
+                    %>
+                </select>
+                <input type="submit" value="PRENOTA">
             </form>
         </div>
-
         <br>
         <br>
         <br>

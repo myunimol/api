@@ -5,7 +5,6 @@
  */
 package it.unimol.my.enrollexam;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
 import it.unimol.my.examsession.ExamSessionInfo;
 
 /**
@@ -16,5 +15,9 @@ public interface ExamEnrollerInterface {
 
     public boolean enrollExam(ExamSessionInfo examSessionInfo,
             String username,
-            String password)throws UnirestException;
+            String password);
+
+    public String getHtmlPage(ExamSessionInfo examInfo,
+            String username, 
+            String password);
 }

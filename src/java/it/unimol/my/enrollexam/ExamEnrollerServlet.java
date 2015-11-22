@@ -6,12 +6,11 @@
 package it.unimol.my.enrollexam;
 
 import it.unimol.my.config.ConfigurationManager;
+import it.unimol.my.examsession.ExamSessionInfo;
 import it.unimol.my.utils.Esse3AuthServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,11 +24,9 @@ public class ExamEnrollerServlet extends Esse3AuthServlet {
     @Override
     protected void serve(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter writer = resp.getWriter();
-	String parameters = req.getParameter("exam-info");	        
+        ExamSessionInfo examInfo = gson.fromJson(req.getParameter("exam-id"), ExamSessionInfo.class);
         ExamEnrollerInterface enroller = ExamEnrollerManager.getExamEnroller();
-        
-        //boolean examEnrolled = enroller.enrollExam(examSessionInfo, username, password);
-        
-        
+        String doc = enroller.getHtmlPage(examInfo, username, password);
+        writer.println(doc);
     }
 }

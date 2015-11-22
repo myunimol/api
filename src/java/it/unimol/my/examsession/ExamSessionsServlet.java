@@ -58,17 +58,7 @@ public class ExamSessionsServlet extends Esse3AuthServlet {
                     password);
             // conversione della "List" di ExamSession in json e stampa a video
             String json = gson.toJson(examSessions);
-            writer.println("{\"result\":\"success\",\"exams\":" + json + "}</br></br><hr>");
-            writer.println("<form method=\"POST\" action=\"enrollExam\">");
-            writer.println("<input type=\"hidden\" name=\"token\" value=\"13d0d64c9f4a4181728631b98ed75703\">");
-            writer.println("<input type=\"hidden\" name=\"username\" value=\""+ username +"\">");
-            writer.println("<input type=\"hidden\" name=\"password\" value=\""+ password +"\">");
-            writer.println("<select name=\"exam-info\">");
-            for (DetailedExamSession exam : examSessions) {
-                writer.println("<option value=\"" + exam.getInfo() + "\">" + exam.getName() + "</option>");
-            }
-            writer.println("</select> <input type=\"submit\" value=\"PRENOTA\"></form>");
-
+            writer.println("{\"result\":\"success\",\"exams\":" + json + "}");
         } catch (UnirestException e) {
             e.printStackTrace();
             writer.println("{\"result\":\"failure\", \"msg\":\"unirest exception\"}");

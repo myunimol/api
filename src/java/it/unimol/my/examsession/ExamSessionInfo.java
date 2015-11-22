@@ -1,5 +1,9 @@
 package it.unimol.my.examsession;
 
+import com.google.gson.Gson;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author Giuseppe Bianco
@@ -150,7 +154,7 @@ public class ExamSessionInfo {
                 + ", adsceId=" + ADSCE_ID + ", aaOffId=" + AA_OFF_ID + ", cdsId="
                 + CDS_ID + ", pdsId=" + PDS_ID + ", aaOrdId=" + AA_ORD_ID
                 + ", iscrAperta=" + ISCR_APERTA + ", tipoAttivita="
-                + TIPO_ATTIVITA + ", tipoAppCod="+ TIPO_APP_COD +"]";
+                + TIPO_ATTIVITA + ", tipoAppCod=" + TIPO_APP_COD + "]";
     }
 
     /*
@@ -177,7 +181,7 @@ public class ExamSessionInfo {
         result = prime * result + ((PDS_ID == null) ? 0 : PDS_ID.hashCode());
         result = prime * result
                 + ((TIPO_ATTIVITA == null) ? 0 : TIPO_ATTIVITA.hashCode());
-        result = prime *  result + ((TIPO_APP_COD == null) ? 0 : TIPO_APP_COD.hashCode());
+        result = prime * result + ((TIPO_APP_COD == null) ? 0 : TIPO_APP_COD.hashCode());
         return result;
     }
 
@@ -274,10 +278,32 @@ public class ExamSessionInfo {
             }
         } else if (!TIPO_ATTIVITA.equals(other.TIPO_ATTIVITA)) {
             return false;
-        } else if (!TIPO_APP_COD.equals(other.TIPO_APP_COD)){
+        } else if (!TIPO_APP_COD.equals(other.TIPO_APP_COD)) {
             return false;
         }
         return true;
     }
 
+    public Map toHashMap() {
+        Map result = new HashMap();
+        result.put("APP_ID", APP_ID);
+        result.put("CDS_ESA_ID", CDS_ESA_ID);
+        result.put("ATT_DID_ESA_ID", ATT_DID_ESA_ID);
+        result.put("ADSCE_ID", ADSCE_ID);
+        result.put("AA_OFF_ID", AA_OFF_ID);
+        result.put("CDS_ID", CDS_ID);
+        result.put("PDS_ID", PDS_ID);
+        result.put("AA_ORD_ID", AA_ORD_ID);
+        result.put("ISCR_APERTA", ISCR_APERTA);
+        result.put("TIPO_ATTIVITA", TIPO_ATTIVITA);
+        result.put("TIPO_APP_COD", TIPO_APP_COD);
+
+        return result;
+
+    }
+    
+    public String toJson(){
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
 }
