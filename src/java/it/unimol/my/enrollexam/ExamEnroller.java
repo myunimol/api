@@ -34,6 +34,7 @@ public class ExamEnroller implements ExamEnrollerInterface {
         String formAction = this.getEnrollFormAction(doc);
         Map enrollInfos = this.getEnrollInformation(doc);
         String enrolledPage = this.performEnrollment(username, password, formAction, enrollInfos);
+        
         return enrolledPage;
     }
 
