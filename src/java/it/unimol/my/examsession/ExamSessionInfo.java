@@ -285,7 +285,7 @@ public class ExamSessionInfo {
     }
 
     public Map toHashMap() {
-        Map result = new HashMap();
+        Map<String, String> result = new HashMap<>();
         result.put("APP_ID", APP_ID);
         result.put("CDS_ESA_ID", CDS_ESA_ID);
         result.put("ATT_DID_ESA_ID", ATT_DID_ESA_ID);

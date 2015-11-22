@@ -16,8 +16,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    String username = "g.zarrilli";
-    String password = "W5WKBJWD";
+    //Aggiungere login info to see avaiable sessions
+    String username = "";
+    String password = "";
     String targetURL = ConfigurationManager.getInstance()
             .getExamSessionsUrl();
     ExamSessionsExtractorInterface extractor = ExamSessionsExtractorManager
@@ -45,8 +46,8 @@
         <div>    
             <form action="../enrollExam" method="POST">
                 <input type="text" name="token" value="13d0d64c9f4a4181728631b98ed75703" /><br>
-                <input type="text" name="username" value="g.zarrilli"><br>
-                <input type="text" name="password" value="W5WKBJWD"><br>
+                <input type="text" name="username"><br>
+                <input type="text" name="password"><br>
                 <select name="exam-id">
                     <%
                         for (DetailedExamSession exam : examSessions) {

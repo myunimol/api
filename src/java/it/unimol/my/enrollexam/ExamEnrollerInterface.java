@@ -13,11 +13,7 @@ import it.unimol.my.examsession.ExamSessionInfo;
  */
 public interface ExamEnrollerInterface {
 
-    public boolean enrollExam(ExamSessionInfo examSessionInfo,
+    public String enrollExam(ExamSessionInfo examSessionInfo,
             String username,
-            String password);
-
-    public String getHtmlPage(ExamSessionInfo examInfo,
-            String username, 
             String password);
 }
