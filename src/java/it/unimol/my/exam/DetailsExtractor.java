@@ -1,5 +1,6 @@
 package it.unimol.my.exam;
 
+import it.unimol.my.requesterhtml.HTMLRequesterException;
 import it.unimol.my.requesterhtml.HTMLRequesterInterface;
 import it.unimol.my.requesterhtml.HTMLRequesterManager;
 import it.unimol.my.utils.StringUtils;
@@ -36,8 +37,13 @@ public class DetailsExtractor implements ExtractorInterface {
 
 	@Override
 	public DetailedExam getDetails(String urlServlet, String username,
-			String password, String examId) throws UnirestException {
-		HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
+			String password, String examId, String pCareerId) throws UnirestException {
+		HTMLRequesterInterface requester;
+		try {
+			requester = HTMLRequesterManager.getManager().getInstance(username, password, pCareerId);
+		} catch (HTMLRequesterException e) {
+			throw new UnirestException(e.getMessage());
+		}
 		String html = null;
 		try {
 			Map<String, Object> parameters = new HashMap<String, Object>();

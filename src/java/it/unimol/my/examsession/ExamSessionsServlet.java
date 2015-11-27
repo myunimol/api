@@ -55,13 +55,13 @@ public class ExamSessionsServlet extends Esse3AuthServlet {
 		List<DetailedExamSession> examSessions;
 		try {
 			examSessions = extractor.getExamSessions(targetURL, username,
-					password);
+					password, careerId);
 			// conversione della "List" di ExamSession in json e stampa a video
 			String json = gson.toJson(examSessions);
 			writer.println("{\"result\":\"success\",\"exams\":" + json + "}");
 		} catch (UnirestException e) {
-			e.printStackTrace();
-			writer.println("{\"result\":\"failure\", \"msg\":\"unirest exception\"}");
+			String unirestExceptionMsg = config.getMessage("unirestException");
+			writer.println("{\"result\":\"failure\", \"msg\":\"" + unirestExceptionMsg + "\"}");
 		}
 	}
 

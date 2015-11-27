@@ -53,17 +53,18 @@ public class DetailedExamExtractorServlet extends Esse3AuthServlet {
 		// ottengo una istanza dell'estrattore
 		ExtractorInterface extractor = DetailsExamManager
 				.getRecordBookExtractor();
+		
 		// estraggo le informazioni
 		try {
 			DetailedExam detailedExam = extractor.getDetails(targetUrl,
-					username, password, examId);
+					username, password, examId, careerId);
 			// converto in JSON
 			String json = gson.toJson(detailedExam);
 			// stampo il json a video
 			writer.println(json);
 		} catch (UnirestException ex) {
-			ex.printStackTrace();
-			writer.println("{\"result\":\"failure\",\"msg\":\"unirest exception\"}");
+			String unirestExceptionMsg = config.getMessage("unirestException");
+			writer.println("{\"result\":\"failure\",\"msg\":\"" + unirestExceptionMsg + "\"}");
 		}
 	}
 }

@@ -41,7 +41,7 @@ public class LoginServlet extends Esse3AuthServlet {
 		try {
 			LoginParser parser = LoginParserManager.getLoginParser();
 			UserInformation logInfo = parser.getLoginInformation(username,
-					password);
+					password, careerId);
 			if (logInfo == null) {
 				// login non riuscito
 				String badLoginMsg = config.getMessage("badLogin");

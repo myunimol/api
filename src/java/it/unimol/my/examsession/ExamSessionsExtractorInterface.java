@@ -26,7 +26,7 @@ public interface ExamSessionsExtractorInterface {
 	 *         appelli disponibili al momento della richiesta
 	 */
 	public List<DetailedExamSession> getExamSessions(String targetURL, String username,
-			String password) throws UnirestException;
+			String password, String pCareerId) throws UnirestException;
 
 	/**
 	 * Metodo che permette di fare parsing di una pagina non protetta

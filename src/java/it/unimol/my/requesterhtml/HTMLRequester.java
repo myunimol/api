@@ -6,6 +6,7 @@ import it.unimol.my.utils.StringUtils;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -229,6 +230,27 @@ public class HTMLRequester implements HTMLRequesterInterface {
 		} catch (UnirestException e) {
 			e.printStackTrace();
 		}
+		return false;
+	}
+	
+	@Override
+	public boolean setCareer(String username, String password, String careerId) {
+		try {
+			Map<String, Object> parameters = new HashMap<>();
+			parameters.put("stu_id", careerId);
+			
+			HttpRequest request = Unirest.get(config.getCareerChangeUrl());
+			this.myUnimolDefaults(request);
+			this.cookie(request, this.jsessionid);
+			this.auth(request, username, password);
+			request.queryString(parameters);
+			HttpResponse<String> response = request.asString();
+			
+			return (response.getStatus() == 200);
+		} catch (UnirestException e) {
+			e.printStackTrace();
+		}
+		
 		return false;
 	}
 	

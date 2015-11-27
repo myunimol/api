@@ -26,6 +26,7 @@ public interface ExtractorInterface {
      * @param password
      * @return DetailedExam Dettaglio esame
      */
-    public DetailedExam getDetails(String urlServlet, String username, String password, String examId) throws UnirestException;
+    public DetailedExam getDetails(String urlServlet, String username, String password, String examId, String pCareerId) 
+    		throws UnirestException;
 
 }

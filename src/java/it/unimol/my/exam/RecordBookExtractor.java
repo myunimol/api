@@ -1,6 +1,7 @@
 package it.unimol.my.exam;
 
 import it.unimol.my.exam.exceptions.NoSuchUserException;
+import it.unimol.my.requesterhtml.HTMLRequesterException;
 import it.unimol.my.requesterhtml.HTMLRequesterInterface;
 import it.unimol.my.requesterhtml.HTMLRequesterManager;
 import it.unimol.my.utils.StringUtils;
@@ -15,6 +16,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.ws.http.HTTPException;
+
+import org.apache.http.client.HttpResponseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -32,9 +36,15 @@ public class RecordBookExtractor implements RecordBookExtractorInterface {
 
 	@Override
 	public RecordBook getExamsList(String targetUrl, String username,
-			String password) throws UnirestException, NoSuchUserException {
+			String password, String pCareerId) throws UnirestException, NoSuchUserException {
 		RecordBook recordBook = null;
-		HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
+		
+		HTMLRequesterInterface requester;
+		try {
+			requester = HTMLRequesterManager.getManager().getInstance(username, password, pCareerId);
+		} catch (HTMLRequesterException e) {
+			throw new UnirestException(e.getMessage());
+		}
 		try {
 			String html = requester.get(new URL(targetUrl), username, password);
 			if(html.contains("<meta http-equiv=\"refresh\" content=\"0;")) {

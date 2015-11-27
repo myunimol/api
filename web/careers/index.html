@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Detailed exam driver page</title>
+<title>Careers driver page</title>
 </head>
 <body>
 	<p>This is a driver page. Submit the desired form to see results.</p>
@@ -11,16 +11,20 @@
 	<hr>
 	<br>
 	<div>
-		<h3>Dettaglio esame</h3>
-		<form action="../getRecordBookExam" method="POST">
+		<h3>Login</h3>
+		<form action="../listCareers" method="POST">
 			Token <input type="text" name="token"
 				value="13d0d64c9f4a4181728631b98ed75703" /><br> Username <input
 				type="text" name="username" /><br> Password <input
-				type="password" name="password" /><br>
-				Career <input type="text" name="careerId" /><br> adsce_id relativo
-			all'esame da dettagliare <input type="text" name="id" /><br>
-			<input type="submit" value="submit">
+				type="password" name="password" /><br> <input type="submit"
+				value="submit">
 		</form>
+		<div id="log">
+			<p class="log-entry en">This driver uses the real site of esse3
+				unimol. Test with your credentials (if you have got them)</p>
+			<p class="log-entry it">Questo driver usa il vero sito di esse3
+				unimol. Testate con le vostre credenziali reali (se le possedete)</p>
+		</div>
 	</div>
 
 	<br>

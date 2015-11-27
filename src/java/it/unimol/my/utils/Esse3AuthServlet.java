@@ -25,6 +25,8 @@ public class Esse3AuthServlet extends WebServiceServlet {
 	 */
 	protected String password;
 	
+	protected String careerId;
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -65,6 +67,7 @@ public class Esse3AuthServlet extends WebServiceServlet {
 		// recupero le credenziali dalla richiesta
 		username = req.getParameter("username");
 		password = req.getParameter("password");
+		careerId = req.getParameter("careerId");
 		// controllo che username e password siano settate
 		if (username == null || password == null || username.length() < 1
 				|| password.length() < 2) {

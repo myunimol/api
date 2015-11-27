@@ -1,4 +1,6 @@
-package it.unimol.my.login;
+package it.unimol.my.careers;
+
+import java.util.List;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 
@@ -7,7 +9,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
  * 
  * @author Ivan Di Rienzo
  */
-public interface LoginParser {
+public interface CareersParser {
     
     /**
      * Effettua il parser della pagina di login recuperando le informazioni dell'utente,
@@ -17,8 +19,6 @@ public interface LoginParser {
      * @param password password per accedere ad esse3
      * @return Se il login ha successo restituisce le informazione dello studente, null altrimenti
      */
-    public UserInformation getLoginInformation(String username, String password) throws UnirestException;
-    
-    public UserInformation getLoginInformation(String username, String password, String careerId) throws UnirestException;
+    public CareersInfo getCareersIds(String username, String password) throws UnirestException;
 }
 

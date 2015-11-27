@@ -89,6 +89,14 @@ public class ConfigurationManager {
         return this.getEsse3Links().get("logon").getAsString();
     }
     
+    public String getCareerChangeUrl() {
+        return this.getEsse3Links().get("careerChange").getAsString();
+    }
+    
+    public String getCareerListUrl() {
+        return this.getEsse3Links().get("careerList").getAsString();
+    }
+    
     public String getHomeUrl() {
         return this.getEsse3Links().get("logon").getAsString();
     }

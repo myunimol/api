@@ -1,7 +1,7 @@
 package it.unimol.my.login;
 
 import it.unimol.my.config.ConfigurationManager;
-import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.requesterhtml.HTMLRequesterException;
 import it.unimol.my.requesterhtml.HTMLRequesterInterface;
 import it.unimol.my.requesterhtml.HTMLRequesterManager;
 
@@ -14,7 +14,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
-
 import it.unimol.my.utils.StringUtils;
 
 /**
@@ -23,14 +22,24 @@ import it.unimol.my.utils.StringUtils;
  * @author Ivan Di Rienzo
  */
 public class UnimolLoginParser implements LoginParser {
+	
+	@Override
+	public UserInformation getLoginInformation(String username, String password) throws UnirestException {
+		return this.getLoginInformation(username, password, null);
+	}
     
-    @Override
-    public UserInformation getLoginInformation(String username, String password) throws UnirestException {
+    public UserInformation getLoginInformation(String username, String password, String careerId) throws UnirestException {
 
-    	HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
+    	HTMLRequesterInterface requester;
+    	try {
+    		requester = HTMLRequesterManager.getManager().getInstance(username, password, careerId);
+    	} catch (HTMLRequesterException e) {
+    		throw new UnirestException(e.getMessage());
+    	}
+    	
         try {
-
-            String resPage = requester.get(new URL(ConfigurationManager.getInstance().getLogonUrl()),
+        	URL url = new URL(ConfigurationManager.getInstance().getLogonUrl());
+            String resPage = requester.get(url,
                     username, password);
             
             Document doc = Jsoup.parse(resPage);
@@ -40,23 +49,29 @@ public class UnimolLoginParser implements LoginParser {
                 return null; // login non riuscito
 
             } else {
-                if(haveManyCarriers(doc) == false){
+            	
+//                if(haveManyCareers(doc) == false){
                     UserInformation uInfo = this.parsingUserInfo(doc);
 
                     // Prende la matricola da un'altra pagina (non login)
-                    uInfo.setStudentID(this.getStudentID(username, password));
+                    uInfo.setStudentID(this.getStudentID(username, password, careerId));
 
                     return uInfo;
-                } else {
-                    String curretnCareer = getCurrentCareer(doc);
-                    resPage = requester.get(new URL(curretnCareer),
-                            username, password);
-                    doc = Jsoup.parse(resPage);
-                    UserInformation uInfo = this.parsingUserInfo(doc);
-                    // Prende la matricola da un'altra pagina (non login)
-                    uInfo.setStudentID(this.getStudentID(username, password));
-                    return uInfo;
-                }
+//                } else {
+//                	String currentCareer;
+//                	if (careerId == null)
+//                		currentCareer = getCurrentCareer(doc);
+//                	else {
+//                		currentCareer = getCareerUrl(doc, careerId);
+//                	}
+//                    resPage = requester.get(new URL(currentCareer),
+//                            username, password);
+//                    doc = Jsoup.parse(resPage);
+//                    UserInformation uInfo = this.parsingUserInfo(doc);
+//                    // Prende la matricola da un'altra pagina (non login)
+//                    uInfo.setStudentID(this.getStudentID(username, password, careerId));
+//                    return uInfo;
+//                }
             }
 
         } catch (MalformedURLException ex) {
@@ -183,7 +198,7 @@ public class UnimolLoginParser implements LoginParser {
     }
     
     
-    private boolean haveManyCarriers(Document doc) {
+    private boolean haveManyCareers(Document doc) {
         Element elementPageTitle = doc.select("div[class=titolopagina]").first();
         if (elementPageTitle != null) {
             String pageTitle = elementPageTitle.text();
@@ -212,6 +227,27 @@ public class UnimolLoginParser implements LoginParser {
             }
         }
         return result;
+        
+      //TODO: add error handling!
+    }
+    
+    private String getCareerUrl(Document doc, String careerId) {
+        String result = "";
+        Element detailTable = doc.select("table[class=detail_table]").first();
+        if(detailTable != null){
+            Elements tdDetailTable = detailTable.select("td");
+            if(tdDetailTable != null){
+            	String urlCareer;
+            	for (int i = 0; i < tdDetailTable.size(); i++) {
+            		urlCareer = tdDetailTable.get(0).select("a").attr("abs:href");
+            		if (urlCareer.contains(careerId))
+            			result = urlCareer;
+            	}
+            }
+        }
+        return result;
+        
+        //TODO: add error handling!
     }
     
     /**
@@ -220,10 +256,15 @@ public class UnimolLoginParser implements LoginParser {
      *
      * @return lo studentID
      */
-    private String getStudentID(String username, String password)
+    private String getStudentID(String username, String password, String pCareerId)
             throws MalformedURLException, UnirestException {
 
-        HTMLRequesterInterface req = HTMLRequesterManager.getManager().getInstance(username, password);
+        HTMLRequesterInterface req;
+		try {
+			req = HTMLRequesterManager.getManager().getInstance(username, password, pCareerId);
+		} catch (HTMLRequesterException e) {
+			throw new UnirestException(e.getMessage());
+		}
         String resPage = req.get(new URL(ConfigurationManager.getInstance().getRecordBookUrl()),
                 username, password);
 

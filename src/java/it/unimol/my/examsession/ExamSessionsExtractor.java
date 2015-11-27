@@ -2,6 +2,7 @@ package it.unimol.my.examsession;
 
 import it.unimol.my.config.ConfigurationManager;
 import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.requesterhtml.HTMLRequesterException;
 import it.unimol.my.requesterhtml.HTMLRequesterInterface;
 import it.unimol.my.requesterhtml.HTMLRequesterManager;
 import it.unimol.my.utils.StringUtils;
@@ -35,11 +36,16 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 
 	@Override
 	public List<DetailedExamSession> getExamSessions(String targetURL,
-			String username, String password) throws UnirestException {
+			String username, String password, String pCareerId) throws UnirestException {
 		List<DetailedExamSession> examSessions = null;
 		List<ExamSessionInfo> examSessionsInfo = null;
 		try {
-			HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
+			HTMLRequesterInterface requester;
+			try {
+				requester = HTMLRequesterManager.getManager().getInstance(username, password, pCareerId);
+			} catch (HTMLRequesterException e) {
+				throw new UnirestException(e.getMessage());
+			}
 			String html = requester.get(new URL(targetURL), username, password);
 			// decommentare per testare in locale
 			// html = requester

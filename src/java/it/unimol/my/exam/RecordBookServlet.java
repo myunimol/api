@@ -45,7 +45,7 @@ public class RecordBookServlet extends Esse3AuthServlet {
 		// estraggo il libretto degli esami
 		try {
 			RecordBook recordBook = recordBookExtractor.getExamsList(targetUrl,
-					username, password);
+					username, password, careerId);
 			if (recordBook == null) {
 				String unknownErrorMsg = config.getMessage("unknownError");
 				writer.println("{\"result\":\"failure\",\"msg\":\""
@@ -57,13 +57,11 @@ public class RecordBookServlet extends Esse3AuthServlet {
 			// stampo il json a video
 			writer.println(json);
 		} catch (UnirestException e) {
-			e.printStackTrace();
 			String unirestExceptionMsg = config.getMessage("unirestException");
 			writer.print("{\"result\":\"failure\", \"msg\":\""
 					+ unirestExceptionMsg + "\"}");
 			return;
 		} catch (NoSuchUserException e) {
-			e.printStackTrace();
 			String badLoginExceptionMsg = config.getMessage("badLogin");
 			writer.print("{\"result\":\"failure\", \"msg\":\""
 					+ badLoginExceptionMsg + "\"}");

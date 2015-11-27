@@ -1,6 +1,7 @@
 package it.unimol.my.examsession;
 
 import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.requesterhtml.HTMLRequesterException;
 import it.unimol.my.requesterhtml.HTMLRequesterInterface;
 import it.unimol.my.requesterhtml.HTMLRequesterManager;
 import it.unimol.my.utils.StringUtils;
@@ -29,9 +30,15 @@ public class EnrolledExamsExtractor implements EnrolledExamsExtractorInterface {
 
 	@Override
 	public List<EnrolledExamSession> getEnrolledExamSessions(String targetURL,
-			String username, String password) throws UnirestException {
+			String username, String password, String pCareerId) throws UnirestException {
 		List<EnrolledExamSession> enrolledExams = new ArrayList<EnrolledExamSession>();
-		HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
+		
+		HTMLRequesterInterface requester;
+		try {
+			requester = HTMLRequesterManager.getManager().getInstance(username, password, pCareerId);
+		} catch (HTMLRequesterException e) {
+			throw new UnirestException(e.getMessage());
+		}
 		// String html = requester.get(new URL(targetURL), username,
 		// password);
 		// decommentare per testare in locale

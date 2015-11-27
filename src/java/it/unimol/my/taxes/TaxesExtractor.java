@@ -3,6 +3,7 @@ package it.unimol.my.taxes;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import it.unimol.my.requesterhtml.HTMLRequester;
+import it.unimol.my.requesterhtml.HTMLRequesterException;
 import it.unimol.my.requesterhtml.HTMLRequesterInterface;
 import it.unimol.my.requesterhtml.HTMLRequesterManager;
 
@@ -26,9 +27,15 @@ public class TaxesExtractor implements TaxesExtractorInterface {
 
     @Override
     public List<Tax> getTaxesList(String targetURL,
-            String username, String password) throws UnirestException {
+            String username, String password, String pCareerId) throws UnirestException {
         List<Tax> taxes = new ArrayList<Tax>();
-        HTMLRequesterInterface requester = HTMLRequesterManager.getManager().getInstance(username, password);
+        HTMLRequesterInterface requester;
+		try {
+			requester = HTMLRequesterManager.getManager().getInstance(username, password, pCareerId);
+		} catch (HTMLRequesterException e1) {
+			throw new UnirestException(e1.getMessage());
+		}
+		
         String html = null;
         try {
             html = requester.get(new URL(targetURL), username, password);

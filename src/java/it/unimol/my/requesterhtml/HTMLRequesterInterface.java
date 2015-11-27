@@ -26,6 +26,8 @@ public interface HTMLRequesterInterface {
 	 */
 	public boolean connect(String username, String password);
 	
+	public boolean setCareer(String username, String password, String careerId);
+	
 	public String get(URL targetPage, String username, String password)
 			throws UnirestException;
 

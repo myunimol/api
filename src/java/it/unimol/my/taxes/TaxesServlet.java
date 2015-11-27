@@ -37,7 +37,7 @@ public class TaxesServlet extends Esse3AuthServlet {
         // Il risultato è la lista delle tasse
         try {
             List<Tax> taxes = extractor.getTaxesList(targetUrl,
-                    username, password);
+                    username, password, careerId);
             if (taxes == null) {
                 String unknownErrorMsg = config.getMessage("unknownError");
                 writer.println("{\"result\":\"failure\",\"msg\":\""
@@ -48,8 +48,8 @@ public class TaxesServlet extends Esse3AuthServlet {
             String json = gson.toJson(taxes);
             writer.println("{\"result\":\"success\",\"taxes\":" + json + "}");
         } catch (UnirestException e) {
-            e.printStackTrace();
-            writer.println("{\"result\":\"failure\", \"msg\":\"unirest exception\"}");
+        	String unirestExceptionMsg = config.getMessage("unirestException");
+            writer.println("{\"result\":\"failure\", \"msg\":\"" + unirestExceptionMsg + "\"}");
         }
     }
 

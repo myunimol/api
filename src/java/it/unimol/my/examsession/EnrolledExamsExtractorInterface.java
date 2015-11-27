@@ -24,5 +24,5 @@ public interface EnrolledExamsExtractorInterface {
 	 *         appelli disponibili al momento della richiesta
 	 */
 	public List<EnrolledExamSession> getEnrolledExamSessions(String targetURL, String username,
-			String password) throws UnirestException;
+			String password, String pCareerId) throws UnirestException;
 }

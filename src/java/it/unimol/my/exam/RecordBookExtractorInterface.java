@@ -21,6 +21,6 @@ public interface RecordBookExtractorInterface {
 	 * @return RecordBook Il libretto degli esami
 	 */
 	public RecordBook getExamsList(String targetUrl, String username,
-			String password) throws UnirestException, NoSuchUserException;
+			String password, String pCareerId) throws UnirestException, NoSuchUserException;
 
 }

@@ -20,6 +20,6 @@ public interface TaxesExtractorInterface {
      * @throws UnirestException 
      */
     public List<Tax> getTaxesList(String targetURL, String username,
-			String password) throws UnirestException;
+			String password, String pCareerId) throws UnirestException;
     
 }
