@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,13 +28,13 @@ import org.jsoup.select.Elements;
 public class ExamEnroller implements ExamEnrollerInterface {
 
     @Override
-    public String enrollExam(ExamSessionInfo examSessionInfo, String username, String password) {       
+    public EnrolledExam enrollExam(ExamSessionInfo examSessionInfo, String username, String password) {
         Document doc = Jsoup.parse(getHtmlPage(examSessionInfo.getAction(), examSessionInfo.toHashMap(), username, password));
         String formAction = this.getEnrollFormAction(doc);
         Map enrollInfos = this.getEnrollInformation(doc);
-        String enrolledPage = this.performEnrollment(username, password, formAction, enrollInfos);
-        
-        return enrolledPage;
+        EnrolledExam enrolledExam = this.performEnrollment(username, password, formAction, enrollInfos);
+
+        return enrolledExam;
     }
 
     private String getHtmlPage(String targetUrl, Map<String, Object> param, String username, String password) {
@@ -64,7 +63,27 @@ public class ExamEnroller implements ExamEnrollerInterface {
         return form.attr("action");
     }
 
-    private String performEnrollment(String username, String password, String action, Map<String, Object> params) {
-        return this.getHtmlPage(action, params, username, password);
+    private EnrolledExam performEnrollment(String username, String password, String action, Map<String, Object> params) {
+        String htmlPageString = this.getHtmlPage(action, params, username, password);
+        Document doc = Jsoup.parse(htmlPageString);
+        String message = doc.select("msg span").get(0).text();
+        String messageUpperCase = message.toUpperCase();
+        if (messageUpperCase.contains("EFFETTUATA")) {
+            Element infoTable = doc.select("table.detail_table").get(0);
+            Element infoRow = infoTable.select("td").get(1);
+            String date = infoRow.getElementsByTag("tr").get(0).text();
+            String room = infoRow.getElementsByTag("tr").get(1).text();
+            String professor = infoRow.getElementsByTag("tr").get(2).text();
+            String formAction = doc.select("form").get(0).attr("action");
+            Map<String, String> infos = new HashMap<>();
+            infos.put("action", formAction);
+            Elements inputs = doc.select("input[type=hidden]");
+            for (Element e : inputs) {
+                infos.put(e.attr("name"), e.val());
+            }
+            return new EnrolledExam(date, room, professor, infos);
+        } else {
+            return null;
+        }
     }
 }

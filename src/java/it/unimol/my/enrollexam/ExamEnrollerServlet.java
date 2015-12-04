@@ -27,7 +27,12 @@ public class ExamEnrollerServlet extends Esse3AuthServlet {
         //resp.setContentType("text/html");
         ExamSessionInfo examInfo = gson.fromJson(req.getParameter("exam-id"), ExamSessionInfo.class);
         ExamEnrollerInterface enroller = ExamEnrollerManager.getExamEnroller();
-        String doc = enroller.enrollExam(examInfo, username, password);
-        writer.println(doc);
+        EnrolledExam enrolledExam = enroller.enrollExam(examInfo, username, password);
+        if (enrolledExam != null) {
+            String json = gson.toJson(enrolledExam);
+            writer.println("{\"result\":\"success\",\"exam\":" + json + "}");
+        } else {
+            writer.println("{\"result\":\"failure\",\"exam\":\"null\"}");
+        }
     }
 }
