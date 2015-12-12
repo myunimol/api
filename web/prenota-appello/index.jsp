@@ -25,7 +25,7 @@
     List<DetailedExamSession> examSessions = null;
     try {
         examSessions = extractor.getExamSessions(targetURL, username,
-                password);
+                password, null);
     } catch (UnirestException e) {
         e.printStackTrace();
     }
