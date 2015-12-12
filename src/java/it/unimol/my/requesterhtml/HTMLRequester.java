@@ -3,6 +3,7 @@ package it.unimol.my.requesterhtml;
 import it.unimol.my.config.ConfigurationManager;
 import it.unimol.my.utils.StringUtils;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
@@ -83,6 +84,13 @@ public class HTMLRequester implements HTMLRequesterInterface {
 		this.auth(request, username, password);
 		request.fields(parameters);
 		HttpResponse<String> response = request.asString();
+		if (response.getStatus() == 302) {
+			try {
+				return this.get(new URL(response.getHeaders().get("location").get(0)), username, password);
+			} catch (MalformedURLException e) {
+				throw new UnirestException("Unable to parse redirect URL");
+			}
+		}
 		return response.getBody();
 	}
 

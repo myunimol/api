@@ -67,6 +67,10 @@ public class ConfigurationManager {
                 .getAsJsonObject("esse3");
     }
 
+    public String getEsse3Base(){
+        return this.getEsse3Links().get("base").getAsString();
+    }
+    
     public JsonObject getAddressBookLinks() {
         return this.getUniversity().getAsJsonObject("links")
                 .getAsJsonObject("addressBook");
