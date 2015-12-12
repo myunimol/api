@@ -80,7 +80,12 @@ public class EnrolledExamsExtractor implements EnrolledExamsExtractorInterface {
 					enrolled = bits[1];
 				}
 			}
-			Element contentRow = tableRows.get(5);
+			Element contentRow = null;
+			for (int i = 3; i < tableRows.size() && contentRow == null; i++) {
+				Elements innerRows = tableRows.get(i).select("th");
+				if (innerRows.size() == 1 && innerRows.get(0).text().toLowerCase().contains("cognome"))
+					contentRow = tableRows.get(i+1);
+			}
 			if (contentRow == null) {
 				continue;
 			}
