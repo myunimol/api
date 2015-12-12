@@ -4,7 +4,6 @@
     Author     : Giuseppe
 --%>
 
-<%@page import="jdk.nashorn.internal.parser.JSONParser"%>
 <%@page import="org.json.JSONArray"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="it.unimol.my.examsession.ExamSessionsExtractorManager"%>

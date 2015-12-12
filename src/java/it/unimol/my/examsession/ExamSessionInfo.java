@@ -22,8 +22,11 @@ public class ExamSessionInfo {
     private String ISCR_APERTA;
     private String TIPO_ATTIVITA;
     private String TIPO_APP_COD;
-
-    private static final String DELIMITER = "#";
+    
+    private String TIPO_ESA;
+	private String ATT_DID_ID;
+    private String TIPO_ISCR;
+    private String AA_FREQ_ID;
 
     public ExamSessionInfo() {
     }
@@ -141,6 +144,38 @@ public class ExamSessionInfo {
     public void setTipoAppCod(String pTipoAppCod) {
         this.TIPO_APP_COD = pTipoAppCod;
     }
+    
+    public String getTipoEsa() {
+		return TIPO_ESA;
+	}
+
+	public void setTipoEsa(String tIPO_ESA) {
+		TIPO_ESA = tIPO_ESA;
+	}
+
+	public String getAttDidId() {
+		return ATT_DID_ID;
+	}
+
+	public void setAttDidId(String aTT_DID_ID) {
+		ATT_DID_ID = aTT_DID_ID;
+	}
+
+	public String getTipoIscr() {
+		return TIPO_ISCR;
+	}
+
+	public void setTipoIscr(String tIPO_ISCR) {
+		TIPO_ISCR = tIPO_ISCR;
+	}
+
+	public String getAAFreqId() {
+		return AA_FREQ_ID;
+	}
+
+	public void setAAFreqId(String aA_FREQ_ID) {
+		AA_FREQ_ID = aA_FREQ_ID;
+	}
 
     /*
 	 * (non-Javadoc)
@@ -297,6 +332,11 @@ public class ExamSessionInfo {
         result.put("ISCR_APERTA", ISCR_APERTA);
         result.put("TIPO_ATTIVITA", TIPO_ATTIVITA);
         result.put("TIPO_APP_COD", TIPO_APP_COD);
+        
+//        result.put("TIPO_ESA", TIPO_ESA);
+//        result.put("TIPO_APP_COD", TIPO_APP_COD);
+//        result.put("ATT_DID_ID", ATT_DID_ID);
+//        result.put("AA_FREQ_ID", AA_FREQ_ID);
 
         return result;
 

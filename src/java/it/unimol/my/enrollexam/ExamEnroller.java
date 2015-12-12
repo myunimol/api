@@ -29,6 +29,7 @@ public class ExamEnroller implements ExamEnrollerInterface {
 
     @Override
     public EnrolledExam enrollExam(ExamSessionInfo examSessionInfo, String username, String password) {
+    	//Performs enrollment and gets the page
         Document doc = Jsoup.parse(getHtmlPage(examSessionInfo.getAction(), examSessionInfo.toHashMap(), username, password));
         String formAction = this.getEnrollFormAction(doc);
         Map enrollInfos = this.getEnrollInformation(doc);
@@ -63,9 +64,11 @@ public class ExamEnroller implements ExamEnrollerInterface {
         return form.attr("action");
     }
 
-    private EnrolledExam performEnrollment(String username, String password, String action, Map<String, Object> params) {
-        String htmlPageString = this.getHtmlPage(action, params, username, password);
+    private EnrolledExam performEnrollment(String username, String password, String action, Map params) {
+    	String htmlPageString = this.getHtmlPage(action, params, username, password);
         Document doc = Jsoup.parse(htmlPageString);
+        //System.out.println(doc);
+        
         String message = doc.select("msg span").get(0).text();
         String messageUpperCase = message.toUpperCase();
         if (messageUpperCase.contains("EFFETTUATA")) {
