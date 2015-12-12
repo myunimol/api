@@ -73,10 +73,11 @@ public class ExamEnroller implements ExamEnrollerInterface {
         String messageUpperCase = message.toUpperCase();
         if (messageUpperCase.contains("EFFETTUATA")) {
             Element infoTable = doc.select("table.detail_table").get(0);
-            Element infoRow = infoTable.select("td").get(1);
-            String date = infoRow.getElementsByTag("tr").get(0).text();
-            String room = infoRow.getElementsByTag("tr").get(1).text();
-            String professor = infoRow.getElementsByTag("tr").get(2).text();
+            Element infoRow = infoTable.select("tr").get(1);
+            Elements informations = infoRow.select("td");
+            String date = informations.get(0).text();
+            String room = informations.get(1).text();
+            String professor = informations.get(2).text();
             String formAction = doc.select("form").get(0).attr("action");
             Map<String, String> infos = new HashMap<>();
             infos.put("action", formAction);
