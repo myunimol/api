@@ -71,7 +71,7 @@ public class ExamEnroller implements ExamEnrollerInterface {
         
         String message = doc.select("msg span").get(0).text();
         String messageUpperCase = message.toUpperCase();
-        if (messageUpperCase.contains("EFFETTUATA")) {
+        if (!messageUpperCase.contains("NON")) {
             Element infoTable = doc.select("table.detail_table").get(0);
             Element infoRow = infoTable.select("tr").get(1);
             Elements informations = infoRow.select("td");
