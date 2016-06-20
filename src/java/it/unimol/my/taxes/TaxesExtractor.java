@@ -2,7 +2,6 @@ package it.unimol.my.taxes;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-import it.unimol.my.requesterhtml.HTMLRequester;
 import it.unimol.my.requesterhtml.HTMLRequesterException;
 import it.unimol.my.requesterhtml.HTMLRequesterInterface;
 import it.unimol.my.requesterhtml.HTMLRequesterManager;
@@ -58,6 +57,10 @@ public class TaxesExtractor implements TaxesExtractorInterface {
                 }
                 if (element.text().equals("Pagamento effettuato")) {
                     //mettere break per non visualizzare le tasse pagare
+                    continue;
+                }
+                if(columns.size()==1){
+                    
                     continue;
                 }
                 Iterator<Element> ite = columns.iterator();
