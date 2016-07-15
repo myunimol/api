@@ -65,25 +65,64 @@ public class TaxesExtractor implements TaxesExtractorInterface {
                 }
                 Iterator<Element> ite = columns.iterator();
                 while (ite.hasNext()) {
-                    String billId = ite.next().text();
-                    String bullettinCode = ite.next().text();
-                    String year = ite.next().text();
-                    String description = ite.next().text();
-                    String expiringDate = ite.next().text();
-                    String amountString = ite.next().text();
-                    amountString = amountString.replace(',', '.');
-                    amountString = amountString.replaceAll("[^0-9\\.]", "");
-                    Double amountDouble = Double.parseDouble(amountString);
-                    Element statusElement = ite.next().child(0);
-                    String status = "";
-                    if (statusElement.attr("title").contains("non pagato")) {
+                    String billId = null;
+                    String bullettinCode = null;
+                    String year = null;
+                    String description = null;
+                    String expiringDate = null;
+                    String amountString = null;
+                    Double amountDouble = null;
+                    if(ite.hasNext()) {
+                    	Element n = ite.next();
+                    	if(n!=null)
+                    		billId = n.text();
+                    }
+                    if(ite.hasNext()) {
+                    	Element n = ite.next();
+                    	if(n!=null)
+                    		bullettinCode = n.text();
+                    }
+                    if(ite.hasNext()) {
+                    	Element n = ite.next();
+                    	if(n!=null)
+                    		year = n.text();
+                    }
+                    if(ite.hasNext()) {
+                    	Element n = ite.next();
+                    	if(n!=null)
+                    		description = n.text();
+                    }
+                    if(ite.hasNext()) {
+                    	Element n = ite.next();
+                    	if(n!=null)
+                    		expiringDate = n.text();
+                    }
+                    if(ite.hasNext()) {
+                    	Element n = ite.next();
+                    	if(n!=null) {
+                    		amountString = n.text();
+	                    	amountString = amountString.replace(',', '.');
+	                        amountString = amountString.replaceAll("[^0-9\\.]", "");
+	                        amountDouble = Double.parseDouble(amountString);
+                    	}
+                    }
+                    
+                    Element statusElement = null;
+                    if(ite.hasNext()) {
+                    	Element child = ite.next();
+                    	statusElement = child.child(0);
+                    }
+                    String status;
+                    if (statusElement!=null && statusElement.attr("title") != null && statusElement.attr("title").contains("non pagato")) {
                         status = "non pagato";
                     } else {
                         status = "pagato";
                     }
-                    Tax tax = new Tax(billId, bullettinCode, year, description,
-                            expiringDate, amountDouble, status);
-                    taxes.add(tax);
+                    if(billId!=null&&bullettinCode!=null&&year!=null&&description!=null&&expiringDate!=null&&amountDouble!=null) {
+                    	Tax tax = new Tax(billId, bullettinCode, year, description,
+                                expiringDate, amountDouble, status);
+                        taxes.add(tax);
+                    }
                 }
             }
             return taxes;
