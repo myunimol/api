@@ -60,7 +60,10 @@ public class TaxesExtractor implements TaxesExtractorInterface {
                     continue;
                 }
                 if(columns.size()==1){
-                    
+                    continue;
+                }
+                
+                if(element.hasClass("tplTitolo")){
                     continue;
                 }
                 Iterator<Element> ite = columns.iterator();
