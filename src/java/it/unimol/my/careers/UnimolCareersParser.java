@@ -61,7 +61,8 @@ public class UnimolCareersParser implements CareersParser {
         /* quando il login non ha successo si ottiene una pagina con tag meta
          * per il redirect
          */
-        if (firstMeta.attr("http-equiv").equals("refresh")) {
+        
+        if (firstMeta == null || firstMeta.attr("http-equiv").equals("refresh")) {
             // login non riuscito
             return false;
         }
