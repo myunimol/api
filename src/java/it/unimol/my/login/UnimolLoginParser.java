@@ -7,6 +7,8 @@ import it.unimol.my.requesterhtml.HTMLRequesterManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -22,6 +24,7 @@ import it.unimol.my.utils.StringUtils;
  * @author Ivan Di Rienzo
  */
 public class UnimolLoginParser implements LoginParser {
+	private static final Logger logger = Logger.getLogger(UnimolLoginParser.class.getName());
 	
 	@Override
 	public UserInformation getLoginInformation(String username, String password) throws UnirestException {
@@ -34,6 +37,7 @@ public class UnimolLoginParser implements LoginParser {
     	try {
     		requester = HTMLRequesterManager.getManager().getInstance(username, password, careerId);
     	} catch (HTMLRequesterException e) {
+    		logger.log(Level.SEVERE, e.getMessage(), e);
     		throw new UnirestException(e.getMessage());
     	}
     	
@@ -43,9 +47,9 @@ public class UnimolLoginParser implements LoginParser {
                     username, password);
             
             Document doc = Jsoup.parse(resPage);
-
+            
             if (!this.isLogged(doc)) {
-
+            	logger.log(Level.SEVERE, "isLogged is false!");
                 return null; // login non riuscito
 
             } else {
@@ -75,6 +79,7 @@ public class UnimolLoginParser implements LoginParser {
             }
 
         } catch (MalformedURLException ex) {
+        	logger.log(Level.SEVERE, ex.getMessage(), ex);
             return null;
         }
 
@@ -189,7 +194,7 @@ public class UnimolLoginParser implements LoginParser {
         /* quando il login non ha successo si ottiene una pagina con tag meta
          * per il redirect
          */
-        if (firstMeta.attr("http-equiv").equals("refresh")) {
+        if (firstMeta == null || firstMeta.attr("http-equiv").equals("refresh")) {
             // login non riuscito
             return false;
         }

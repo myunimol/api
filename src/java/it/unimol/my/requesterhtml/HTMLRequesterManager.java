@@ -51,37 +51,40 @@ public class HTMLRequesterManager {
 			if (careerId != null)
 				key += "." + StringUtils.md5(key + careerId);
 			
-			if (this.requesters.get(key) == null) {
-				//Logouts all the other requester with the same username
-				List<String> toRemove = new ArrayList<>();
-				
-				for (String requesterKey : this.requesters.keySet()) {
-					if (requesterKey.startsWith(pUsername + "@")) {
-						HTMLRequesterInterface requester = this.requesters.get(requesterKey);
-						requester.logout(pUsername, pPassword);
-						toRemove.add(requesterKey);
-					}
-				}
-				
-				for (String keyToRemove : toRemove) {
-					this.requesters.remove(keyToRemove);
-				}
-				
-				HTMLRequesterInterface requester = registerRequester(pUsername, pPassword, careerId);
-				this.requesters.put(key, requester);
-				
-				return requester;
-			} else {
-				HTMLRequesterInterface requester = this.requesters.get(key);
-				if (requester.isTimeout()) {
-					System.out.println("Timed out " + pUsername);
-					requester.logout(pUsername, pPassword);
-					this.requesters.remove(key);
+			synchronized (this.requesters) {
+				if (this.requesters.get(key) == null) {
+					//Logouts all the other requester with the same username
+					List<String> toRemove = new ArrayList<>();
 					
-					requester = registerRequester(pUsername, pPassword, careerId);
+					
+					for (String requesterKey : this.requesters.keySet()) {
+						if (requesterKey.startsWith(pUsername + "@")) {
+							HTMLRequesterInterface requester = this.requesters.get(requesterKey);
+							requester.logout(pUsername, pPassword);
+							toRemove.add(requesterKey);
+						}
+					}
+					
+					for (String keyToRemove : toRemove) {
+						this.requesters.remove(keyToRemove);
+					}
+					
+					HTMLRequesterInterface requester = registerRequester(pUsername, pPassword, careerId);
 					this.requesters.put(key, requester);
+					
+					return requester;
+				} else {
+					HTMLRequesterInterface requester = this.requesters.get(key);
+					if (requester.isTimeout()) {
+						System.out.println("Timed out " + pUsername);
+						requester.logout(pUsername, pPassword);
+						this.requesters.remove(key);
+						
+						requester = registerRequester(pUsername, pPassword, careerId);
+						this.requesters.put(key, requester);
+					}
+					return requester;
 				}
-				return requester;
 			}
 		} catch (NoSuchAlgorithmException e) {
 			throw new HTMLRequesterException("No MD5 algorithm!");
@@ -111,7 +114,7 @@ public class HTMLRequesterManager {
 			
 			CareersInfo info = careers.getCareersIds(pUsername, pPassword);
 			
-			if (info.getCareers().size() > 0) {
+			if (info != null && info.getCareers().size() > 0) {
 				return info.getCareers().get(0).getId();
 			} else
 				return null;
