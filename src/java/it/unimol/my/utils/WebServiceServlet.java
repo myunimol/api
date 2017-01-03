@@ -125,6 +125,8 @@ public class WebServiceServlet extends HttpServlet {
         response.setCharacterEncoding("utf8");
         // setto il tipo del contenuto
         response.setContentType("application/json; charset=UTF-8");
+        // abilito le richieste cors
+        response.addHeader("Access-Control-Allow-Origin", "*");
     }
 
 }
