@@ -8,6 +8,7 @@ package it.unimol.my.taxes;
 public class Tax {
 
 	private String billId;
+        private String IUVCode;
 	private String bullettinCode;
 	private String year;
 	private String description;
@@ -15,10 +16,11 @@ public class Tax {
 	private double amount;
 	private String statusPayment;
 
-	public Tax(String billId, String bullettinCode, String year,
+	public Tax(String billId, String IUVCode, String bullettinCode, String year,
 			String description, String expiringDate, double amount,
 			String statusPayment) {
 		this.billId = billId;
+                this.IUVCode = IUVCode;
 		this.bullettinCode = bullettinCode;
 		this.year = year;
 		this.description = description;
@@ -37,6 +39,14 @@ public class Tax {
 
 	public void setBillId(String billId) {
 		this.billId = billId;
+	}
+        
+        public String getIUVCode() {
+		return IUVCode;
+	}
+
+	public void setIUVCode(String IUVCode) {
+		this.IUVCode = IUVCode;
 	}
 
 	public String getBullettinCode() {
@@ -100,6 +110,7 @@ public class Tax {
 		temp = Double.doubleToLongBits(amount);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((billId == null) ? 0 : billId.hashCode());
+                result = prime * result + ((IUVCode == null) ? 0 : IUVCode.hashCode());
 		result = prime * result
 				+ ((bullettinCode == null) ? 0 : bullettinCode.hashCode());
 		result = prime * result
@@ -133,6 +144,11 @@ public class Tax {
 			if (other.billId != null)
 				return false;
 		} else if (!billId.equals(other.billId))
+			return false;
+                if (IUVCode == null) {
+			if (other.IUVCode != null)
+				return false;
+		} else if (!IUVCode.equals(other.IUVCode))
 			return false;
 		if (bullettinCode == null) {
 			if (other.bullettinCode != null)
@@ -169,7 +185,8 @@ public class Tax {
 	 */
 	@Override
 	public String toString() {
-		return "Tax [billId=" + billId + ", bullettinCode=" + bullettinCode
+		return "Tax [billId=" + billId + ", IUVCode=" + IUVCode
+                                + ", bullettinCode=" + bullettinCode
 				+ ", year=" + year + ", description=" + description
 				+ ", expiringDate=" + expiringDate + ", amount=" + amount
 				+ ", statusPayment=" + statusPayment + "]";

@@ -69,6 +69,7 @@ public class TaxesExtractor implements TaxesExtractorInterface {
                 Iterator<Element> ite = columns.iterator();
                 while (ite.hasNext()) {
                     String billId = null;
+                    String IUVCode = null;
                     String bullettinCode = null;
                     String year = null;
                     String description = null;
@@ -79,6 +80,11 @@ public class TaxesExtractor implements TaxesExtractorInterface {
                     	Element n = ite.next();
                     	if(n!=null)
                     		billId = n.text();
+                    }
+                    if(ite.hasNext()) {
+                    	Element n = ite.next();
+                    	if(n!=null)
+                    		IUVCode = n.text();
                     }
                     if(ite.hasNext()) {
                     	Element n = ite.next();
@@ -122,7 +128,7 @@ public class TaxesExtractor implements TaxesExtractorInterface {
                         status = "pagato";
                     }
                     if(billId!=null&&bullettinCode!=null&&year!=null&&description!=null&&expiringDate!=null&&amountDouble!=null) {
-                    	Tax tax = new Tax(billId, bullettinCode, year, description,
+                    	Tax tax = new Tax(billId, IUVCode, bullettinCode, year, description,
                                 expiringDate, amountDouble, status);
                         taxes.add(tax);
                     }
