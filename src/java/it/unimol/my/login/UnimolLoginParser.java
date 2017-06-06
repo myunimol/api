@@ -97,17 +97,18 @@ public class UnimolLoginParser implements LoginParser {
         UserInformation uInfo = new UserInformation();
 
         // Getting Name And Surname
-        Element name = doc.select("description").first();
+        Element name = doc.select("div#sottotitolo-menu-principale dt").first();
         if (name == null)
-        	throw new UnirestException("Problems with Esse3: not responding.");
+        	throw new UnirestException("No Student name found.");
         String[] nameAndSurname = name.html().split("\\u0026nbsp;");
         uInfo.setName(nameAndSurname[0]);
-        uInfo.setSurname(nameAndSurname[1]);
+        if (nameAndSurname.length > 1)
+        	uInfo.setSurname(nameAndSurname[1]);
 
         // Getting Class
         Element studentClass = doc.select(
                 "#gu-textStatusStudenteCorsoFac-text-link2").first();
-        Element studentCurrClass = doc.select("p.box-cfu-p description").get(1);
+        Element studentCurrClass = doc.select("div#gu-boxStatusStudenteIscriz1 p.box-cfu-p b").get(1);
         uInfo.setStudentClass(studentClass.text() + " "
                 + studentCurrClass.text() + " ANNO");
 
