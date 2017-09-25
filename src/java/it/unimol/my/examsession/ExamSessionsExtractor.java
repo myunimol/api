@@ -79,7 +79,7 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 
 				String htmlDetails = requester.post(new URL(targetPage),
 						parameters, username, password);
-				
+
 				loadExamDetails(examSessionInfo, examSessions.get(i), htmlDetails);
 				i++;
 			}
@@ -90,15 +90,15 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 		}
 		return examSessions;
 	}
-	
-	
+
+
 
 	@Override
 	public List<DetailedExamSession> getExamSessions(String targetURL) {
 		List result = this.parseSessions(targetURL);
 		return result;
 	}
-	
+
 	private void loadExamDetails(ExamSessionInfo examSessionInfo, DetailedExamSession examSession, String htmlDetails) {
 		Document doc = Jsoup.parse(htmlDetails);
 		Elements tdsTplForm = doc.select("td[class=tplForm]");
@@ -123,13 +123,13 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 		examSession.setProfessor(professor);
 		examSession.setRoom(room);
 		examSession.setEnrolled(enrolled);
-		
-		
+
+
 		String tipoEsa = doc.select("input[name=TIPO_ESA]").get(0).val();
 		String attDidId = doc.select("input[name=ATT_DID_ID]").get(0).val();
 		String tipoIscr = doc.select("input[name=TIPO_ISCR]").get(0).val();
 		String aaFreqId = doc.select("input[name=AA_FREQ_ID]").get(0).val();
-		
+
 		examSession.getInfo().setTipoEsa(tipoEsa);
 		examSession.getInfo().setAttDidId(attDidId);
 		examSession.getInfo().setTipoIscr(tipoIscr);
@@ -143,7 +143,7 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 	 * ExamSession (con tutte le informazioni) per ogni appello disponibile. La
 	 * chiave del parsing è la classe attribuita all'elemento table:
 	 * .detail_table Tutti gli appelli vengono inseriti in una Lista.
-	 * 
+	 *
 	 * @param urlTarget
 	 *            URL/PATH della pagina in cui è presente la tabella della lista
 	 *            delle sessioni d'esame
@@ -153,7 +153,7 @@ public class ExamSessionsExtractor implements ExamSessionsExtractorInterface {
 	private List<DetailedExamSession> parseSessions(String html) {
 		List<DetailedExamSession> eSession = new ArrayList<DetailedExamSession>();
 		Document doc = Jsoup.parse(html);
-		Elements tables = doc.select("table[class=detail_table]");
+		Elements tables = doc.select("table[scope=col]");
 		if (tables.size() == 0) {
 			// non esiste la tabella quindi non ci sono sessioni d'esame
 			return eSession;
