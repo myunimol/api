@@ -92,17 +92,17 @@ public class UnimolCareersParser implements CareersParser {
     private List<CareerInfo> getCareers(Document doc) throws UnirestException {
         List<CareerInfo> result = new ArrayList<>();
         
-        Element detailTable = doc.select("table[class=detail_table]").first();
+        Element detailTable = doc.select("table[id=gu_table_sceltacarriera]").first();
         if(detailTable != null) {
             Elements tableRows = detailTable.select("tr");
             if(tableRows != null) {
         		for (Element tdDetailTable : tableRows) {
         			Elements currentRow = tdDetailTable.select("td");
         			if (currentRow != null && currentRow.size() > 0) {
-        				String matricola 		= currentRow.get(0).select("a").text();
-        				String tipoCorso 		= currentRow.get(1).select("a").text();
-        				String corsoDiStudio	= currentRow.get(2).select("a").text();
-        				String stato			= currentRow.get(3).select("a").text();
+        				String matricola 		= currentRow.get(0).text();
+        				String tipoCorso 		= currentRow.get(1).text();
+        				String corsoDiStudio	= currentRow.get(2).text();
+        				String stato			= currentRow.get(3).text();
         				
 		        		String urlCareer 		= currentRow.select("a").first().attr("abs:href");
 		        		
